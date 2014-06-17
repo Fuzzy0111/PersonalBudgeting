@@ -32,6 +32,7 @@ namespace PersonalBudgeting.Tests
             Assert.AreEqual(5100, core.getGrossIncome(_listofIncome));
         }
 
+        
 
         [TestFixtureTearDown]
         public void TestTearDownTheEnvironment()
