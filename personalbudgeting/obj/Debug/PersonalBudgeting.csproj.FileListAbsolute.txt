@@ -14,5 +14,7 @@ C:\Users\User\Dropbox\trainees2014\PersonalBudgeting\PersonalBudgeting\bin\Debug
 C:\Users\User\Dropbox\trainees2014\PersonalBudgeting\PersonalBudgeting\obj\Debug\PersonalBudgeting.exe
 C:\Users\User\Dropbox\trainees2014\PersonalBudgeting\PersonalBudgeting\obj\Debug\PersonalBudgeting.pdb
 C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting\bin\Debug\PersonalBudgeting.exe.config
+C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting\bin\Debug\PersonalBudgeting.exe
+C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting\bin\Debug\PersonalBudgeting.pdb
 C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting\obj\Debug\PersonalBudgeting.exe
 C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting\obj\Debug\PersonalBudgeting.pdb

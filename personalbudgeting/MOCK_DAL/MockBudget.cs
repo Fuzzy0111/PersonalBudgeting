@@ -8,7 +8,7 @@ using PersonalBudgeting.BLL;
 
 namespace PersonalBudgeting.MOCK_DAL
 {
-    public class MockBudget
+    public class DAL // Mock DAL
     {
         List<Income> listOfIncome;
         List<Expenditure> listOfExpenditure;
@@ -19,7 +19,7 @@ namespace PersonalBudgeting.MOCK_DAL
         float _safetyMargin;
         float _mainGoalPercentage;
 
-        public MockBudget()
+        public DAL()
         {
             listOfIncome = new List<Income>();
             listOfIncome.Add(new Income("salary", "wife", 2500.0));

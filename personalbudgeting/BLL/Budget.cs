@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using PersonalBudgeting.MOCK_DAL;
 
 namespace PersonalBudgeting.BLL
 {
     public class Budget
     {
-        MockBudget mockBudget;
+        DAL mockBudget;
         /*
         private List<Income> _listofIncome;
         private List<Expenditure> _listOfExpenditure;
@@ -23,7 +22,7 @@ namespace PersonalBudgeting.BLL
         */
         public Budget()
         {
-            this.mockBudget = new MockBudget();
+            this.mockBudget = new DAL();
             /*
             _listofIncome = mockBudget.retrieveListOfIncome();
             _listOfExpenditure = mockBudget.retrieveListOfExpenditure();
@@ -56,7 +55,7 @@ namespace PersonalBudgeting.BLL
             return mockBudget.retrieveMainGoalPercentage();
         }
 
-        public MockBudget getMockBudget()
+        public DAL getMockBudget()
         {
             return mockBudget;
         }
