@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalBudgeting.BLL
 {
-    class SavingsAccount
+    public class SavingsAccount
     {
         private double _amountAvailable;
 

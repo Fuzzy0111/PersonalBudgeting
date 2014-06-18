@@ -167,7 +167,7 @@ namespace PersonalBudgeting.BLL
             return unTickedWalletTableItems;
         }
 
-        public void updateSavingsAccount(SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mg, double amountForMainGoalPerPay, List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay)
+        public void updateSavingsAccount(SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mg, double amountForMainGoalPerPay, List<WalletTableItem> walletTableItems)
         {
             double amountAvailableForGoalsPerPay = getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
             
