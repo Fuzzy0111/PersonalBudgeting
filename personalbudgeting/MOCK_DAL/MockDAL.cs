@@ -47,27 +47,28 @@ namespace PersonalBudgeting.MOCK_DAL
         {
             return listOfIncome;
         }
-
+        /*
         public void addIncome(string name, string source, double amount)
         {
             listOfIncome.Add(new Income(name, source, amount));
         }
-
+        */
         public List<Expenditure> retrieveListOfExpenditure()
         {
             return listOfExpenditure;
         }
-
+        /*
         public void addExpenditure(string name, double amount, string type)
         {
             listOfExpenditure.Add(new Expenditure(name, amount, type));
         }
+        */
 
         public void setMainGoal(string name, string description, double cost, double amountSaved, DateTime deadline)
         {
             mainGoal = new MainGoal(name, description, cost, amountSaved, deadline);
         }
-
+        
         public MainGoal retrieveMainGoal()
         {
             return mainGoal;
