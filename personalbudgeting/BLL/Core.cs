@@ -94,7 +94,6 @@ namespace PersonalBudgeting.BLL
             return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountPerPay);
         }
 
-        /*
         public Boolean increment(MainGoal mg,double currentDeposit)
         {
             mg.AmountSaved += currentDeposit;
@@ -111,17 +110,17 @@ namespace PersonalBudgeting.BLL
             return g.Cost - g.AmountSaved;
         }
 
-        public Boolean Tick(WishlistItem wli)
+        public Boolean Tick(WalletTableItem wli)
         {
             wli.AmountSaved += wli.ContributionPerTick;
             wli.NoOfTicks++;
             if (wli.AmountSaved >= wli.Cost)
             {
-                //Wish list item saving completed
+                //Wallet table item saving completed
                 return false;
             }
             return true;
         }
-         * */
+
     }
 }

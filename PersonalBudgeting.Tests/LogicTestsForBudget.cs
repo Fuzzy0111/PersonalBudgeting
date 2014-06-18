@@ -12,13 +12,12 @@ namespace PersonalBudgeting.Tests
     [TestFixture]
     public class TestsLogicOfBudget
     {
-
         Core core;
         DAL myDAL;
         List<Income> _listofIncome;
         List<Expenditure> _listOfExpenditure;
         MainGoal _mainGoal;
-        List<WishlistItem> _listOfWishlistItem;
+        List<WalletTableItem> _listOfWishlistItem;
         float _taxRate;
         float _superannuationRate;
         float _safetyMargin;
@@ -81,8 +80,8 @@ namespace PersonalBudgeting.Tests
             double result = core.getGrossIncomePerYear(_listofIncome, -5);
         }
         #endregion
-
-
+        
+        #region getTotalExpenditurePerYear Tests
         [Test]
         public void TestGetTotalExpenditurePerYearForEmptyList()
         {
@@ -130,6 +129,7 @@ namespace PersonalBudgeting.Tests
         {
             double result = core.getTotalExpenditurePerYear(_listOfExpenditure, -5);
         }
+        #endregion
 
         [Test]
         public void TestGetAmountAvailableForGoalsPerYear()

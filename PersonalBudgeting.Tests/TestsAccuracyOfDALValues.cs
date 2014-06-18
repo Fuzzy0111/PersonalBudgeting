@@ -12,7 +12,6 @@ namespace PersonalBudgeting.Tests
     [TestFixture]
     public class TestsAccuracyOfDALValues
     {
-        
         Core core;
         List<Income> _listofIncome;
         DAL myDAL;

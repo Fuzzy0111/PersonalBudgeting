@@ -13,7 +13,7 @@ namespace PersonalBudgeting.MOCK_DAL
         List<Income> listOfIncome;
         List<Expenditure> listOfExpenditure;
         MainGoal mainGoal;
-        List<WishlistItem> listOfWishlistItem;
+        List<WalletTableItem> listOfWishlistItem;
         float _taxRate;
         float _superannuationRate;
         float _safetyMargin;
@@ -31,11 +31,11 @@ namespace PersonalBudgeting.MOCK_DAL
 
             mainGoal = new MainGoal("Loan", "house loan from MCB", 150000.0, 2000.0, new DateTime(2011, 01, 01));
 
-            listOfWishlistItem = new List<WishlistItem>();
-            listOfWishlistItem = new List<WishlistItem>();
-            listOfWishlistItem.Add(new WishlistItem("Camera", "Canon", 150.0, 0.0, 10.0, 0));
-            listOfWishlistItem.Add(new WishlistItem("Phone", "IPhone", 200.0, 20.0, 10.0, 2));
-            listOfWishlistItem.Add(new WishlistItem("Washing Machine", "Samsung", 250.0, 75.0, 15.0, 5));
+            listOfWishlistItem = new List<WalletTableItem>();
+            listOfWishlistItem = new List<WalletTableItem>();
+            listOfWishlistItem.Add(new WalletTableItem("Camera", "Canon", 150.0, 0.0, 10.0, 0));
+            listOfWishlistItem.Add(new WalletTableItem("Phone", "IPhone", 200.0, 20.0, 10.0, 2));
+            listOfWishlistItem.Add(new WalletTableItem("Washing Machine", "Samsung", 250.0, 75.0, 15.0, 5));
 
             _taxRate = 0.15F;
             _superannuationRate = 0.05F;
@@ -73,7 +73,7 @@ namespace PersonalBudgeting.MOCK_DAL
             return mainGoal;
         }
 
-        public List<WishlistItem> retrieveListOfWishlistItem()
+        public List<WalletTableItem> retrieveListOfWishlistItem()
         {
             
             return listOfWishlistItem;

@@ -70,16 +70,16 @@ namespace PersonalBudgeting.BLL
             return mockBudget.retrieveListOfExpenditure();
         }
 
-        public List<WishlistItem> getListOfWishlistItem()
+        public List<WalletTableItem> getListOfWishlistItem()
         {
             return mockBudget.retrieveListOfWishlistItem();
         }
 
         public void addWishlistItem(string name, string description, double cost, double amountSaved, double contributionPerTick, int noOfTicks)
         {
-            mockBudget.retrieveListOfWishlistItem().Add(new WishlistItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
+            mockBudget.retrieveListOfWishlistItem().Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
         }
-        public void removeWishlistItem(WishlistItem wishlistItem)
+        public void removeWishlistItem(WalletTableItem wishlistItem)
         {
             mockBudget.retrieveListOfWishlistItem().Remove(wishlistItem);
         }

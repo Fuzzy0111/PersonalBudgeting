@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Core.cs" />
-    <Compile Include="BLL\WishlistItem.cs" />
+    <Compile Include="BLL\WalletTableItem.cs" />
     <Compile Include="MOCK_DAL\MockDAL.cs" />
     <Compile Include="BLL\Budget.cs" />
     <Compile Include="BLL\Expenditure.cs" />
