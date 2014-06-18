@@ -23,7 +23,7 @@ namespace PersonalBudgeting.Tests
         float _safetyMargin;
         float _mainGoalPercentage;
         double goalCost;
-        double amountPerPay;  
+        double amountPerPayForMainGoal;  
         [TestFixtureSetUp]
         public void TestSetuptheEnvironment()
         {
@@ -38,7 +38,7 @@ namespace PersonalBudgeting.Tests
             _safetyMargin = myDAL.retrieveSafetyMargin();
             _mainGoalPercentage = myDAL.retrieveMainGoalPercentage();
             goalCost = _mainGoal.Cost;
-            amountPerPay = 2000;
+            amountPerPayForMainGoal = 2000;
         }
 
         [TestFixtureTearDown]
@@ -167,13 +167,15 @@ namespace PersonalBudgeting.Tests
         }
         #endregion
 
+        #region GetAmountAvailableForGoalsPerYear Test
         [Test]
         public void TestGetAmountAvailableForGoalsPerYear()
         {
             Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26),0.1);
         }
+        #endregion
 
-
+        #region getNoOfPaysRequiredToAccomplishGoal Tests
         [Test, ExpectedException(typeof(DivideByZeroException))]
 
         public void TestgetNoOfPaysRequiredToAccomplishGoalDivisionbyZero()
@@ -188,23 +190,28 @@ namespace PersonalBudgeting.Tests
             int numPay = core.getNoOfPaysRequiredToAccomplishGoal(goalCost, -20);
 
         }
+        #endregion
+        #region goalPayableBeforeDeadline Tests
         [Test]
         public void TestgoalPayableBeforeDeadline_1()
         {
-            Assert.AreEqual(true, core.goalPayableBeforeDeadline(goalCost, amountPerPay,80));
+            Assert.AreEqual(true, core.goalPayableBeforeDeadline(goalCost, amountPerPayForMainGoal,80));
         }
         [Test]
         public void TestgoalPayableBeforeDeadline_2()
         {
-            Assert.AreEqual(false, core.goalPayableBeforeDeadline(goalCost,amountPerPay, 40));
+            Assert.AreEqual(false, core.goalPayableBeforeDeadline(goalCost,amountPerPayForMainGoal, 40));
         }
         [Test,ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestgoalPayableBeforeDeadlineDesiredAmountOutOfRange()
         {
-            Boolean Payable = core.goalPayableBeforeDeadline(goalCost, amountPerPay, -30);
+            Boolean Payable = core.goalPayableBeforeDeadline(goalCost, amountPerPayForMainGoal, -30);
         }
+        #endregion
+
+        #region getAmountAvailableForGoalsPerPay Test
         [Test, ExpectedException(typeof(DivideByZeroException))]
-        public void TestgetAmountAvailableForGoalsPerPayPerPayNumberOFPayequalzero()
+        public void TestgetAmountAvailableForGoalsPerPayNumberOFPayequalzero()
         {
             double AmountAvailableForGoalsPerPay =core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 0);
         }
@@ -213,6 +220,39 @@ namespace PersonalBudgeting.Tests
         {
             double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, -5);
         }
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestgetAmountAvailableForGoalsPerPayListOfIncomeEmpty()
+        {
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, null, 75);
+        }
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestgetAmountAvailableForGoalsPerPayListOfExpenditureEmpty()
+        {
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, null, _listofIncome, 75);
+        }
+        #endregion
 
+        #region  getRemainingAmountForSecondaryGoalsPerPay Tests
+        [Test, ExpectedException(typeof(DivideByZeroException))]
+        public void TestgetRemainingAmountForSecondaryGoalsPerPayNumberOFPayequalzero()
+        {
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal,_taxRate,_superannuationRate,_listOfExpenditure,_listofIncome,0);
+        }
+        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestgetRemainingAmountForSecondaryGoalsPerPayNumberOFPaylessthanzero()
+        {
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, -5);
+        }
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfIncomeEmpty()
+        {
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 75);
+        }
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfExpenditureEmpty()
+        {
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 75);
+        }
+        #endregion
     }
 }

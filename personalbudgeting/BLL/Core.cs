@@ -94,6 +94,8 @@ namespace PersonalBudgeting.BLL
 
         public double getAmountAvailableForGoalsPerPay(float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
+            if (_listofIncome == null || _listOfExpenditure == null)
+                throw new ArgumentNullException();
             if (noOfPayPerYear == 0)
                 throw new DivideByZeroException();
             if (noOfPayPerYear < 0)
@@ -104,6 +106,12 @@ namespace PersonalBudgeting.BLL
 
         public double getRemainingAmountForSecondaryGoalsPerPay(double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
+            if (_listofIncome == null || _listOfExpenditure == null)
+                throw new ArgumentNullException();
+            if (noOfPayPerYear == 0)
+                throw new DivideByZeroException();
+            if (noOfPayPerYear < 0)
+                throw new ArgumentOutOfRangeException();
             return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountForMainGoalPerPay);
         }
 
