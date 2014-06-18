@@ -185,5 +185,15 @@ namespace PersonalBudgeting.BLL
             else
                 mySavingsAccount.AmountAvailable += amountAvailableForGoalsPerPay - amountForMainGoalPerPay - totalAmountForUntickedWalletTableItems;
         }
+
+        public double getSurplusAmount(SavingsAccount mySavingsAccount, MainGoal mg, List<WalletTableItem> walletTableItems)
+        {
+            double totalAmountSavedForWalletTableItems=0.0;
+            foreach (WalletTableItem walletTableItem in walletTableItems)
+            {
+                totalAmountSavedForWalletTableItems += walletTableItem.AmountSaved;
+            }
+            return mySavingsAccount.AmountAvailable - mg.AmountSaved - totalAmountSavedForWalletTableItems;
+        }
     }
 }
