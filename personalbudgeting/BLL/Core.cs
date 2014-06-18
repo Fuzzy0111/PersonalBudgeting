@@ -145,6 +145,7 @@ namespace PersonalBudgeting.BLL
         {
             double totalAmountTicked = 0.0;
             List<WalletTableItem> unTickedWalletTableItems = new List<WalletTableItem>();
+            if (walletTableItems == null) throw new ArgumentNullException();
             foreach (WalletTableItem wti in walletTableItems)
             {
                 if ((wti.ContributionPerTick + totalAmountTicked) > getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear))
