@@ -17,6 +17,8 @@ namespace PersonalBudgeting.Tests
         List<Income> _listofIncome;
         List<Expenditure> _listOfExpenditure;
         float _taxRate, _superannuationRate;
+        double amountForMainGoalPerPay;
+
 
         [TestFixtureSetUp]
         public void TestSetuptheEnvironment()
@@ -27,6 +29,7 @@ namespace PersonalBudgeting.Tests
             _listOfExpenditure = myDAL.retrieveListOfExpenditure();
             _taxRate = myDAL.retrieveTaxRate();
             _superannuationRate = myDAL.retrieveSuperannuationRate();
+            amountForMainGoalPerPay = 2000;
         }
 
         [Test]
@@ -65,6 +68,13 @@ namespace PersonalBudgeting.Tests
         public void TestGetAmountAvailableForGoalsPerYear()
         {
             Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26), 0.1);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestTickOffAllWalletTableItemsEmptyList()
+        {
+
+            core.tickOffAllWalletTableItems(null, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26);
         }
 
         [TestFixtureTearDown]
