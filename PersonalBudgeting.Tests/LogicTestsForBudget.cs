@@ -23,8 +23,7 @@ namespace PersonalBudgeting.Tests
         float _safetyMargin;
         float _mainGoalPercentage;
         double goalCost;
-        double amountPerPayForMainGoal;
-
+        double amountPerPayForMainGoal;  
         [TestFixtureSetUp]
         public void TestSetuptheEnvironment()
         {
@@ -205,7 +204,6 @@ namespace PersonalBudgeting.Tests
 
         }
         #endregion
-
         #region goalPayableBeforeDeadline Tests
         [Test]
         public void TestgoalPayableBeforeDeadline_1()

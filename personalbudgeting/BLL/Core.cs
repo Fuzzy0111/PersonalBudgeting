@@ -186,11 +186,6 @@ namespace PersonalBudgeting.BLL
                 mySavingsAccount.AmountAvailable += amountAvailableForGoalsPerPay - amountForMainGoalPerPay - totalAmountForUntickedWalletTableItems;
         }
 
-        public void withdrawFromSavingsAccount(SavingsAccount mySavingsAccount, double amountToWithdraw)
-        {
-            mySavingsAccount.AmountAvailable -= amountToWithdraw;
-        }
-
         public double getSurplusAmount(SavingsAccount mySavingsAccount, MainGoal mg, List<WalletTableItem> walletTableItems)
         {
             double totalAmountSavedForWalletTableItems=0.0;
