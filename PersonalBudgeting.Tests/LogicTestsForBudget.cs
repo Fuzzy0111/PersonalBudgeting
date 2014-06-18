@@ -83,7 +83,21 @@ namespace PersonalBudgeting.Tests
             double result = core.getGrossIncomePerYear(_listofIncome, -5);
         }
         #endregion
-        
+
+        #region getTotalExpenditure Tests
+        [Test]
+        public void TestgetTotalExpenditureWithEmptyList()
+        {
+            core.getTotalExpenditure(new List<Expenditure>());
+        }
+
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestgetTotalExpenditureWithNullList()
+        {
+            core.getTotalExpenditure(null);
+        }
+        #endregion
+
         #region getTotalExpenditurePerYear Tests
         [Test]
         public void TestGetTotalExpenditurePerYearForEmptyList()
@@ -97,7 +111,7 @@ namespace PersonalBudgeting.Tests
             Assert.AreEqual(220.0 * 12, core.getTotalExpenditurePerYear(_listOfExpenditure));
         }
 
-        [Test, ExpectedException(typeof(NullReferenceException))]
+        [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestGetTotalExpenditurePerYearWithNullList()
         {
             double result = core.getTotalExpenditurePerYear(null);
@@ -115,7 +129,7 @@ namespace PersonalBudgeting.Tests
             Assert.AreEqual(220.0 * 26, core.getTotalExpenditurePerYear(_listOfExpenditure, 26));
         }
 
-        [Test, ExpectedException(typeof(NullReferenceException))]
+        [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestGetTotalExpenditurePerYearWithNullListUsingNoOfPays()
         {
             double result = core.getTotalExpenditurePerYear(null, 26);
@@ -134,7 +148,6 @@ namespace PersonalBudgeting.Tests
         }
         #endregion
 
-        //getNetIncomePerYear(float _taxRate, float _superannuationRate, List<Income> _listofIncome, int noOfPayPerYear)
         #region getNetIncomePerYear Tests
         [Test, ExpectedException(typeof(ArgumentException))]
         public void TestgetNetIncomePerYearNegativeTaxRate()
@@ -160,7 +173,7 @@ namespace PersonalBudgeting.Tests
             core.getNetIncomePerYear(-0.15F, 0.2F, _listofIncome, -5);
         }
 
-        [Test, ExpectedException(typeof(NullReferenceException))]
+        [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetNetIncomePerYearNullIncomeList()
         {
             core.getNetIncomePerYear(0.15F, 0.2F, null, 12);
