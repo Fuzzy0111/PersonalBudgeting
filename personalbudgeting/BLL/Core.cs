@@ -65,8 +65,12 @@ namespace PersonalBudgeting.BLL
             return (getNetIncomePerYear(_taxRate, _superannuationRate, _listofIncome, noOfPayPerYear) - getTotalExpenditurePerYear(_listOfExpenditure));
         }
 
-        public int getNoOfPaysRequiredToAccomplishGoal(double amountPerPay, double goalCost)
+        public int getNoOfPaysRequiredToAccomplishGoal(double  goalCost, double amountPerPay)
         {
+            if (amountPerPay == 0)
+                throw new DivideByZeroException();
+            if(amountPerPay <0|| goalCost<0)
+                throw new ArgumentOutOfRangeException();
             return (int)Math.Ceiling(goalCost / amountPerPay);
         }
 
@@ -75,9 +79,13 @@ namespace PersonalBudgeting.BLL
             return (goalCost/desiredNoOfPaysForGoalAccomplishment);
         }
 
-        public Boolean goalPayableBeforeDeadline(double amountPerPay, double goalCost, int desiredNoOfPaysForGoalAccomplishment)
+        public Boolean goalPayableBeforeDeadline(double goalCost, double amountPerPay, int desiredNoOfPaysForGoalAccomplishment)
         {
-            int noOfPaysRequired = getNoOfPaysRequiredToAccomplishGoal(amountPerPay, goalCost);
+            if (desiredNoOfPaysForGoalAccomplishment <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            int noOfPaysRequired = getNoOfPaysRequiredToAccomplishGoal(goalCost, amountPerPay);
             if (noOfPaysRequired <= desiredNoOfPaysForGoalAccomplishment)
                 return true;
             else
@@ -88,16 +96,18 @@ namespace PersonalBudgeting.BLL
         {
             if (noOfPayPerYear == 0)
                 throw new DivideByZeroException();
+            if (noOfPayPerYear < 0)
+                throw new ArgumentOutOfRangeException();
             else
                 return (getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) / noOfPayPerYear);
         }
 
-        public double getRemainingAmountPerPay(double amountPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public double getRemainingAmountForSecondaryGoalsPerPay(double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
-            return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountPerPay);
+            return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountForMainGoalPerPay);
         }
 
-        public Boolean increment(MainGoal mg,double currentDeposit)
+        public Boolean saveForMainGoal(MainGoal mg,double currentDeposit)
         {
             mg.AmountSaved += currentDeposit;
             if (mg.AmountSaved >= mg.Cost)
@@ -108,12 +118,12 @@ namespace PersonalBudgeting.BLL
             return true;
         }
 
-        public double calculatePendingAmount(Goal g)
+        public double calculatePendingAmountForGoal(Goal g)
         {
             return g.Cost - g.AmountSaved;
         }
 
-        public Boolean Tick(WalletTableItem wli)
+        public Boolean TickOffWalletTableItem(WalletTableItem wli)
         {
             wli.AmountSaved += wli.ContributionPerTick;
             wli.NoOfTicks++;
@@ -123,6 +133,32 @@ namespace PersonalBudgeting.BLL
                 return false;
             }
             return true;
+        }
+
+        public List<WalletTableItem> TickOffAllWalletTableItems(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        {
+            double totalAmountTicked = 0.0;
+            List<WalletTableItem> unTickedWalletTableItems = new List<WalletTableItem>();
+            foreach (WalletTableItem wti in walletTableItems)
+            {
+                if ((wti.ContributionPerTick + totalAmountTicked) > getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear))
+                {
+                    //Not enough money to tick this wallet table item
+                    unTickedWalletTableItems.Add(wti);
+                }
+                else
+                {
+                    Boolean walletTableItemTicked=TickOffWalletTableItem(wti);
+                    totalAmountTicked += wti.ContributionPerTick;
+
+                    if (!walletTableItemTicked)
+                    {
+                        //Wallet table item saving completed
+                        walletTableItems.Remove(wti);
+                    }
+                }
+            }
+            return unTickedWalletTableItems;
         }
 
     }

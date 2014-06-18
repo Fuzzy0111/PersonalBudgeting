@@ -9,115 +9,60 @@ namespace PersonalBudgeting.BLL
 {
     public class Budget
     {
-        DAL mockBudget;
-        /*
-        private List<Income> _listofIncome;
-        private List<Expenditure> _listOfExpenditure;
-        private MainGoal _mainGoal;
-        private List<WishlistItem> _listOfWishlistItem;
-        private static float _taxRate;
-        private float _superannuationRate;
-        private float _safetyMargin;
-        private float _mainGoalPercentage;
-        */
+        DAL dal;
+
         public Budget()
         {
-            this.mockBudget = new DAL();
-            /*
-            _listofIncome = mockBudget.retrieveListOfIncome();
-            _listOfExpenditure = mockBudget.retrieveListOfExpenditure();
-            _mainGoal = mockBudget.retrieveMainGoal();
-            _listOfWishlistItem = mockBudget.retrieveListOfWishlistItem();
-            _taxRate = mockBudget.retrieveTaxRate();
-            _superannuationRate = mockBudget.retrieveSuperannuationRate();
-            _safetyMargin = mockBudget.retrieveSafetyMargin();
-            _mainGoalPercentage = mockBudget.retrieveMainGoalPercentage();
-             * */
+            this.dal = new DAL();
         }
 
         public MainGoal getMainGoal()
         {
-            return mockBudget.retrieveMainGoal();
+            return dal.retrieveMainGoal();
         }
 
         public float getTaxRate()
         {
-            return mockBudget.retrieveTaxRate();
+            return dal.retrieveTaxRate();
         }
 
         public float getSuperannuationRate()
         {
-            return mockBudget.retrieveSuperannuationRate();
+            return dal.retrieveSuperannuationRate();
         }
 
         public float getMainGoalPercentage()
         {
-            return mockBudget.retrieveMainGoalPercentage();
+            return dal.retrieveMainGoalPercentage();
         }
 
         public DAL getMockBudget()
         {
-            return mockBudget;
+            return dal;
         }
 
         public List<Income> getListOfIncome()
         {
-            return mockBudget.retrieveListOfIncome();
+            return dal.retrieveListOfIncome();
         }
 
         public List<Expenditure> getListOfExpenditure()
         {
-            return mockBudget.retrieveListOfExpenditure();
+            return dal.retrieveListOfExpenditure();
         }
 
         public List<WalletTableItem> getListOfWishlistItem()
         {
-            return mockBudget.retrieveListOfWishlistItem();
+            return dal.retrieveListOfWishlistItem();
         }
 
         public void addWishlistItem(string name, string description, double cost, double amountSaved, double contributionPerTick, int noOfTicks)
         {
-            mockBudget.retrieveListOfWishlistItem().Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
+            dal.retrieveListOfWishlistItem().Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
         }
         public void removeWishlistItem(WalletTableItem wishlistItem)
         {
-            mockBudget.retrieveListOfWishlistItem().Remove(wishlistItem);
+            dal.retrieveListOfWishlistItem().Remove(wishlistItem);
         }
-
-        /*
-        public double getGrossIncome()
-        {
-            double grossIncome = 0;
-            foreach (Income income in _listofIncome)
-            {
-                grossIncome += income.Amount;
-            }
-            return grossIncome;
-        }
-
-        public double getNetIncome()
-        {
-            double grossIncome = getGrossIncome();
-            double tax = grossIncome * _taxRate;
-            double superannuation = grossIncome * _superannuationRate;
-            
-            return grossIncome - tax - superannuation;
-        }
-
-        public double getTotalExpenditure()
-        {
-            double totalExpenditure = 0;
-            foreach (Expenditure expenditure in _listOfExpenditure)
-            {
-                totalExpenditure += expenditure.Amount;
-            }
-            return totalExpenditure;
-        }
-
-        public double getAmountAvailableForGoals()
-        {
-            return getNetIncome() - getTotalExpenditure();
-        }
-         * */
     }
 }
