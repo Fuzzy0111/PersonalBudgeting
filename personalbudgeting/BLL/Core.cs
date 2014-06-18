@@ -31,7 +31,7 @@ namespace PersonalBudgeting.BLL
 
         public double getNetIncomePerYear(float _taxRate, float _superannuationRate, List<Income> _listofIncome, int noOfPayPerYear)
         {
-            if (_listofIncome == null) throw new NullReferenceException();
+            //if (_listofIncome == null) throw new NullReferenceException();
             if (_taxRate<=0 || _superannuationRate<=0 || !_listofIncome.Any() || noOfPayPerYear<=0)
                 throw new ArgumentException();
             return getGrossIncomePerYear(_listofIncome, noOfPayPerYear) *  (1 - _taxRate + _superannuationRate);
@@ -39,6 +39,7 @@ namespace PersonalBudgeting.BLL
 
         public double getTotalExpenditure(List<Expenditure> _listOfExpenditure)
         {
+            if (_listOfExpenditure == null) throw new ArgumentNullException();
             double totalExpenditure = 0;
             foreach (Expenditure expenditure in _listOfExpenditure)
             {
@@ -94,6 +95,8 @@ namespace PersonalBudgeting.BLL
 
         public double getAmountAvailableForGoalsPerPay(float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
+            if (_listofIncome == null || _listOfExpenditure == null)
+                throw new ArgumentNullException();
             if (noOfPayPerYear == 0)
                 throw new DivideByZeroException();
             if (noOfPayPerYear < 0)
@@ -104,6 +107,12 @@ namespace PersonalBudgeting.BLL
 
         public double getRemainingAmountForSecondaryGoalsPerPay(double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
+            if (_listofIncome == null || _listOfExpenditure == null)
+                throw new ArgumentNullException();
+            if (noOfPayPerYear == 0)
+                throw new DivideByZeroException();
+            if (noOfPayPerYear < 0)
+                throw new ArgumentOutOfRangeException();
             return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountForMainGoalPerPay);
         }
 

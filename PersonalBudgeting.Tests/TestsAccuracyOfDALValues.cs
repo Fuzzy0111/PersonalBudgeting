@@ -15,6 +15,7 @@ namespace PersonalBudgeting.Tests
         Core core;
         DAL myDAL;
         List<Income> _listofIncome;
+        List<Expenditure> _listOfExpenditure;
         float _taxRate, _superannuationRate;
 
         [TestFixtureSetUp]
@@ -23,6 +24,7 @@ namespace PersonalBudgeting.Tests
             myDAL = new DAL();
             core = new Core();
             _listofIncome = myDAL.retrieveListOfIncome();
+            _listOfExpenditure = myDAL.retrieveListOfExpenditure();
             _taxRate = myDAL.retrieveTaxRate();
             _superannuationRate = myDAL.retrieveSuperannuationRate();
         }
@@ -45,6 +47,24 @@ namespace PersonalBudgeting.Tests
             string msg = String.Format("Tax: {0}, Sup: {1}, TotalGrossIncome: {2}, PaysPerYear: {3}",
                 _taxRate, _superannuationRate, core.getGrossIncomePerYear(_listofIncome, 12), 12);
             Assert.AreEqual(55080, core.getNetIncomePerYear(_taxRate, _superannuationRate, _listofIncome, 12), 0.1, msg);
+        }
+
+        [Test]
+        public void TestGetTotalExpenditure()
+        {
+            Assert.AreEqual(220, core.getTotalExpenditure(_listOfExpenditure));
+        }
+
+        [Test]
+        public void TestGetTotalExpenditurePerYear()
+        {
+            Assert.AreEqual(220.0 * 12, core.getTotalExpenditurePerYear(_listOfExpenditure));
+        }
+
+        [Test]
+        public void TestGetAmountAvailableForGoalsPerYear()
+        {
+            Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26), 0.1);
         }
 
         [TestFixtureTearDown]
