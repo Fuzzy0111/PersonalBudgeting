@@ -77,6 +77,7 @@ namespace PersonalBudgeting.Tests
             core.tickOffAllWalletTableItems(null, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26);
         }
 
+      
         [TestFixtureTearDown]
         public void TestTearDownTheEnvironment()
         {
