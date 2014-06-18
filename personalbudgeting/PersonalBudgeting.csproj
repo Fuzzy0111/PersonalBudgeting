@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="BLL\Core.cs" />
     <Compile Include="BLL\WishlistItem.cs" />
-    <Compile Include="MOCK_DAL\MockBudget.cs" />
+    <Compile Include="MOCK_DAL\MockDAL.cs" />
     <Compile Include="BLL\Budget.cs" />
     <Compile Include="BLL\Expenditure.cs" />
     <Compile Include="BLL\Goal.cs" />

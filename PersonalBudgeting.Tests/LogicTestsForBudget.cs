@@ -26,12 +26,12 @@ namespace PersonalBudgeting.Tests
         }
 
 
-        [Test]
-        public void TestCalculatePendingAmount()
+        [Test,ExpectedException]
+        public void TestCalculateGrossIncomeWithEmptyIncomeList()
         {
-           Assert.AreEqual(5100, core.getGrossIncome(_listofIncome));
+            
+            Assert.AreEqual(5100, core.getGrossIncome(new List<Income>()));
         }
-
 
         [TestFixtureTearDown]
         public void TestTearDownTheEnvironment()

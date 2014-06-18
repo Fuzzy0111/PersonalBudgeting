@@ -25,13 +25,11 @@ namespace PersonalBudgeting.Tests
             _listofIncome = myDAL.retrieveListOfIncome();
         }
 
-
         [Test]
         public void TestVerifyTotalIncome()
         {
             Assert.AreEqual(5100, core.getGrossIncome(_listofIncome));
-        }
-
+        } 
         
 
         [TestFixtureTearDown]
