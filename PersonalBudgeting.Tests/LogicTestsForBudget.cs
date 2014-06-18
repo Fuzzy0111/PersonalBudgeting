@@ -259,14 +259,14 @@ namespace PersonalBudgeting.Tests
             double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, -5);
         }
         [Test, ExpectedException(typeof(ArgumentNullException))]
-        public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfIncomeEmpty()
+        public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfIncomeNull()
         {
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 75);
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditure, null, 75);
         }
         [Test, ExpectedException(typeof(ArgumentNullException))]
-        public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfExpenditureEmpty()
+        public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfExpenditureNull()
         {
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 75);
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, null, _listofIncome, 75);
         }
         #endregion
     }
