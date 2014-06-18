@@ -22,7 +22,8 @@ namespace PersonalBudgeting.Tests
         float _superannuationRate;
         float _safetyMargin;
         float _mainGoalPercentage;
-
+        double goalCost;
+        double amountPerPay;  
         [TestFixtureSetUp]
         public void TestSetuptheEnvironment()
         {
@@ -36,6 +37,8 @@ namespace PersonalBudgeting.Tests
             _superannuationRate = myDAL.retrieveSuperannuationRate();
             _safetyMargin = myDAL.retrieveSafetyMargin();
             _mainGoalPercentage = myDAL.retrieveMainGoalPercentage();
+            goalCost = _mainGoal.Cost;
+            amountPerPay = 2000;
         }
 
         [TestFixtureTearDown]
@@ -131,10 +134,85 @@ namespace PersonalBudgeting.Tests
         }
         #endregion
 
+        //getNetIncomePerYear(float _taxRate, float _superannuationRate, List<Income> _listofIncome, int noOfPayPerYear)
+        #region getNetIncomePerYear Tests
+        [Test, ExpectedException(typeof(ArgumentException))]
+        public void TestgetNetIncomePerYearNegativeTaxRate()
+        {
+            core.getNetIncomePerYear(-0.15F, 0.2F,  _listofIncome, 12);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentException))]
+        public void TestgetNetIncomePerYearNegativeSuperannuationRate()
+        {
+            core.getNetIncomePerYear(0.15F, -0.2F, _listofIncome, 12);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentException))]
+        public void TestgetNetIncomePerYearEmptyList()
+        {
+            core.getNetIncomePerYear(0.15F, 0.2F, new List<Income>(), 12);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentException))]
+        public void TestgetNetIncomePerYearNegativePayPerYear()
+        {
+            core.getNetIncomePerYear(-0.15F, 0.2F, _listofIncome, -5);
+        }
+
+        [Test, ExpectedException(typeof(NullReferenceException))]
+        public void TestgetNetIncomePerYearNullIncomeList()
+        {
+            core.getNetIncomePerYear(0.15F, 0.2F, null, 12);
+        }
+        #endregion
+
         [Test]
         public void TestGetAmountAvailableForGoalsPerYear()
         {
             Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26),0.1);
         }
+
+
+        [Test, ExpectedException(typeof(DivideByZeroException))]
+
+        public void TestgetNoOfPaysRequiredToAccomplishGoalDivisionbyZero()
+        {
+            int numPay = core.getNoOfPaysRequiredToAccomplishGoal(goalCost, 0);
+
+        }
+        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
+
+        public void TestgetNoOfPaysRequiredToAccomplishGoalAmountPerPayNegative()
+        {
+            int numPay = core.getNoOfPaysRequiredToAccomplishGoal(goalCost, -20);
+
+        }
+        [Test]
+        public void TestgoalPayableBeforeDeadline_1()
+        {
+            Assert.AreEqual(true, core.goalPayableBeforeDeadline(goalCost, amountPerPay,80));
+        }
+        [Test]
+        public void TestgoalPayableBeforeDeadline_2()
+        {
+            Assert.AreEqual(false, core.goalPayableBeforeDeadline(goalCost,amountPerPay, 40));
+        }
+        [Test,ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestgoalPayableBeforeDeadlineDesiredAmountOutOfRange()
+        {
+            Boolean Payable = core.goalPayableBeforeDeadline(goalCost, amountPerPay, -30);
+        }
+        [Test, ExpectedException(typeof(DivideByZeroException))]
+        public void TestgetAmountAvailableForGoalsPerPayPerPayNumberOFPayequalzero()
+        {
+            double AmountAvailableForGoalsPerPay =core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 0);
+        }
+        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestgetAmountAvailableForGoalsPerPayNumberOFPaylessthanzero()
+        {
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, -5);
+        }
+
     }
 }
