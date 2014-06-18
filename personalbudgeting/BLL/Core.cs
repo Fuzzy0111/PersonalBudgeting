@@ -95,6 +95,8 @@ namespace PersonalBudgeting.BLL
 
         public double getAmountAvailableForGoalsPerPay(float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
+            if (_listofIncome == null || _listOfExpenditure == null)
+                throw new ArgumentNullException();
             if (noOfPayPerYear == 0)
                 throw new DivideByZeroException();
             if (noOfPayPerYear < 0)
@@ -105,18 +107,18 @@ namespace PersonalBudgeting.BLL
 
         public double getRemainingAmountForSecondaryGoalsPerPay(double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
+            if (_listofIncome == null || _listOfExpenditure == null)
+                throw new ArgumentNullException();
+            if (noOfPayPerYear == 0)
+                throw new DivideByZeroException();
+            if (noOfPayPerYear < 0)
+                throw new ArgumentOutOfRangeException();
             return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountForMainGoalPerPay);
         }
 
-        public Boolean saveForMainGoal(MainGoal mg,double currentDeposit)
+        public void saveForMainGoal(MainGoal mg,double mainGoalDepositPerPay)
         {
-            mg.AmountSaved += currentDeposit;
-            if (mg.AmountSaved >= mg.Cost)
-            {
-                //saving completed for main goal
-                return false;
-            }
-            return true;
+            mg.AmountSaved += mainGoalDepositPerPay;
         }
 
         public double calculatePendingAmountForGoal(Goal g)
@@ -124,7 +126,7 @@ namespace PersonalBudgeting.BLL
             return g.Cost - g.AmountSaved;
         }
 
-        public Boolean TickOffWalletTableItem(WalletTableItem wli)
+        public Boolean tickOffWalletTableItem(WalletTableItem wli)
         {
             wli.AmountSaved += wli.ContributionPerTick;
             wli.NoOfTicks++;
@@ -136,7 +138,7 @@ namespace PersonalBudgeting.BLL
             return true;
         }
 
-        public List<WalletTableItem> TickOffAllWalletTableItems(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public List<WalletTableItem> tickOffAllWalletTableItems(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             double totalAmountTicked = 0.0;
             List<WalletTableItem> unTickedWalletTableItems = new List<WalletTableItem>();
@@ -149,7 +151,7 @@ namespace PersonalBudgeting.BLL
                 }
                 else
                 {
-                    Boolean walletTableItemTicked=TickOffWalletTableItem(wti);
+                    Boolean walletTableItemTicked=tickOffWalletTableItem(wti);
                     totalAmountTicked += wti.ContributionPerTick;
 
                     if (!walletTableItemTicked)
@@ -162,5 +164,20 @@ namespace PersonalBudgeting.BLL
             return unTickedWalletTableItems;
         }
 
+        public void updateSavingsAccount(SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mg, double mainGoalDepositPerPay, List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay)
+        {
+            double amountAvailableForGoalsPerPay = getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
+            
+            saveForMainGoal(mg, mainGoalDepositPerPay);
+
+            List<WalletTableItem> unTickedWalletTableItems  = tickOffAllWalletTableItems(walletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
+            double totalAmountForUntickedWalletTableItems = 0.0;
+            foreach (WalletTableItem wti in unTickedWalletTableItems)
+            {
+                totalAmountForUntickedWalletTableItems += wti.ContributionPerTick;
+            }
+
+            mySavingsAccount.AmountAvailable += amountAvailableForGoalsPerPay - mainGoalDepositPerPay - totalAmountForUntickedWalletTableItems;
+        }
     }
 }
