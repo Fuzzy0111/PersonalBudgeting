@@ -31,6 +31,9 @@ namespace PersonalBudgeting.BLL
 
         public double getNetIncomePerYear(float _taxRate, float _superannuationRate, List<Income> _listofIncome, int noOfPayPerYear)
         {
+            if (_listofIncome == null) throw new NullReferenceException();
+            if (_taxRate<=0 || _superannuationRate<=0 || !_listofIncome.Any() || noOfPayPerYear<=0)
+                throw new ArgumentException();
             return getGrossIncomePerYear(_listofIncome, noOfPayPerYear) *  (1 - _taxRate + _superannuationRate);
         }
 

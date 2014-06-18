@@ -131,6 +131,39 @@ namespace PersonalBudgeting.Tests
         }
         #endregion
 
+        //getNetIncomePerYear(float _taxRate, float _superannuationRate, List<Income> _listofIncome, int noOfPayPerYear)
+        #region getNetIncomePerYear Tests
+        [Test, ExpectedException(typeof(ArgumentException))]
+        public void TestgetNetIncomePerYearNegativeTaxRate()
+        {
+            core.getNetIncomePerYear(-0.15F, 0.2F,  _listofIncome, 12);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentException))]
+        public void TestgetNetIncomePerYearNegativeSuperannuationRate()
+        {
+            core.getNetIncomePerYear(0.15F, -0.2F, _listofIncome, 12);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentException))]
+        public void TestgetNetIncomePerYearEmptyList()
+        {
+            core.getNetIncomePerYear(0.15F, 0.2F, new List<Income>(), 12);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentException))]
+        public void TestgetNetIncomePerYearNegativePayPerYear()
+        {
+            core.getNetIncomePerYear(-0.15F, 0.2F, _listofIncome, -5);
+        }
+
+        [Test, ExpectedException(typeof(NullReferenceException))]
+        public void TestgetNetIncomePerYearNullIncomeList()
+        {
+            core.getNetIncomePerYear(0.15F, 0.2F, null, 12);
+        }
+        #endregion
+
         [Test]
         public void TestGetAmountAvailableForGoalsPerYear()
         {
