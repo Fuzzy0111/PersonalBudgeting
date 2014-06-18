@@ -26,6 +26,12 @@ namespace PersonalBudgeting.Tests
         }
 
         [Test]
+        public void TestgetGrossIncomePerYearFor12Months()
+        {
+            Assert.AreEqual(5100 * 12, core.getGrossIncomePerYear(_listofIncome, 12));
+        }
+
+        [Test]
         public void TestVerifyTotalIncome()
         {
             Assert.AreEqual(5100, core.getGrossIncome(_listofIncome));

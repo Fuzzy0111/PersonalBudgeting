@@ -20,6 +20,12 @@ namespace PersonalBudgeting.BLL
 
         public double getGrossIncomePerYear(List<Income> _listofIncome, int noOfPayPerYear)
         {
+            if (_listofIncome == null)
+                throw new NullReferenceException();
+            if (!_listofIncome.Any())
+                throw new ArgumentException();
+            if (noOfPayPerYear <= 0)
+                throw new ArgumentException("No of pays per year cannot be negative.");
             return getGrossIncome(_listofIncome) * noOfPayPerYear;
         }
 
