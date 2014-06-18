@@ -7,3 +7,12 @@ C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\nunit.
 C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting.Tests\obj\Debug\PersonalBudgeting.Tests.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting.Tests\obj\Debug\PersonalBudgeting.Tests.dll
 C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting.Tests\obj\Debug\PersonalBudgeting.Tests.pdb
+C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll
+C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.pdb
+C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\nunit.framework.dll
+C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.exe
+C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.pdb
+C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\nunit.framework.xml
+C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\obj\Debug\PersonalBudgeting.Tests.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\obj\Debug\PersonalBudgeting.Tests.dll
+C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\obj\Debug\PersonalBudgeting.Tests.pdb
