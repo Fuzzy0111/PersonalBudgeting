@@ -62,8 +62,12 @@ namespace PersonalBudgeting.BLL
             return (getNetIncomePerYear(_taxRate, _superannuationRate, _listofIncome, noOfPayPerYear) - getTotalExpenditurePerYear(_listOfExpenditure));
         }
 
-        public int getNoOfPaysRequiredToAccomplishGoal(double amountPerPay, double goalCost)
+        public int getNoOfPaysRequiredToAccomplishGoal(double  goalCost, double amountPerPay)
         {
+            if (amountPerPay == 0)
+                throw new DivideByZeroException();
+            if(amountPerPay <0|| goalCost<0)
+                throw new ArgumentOutOfRangeException();
             return (int)Math.Ceiling(goalCost / amountPerPay);
         }
 
@@ -72,9 +76,13 @@ namespace PersonalBudgeting.BLL
             return (goalCost/desiredNoOfPaysForGoalAccomplishment);
         }
 
-        public Boolean goalPayableBeforeDeadline(double amountPerPay, double goalCost, int desiredNoOfPaysForGoalAccomplishment)
+        public Boolean goalPayableBeforeDeadline(double goalCost, double amountPerPay, int desiredNoOfPaysForGoalAccomplishment)
         {
-            int noOfPaysRequired = getNoOfPaysRequiredToAccomplishGoal(amountPerPay, goalCost);
+            if (desiredNoOfPaysForGoalAccomplishment <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            int noOfPaysRequired = getNoOfPaysRequiredToAccomplishGoal(goalCost, amountPerPay);
             if (noOfPaysRequired <= desiredNoOfPaysForGoalAccomplishment)
                 return true;
             else
@@ -85,6 +93,8 @@ namespace PersonalBudgeting.BLL
         {
             if (noOfPayPerYear == 0)
                 throw new DivideByZeroException();
+            if (noOfPayPerYear < 0)
+                throw new ArgumentOutOfRangeException();
             else
                 return (getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) / noOfPayPerYear);
         }

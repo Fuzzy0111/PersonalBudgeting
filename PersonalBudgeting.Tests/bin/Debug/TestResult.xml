@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-06-18" time="12:02:39">
-  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5477" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="PBIO-2258" user="User" user-domain="PBIO-2258" />
+<test-results name="C:\Users\User\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-06-18" time="13:29:54">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5477" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="PBIO-2355" user="User" user-domain="PBIO-2355" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" executed="True" result="Success" success="True" time="0.433" asserts="0">
+  <test-suite type="Assembly" name="C:\Users\User\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" executed="True" result="Success" success="True" time="0.002" asserts="0">
     <results>
-      <test-suite type="Namespace" name="PersonalBudgeting" executed="True" result="Success" success="True" time="0.363" asserts="0">
+      <test-suite type="Namespace" name="PersonalBudgeting" executed="True" result="Success" success="True" time="0.002" asserts="0">
         <results>
-          <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.362" asserts="0">
+          <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.002" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="TestsLogicOfBudget" executed="True" result="Success" success="True" time="0.353" asserts="0">
+              <test-suite type="TestFixture" name="TestsLogicOfBudget" executed="True" result="Success" success="True" time="0.001" asserts="0">
                 <results>
-                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestCalculateGrossIncomeWithEmptyIncomeList" executed="True" result="Success" success="True" time="0.175" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestGetAmountAvailableForGoalsPerYear" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                 </results>
               </test-suite>
             </results>
