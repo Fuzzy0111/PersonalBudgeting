@@ -46,6 +46,9 @@ namespace PersonalBudgeting.BLL
 
         public double getTotalExpenditurePerYear(List<Expenditure> _listOfExpenditure, int noOfPayPerYear)
         {
+            if (noOfPayPerYear <= 0)
+                throw new ArgumentException("No of pays per year less or equal to zero.");
+
             return getTotalExpenditure(_listOfExpenditure) * noOfPayPerYear;
         }
 

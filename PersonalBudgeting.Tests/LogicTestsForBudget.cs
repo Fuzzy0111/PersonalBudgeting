@@ -134,8 +134,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestGetAmountAvailableForGoalsPerYear()
         {
-            Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26));
+            Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26),0.1);
         }
-
     }
 }
