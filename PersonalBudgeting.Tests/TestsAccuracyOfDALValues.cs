@@ -22,7 +22,7 @@ namespace PersonalBudgeting.Tests
         {
             myBudget = new Budget();
             core = new Core();
-            _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.MainGoal.Cost, myBudget.MainGoal.DurationInNoOfPays);
+            _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost, myBudget.mainGoal.DurationInNoOfPays);
         }
 
         [Test]
