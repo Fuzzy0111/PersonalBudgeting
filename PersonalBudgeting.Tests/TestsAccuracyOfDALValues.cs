@@ -20,7 +20,7 @@ namespace PersonalBudgeting.Tests
         [TestFixtureSetUp]
         public void TestSetuptheEnvironment()
         {
-
+            myBudget = new Budget();
             core = new Core();
             _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.MainGoal.Cost, myBudget.MainGoal.DurationInNoOfPays);
         }
