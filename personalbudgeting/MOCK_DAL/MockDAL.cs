@@ -18,6 +18,7 @@ namespace PersonalBudgeting.MOCK_DAL
         float _superannuationRate;
         float _safetyMargin;
         float _mainGoalPercentage;
+        SavingsAccount _savingsAccount;
 
         public DAL()
         {
@@ -40,7 +41,9 @@ namespace PersonalBudgeting.MOCK_DAL
             //_taxRate = 0.15F;
             _superannuationRate = 0.05F; //todo: take into consideration that Super is calculated as a minimum of 9% or higher. sometimes it can be part of the pay packet & sometimes it can be over and aabove the pay packet. eg. you could get an annual pay of "60k incl. Super" & your friend could get an annual pay of "60k + Super".
             _safetyMargin = 50; //todo: ????  To clarify what this one is with Gerald.
-            _mainGoalPercentage = 75;
+
+            _savingsAccount = new SavingsAccount(500);
+
         }
 
         public List<Income> retrieveListOfIncome()
@@ -121,6 +124,7 @@ namespace PersonalBudgeting.MOCK_DAL
             _mainGoalPercentage = mgp;
         }
 
+<<<<<<< HEAD
         public float calculateTaxRate(double totalIncome)
         {
             if (totalIncome < 0)
@@ -135,6 +139,11 @@ namespace PersonalBudgeting.MOCK_DAL
                 return (float) (17547 + ((totalIncome - 80000) * 0.37))/100;
             else //if (totalIncome > 180000)
                 return (float) (54547 + ((totalIncome - 180000) * 0.45))/100;
+=======
+        public SavingsAccount retrieveSavingsAccount()
+        {
+            return _savingsAccount;
+>>>>>>> origin/master
         }
     }
 }

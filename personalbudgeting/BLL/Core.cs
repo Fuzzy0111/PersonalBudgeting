@@ -191,8 +191,8 @@ namespace PersonalBudgeting.BLL
         {
             mySavingsAccount.AmountAvailable -= amountToWithdraw;
         }
-
-        public double getSurplusAmount(SavingsAccount mySavingsAccount, MainGoal mg, List<WalletTableItem> walletTableItems)
+        /*
+        public double getSurplusAmountPerPay(SavingsAccount mySavingsAccount, MainGoal mg, List<WalletTableItem> walletTableItems)
         {
             double totalAmountSavedForWalletTableItems=0.0;
             foreach (WalletTableItem walletTableItem in walletTableItems)
@@ -201,6 +201,7 @@ namespace PersonalBudgeting.BLL
             }
             return mySavingsAccount.AmountAvailable - mg.AmountSaved - totalAmountSavedForWalletTableItems;
         }
+         * */
     }
 }
 // todo: subtract safety margin along with expenditure
