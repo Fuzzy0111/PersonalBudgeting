@@ -124,7 +124,6 @@ namespace PersonalBudgeting.MOCK_DAL
             _mainGoalPercentage = mgp;
         }
 
-<<<<<<< HEAD
         public float calculateTaxRate(double totalIncome)
         {
             if (totalIncome < 0)
@@ -132,18 +131,18 @@ namespace PersonalBudgeting.MOCK_DAL
             if (totalIncome < 18201)
                 return 0;
             if (totalIncome < 37001)
-                return (float) ((totalIncome - 18200) * 0.19)/100;
+                return (float)((totalIncome - 18200) * 0.19) / 100;
             if (totalIncome < 80001)
-                return (float) (3572 + ((totalIncome - 37000) * 0.325))/100;
+                return (float)(3572 + ((totalIncome - 37000) * 0.325)) / 100;
             if (totalIncome < 180001)
-                return (float) (17547 + ((totalIncome - 80000) * 0.37))/100;
+                return (float)(17547 + ((totalIncome - 80000) * 0.37)) / 100;
             else //if (totalIncome > 180000)
-                return (float) (54547 + ((totalIncome - 180000) * 0.45))/100;
-=======
+                return (float)(54547 + ((totalIncome - 180000) * 0.45)) / 100;
+        }
+
         public SavingsAccount retrieveSavingsAccount()
         {
             return _savingsAccount;
->>>>>>> origin/master
         }
     }
 }

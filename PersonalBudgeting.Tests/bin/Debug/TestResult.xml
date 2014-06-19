@@ -1,17 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-06-18" time="17:11:22">
-  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5477" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="PBIO-2331" user="user" user-domain="PBIO-2331" />
+<test-results name="C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" total="7" errors="2" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-06-19" time="11:47:32">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5477" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Users\User\Documents\Visual Studio 2013\Projects\NunitExample\packages\NUnit.Runners.2.6.3\tools" machine-name="PBIO-2269" user="User" user-domain="PBIO-2269" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" executed="True" result="Success" success="True" time="0.090" asserts="0">
+  <test-suite type="Assembly" name="C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" executed="True" result="Failure" success="False" time="0.046" asserts="0">
     <results>
-      <test-suite type="Namespace" name="PersonalBudgeting" executed="True" result="Success" success="True" time="0.071" asserts="0">
+      <test-suite type="Namespace" name="PersonalBudgeting" executed="True" result="Failure" success="False" time="0.046" asserts="0">
         <results>
-          <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.071" asserts="0">
+          <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="0.045" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="TestsAccuracyOfDALValues" executed="True" result="Success" success="True" time="0.069" asserts="0">
+              <test-suite type="TestFixture" name="TestsAccuracyOfDALValues" executed="True" result="Failure" success="False" time="0.045" asserts="0">
                 <results>
-                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestTickOffAllWalletTableItemsEmptyList" executed="True" result="Success" success="True" time="0.026" asserts="0" />
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetAmountAvailableForGoalsPerYear" executed="True" result="Error" success="False" time="0.001" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.ArgumentException : Value does not fall within the expected range.]]></message>
+                      <stack-trace><![CDATA[at PersonalBudgeting.BLL.Core.getNetIncomePerYear(Single _taxRate, Single _superannuationRate, List`1 _listofIncome, Int32 noOfPayPerYear) in c:\Users\User\Desktop\PersonalBudgeting\personalbudgeting\BLL\Core.cs:line 37
+at PersonalBudgeting.BLL.Core.getAmountAvailableForGoalsPerYear(Single _taxRate, Single _superannuationRate, List`1 _listOfExpenditure, List`1 _listofIncome, Int32 noOfPayPerYear) in c:\Users\User\Desktop\PersonalBudgeting\personalbudgeting\BLL\Core.cs:line 66
+at PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetAmountAvailableForGoalsPerYear() in c:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting.Tests\TestsAccuracyOfDALValues.cs:line 70
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestgetGrossIncomePerYearFor12Months" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestgetNetIncomePerYear" executed="True" result="Error" success="False" time="0.001" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.ArgumentException : Value does not fall within the expected range.]]></message>
+                      <stack-trace><![CDATA[at PersonalBudgeting.BLL.Core.getNetIncomePerYear(Single _taxRate, Single _superannuationRate, List`1 _listofIncome, Int32 noOfPayPerYear) in c:\Users\User\Desktop\PersonalBudgeting\personalbudgeting\BLL\Core.cs:line 37
+at PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestgetNetIncomePerYear() in c:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting.Tests\TestsAccuracyOfDALValues.cs:line 52
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetTotalExpenditure" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetTotalExpenditurePerYear" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestTickOffAllWalletTableItemsEmptyList" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestVerifyTotalIncome" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                 </results>
               </test-suite>
             </results>
