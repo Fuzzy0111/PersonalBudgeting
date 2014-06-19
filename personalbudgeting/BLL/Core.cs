@@ -21,9 +21,7 @@ namespace PersonalBudgeting.BLL
         public double getGrossIncomePerYear(List<Income> _listofIncome, int noOfPayPerYear)
         {
             if (_listofIncome == null)
-                throw new NullReferenceException();
-            if (!_listofIncome.Any())
-                throw new ArgumentException();
+                throw new ArgumentNullException();
             if (noOfPayPerYear <= 0)
                 throw new ArgumentException("No of pays per year cannot be negative.");
             return getGrossIncome(_listofIncome) * noOfPayPerYear;
@@ -31,8 +29,8 @@ namespace PersonalBudgeting.BLL
 
         public double getNetIncomePerYear(float _taxRate, float _superannuationRate, List<Income> _listofIncome, int noOfPayPerYear)
         {
-            //if (_listofIncome == null) throw new NullReferenceException();
-            if (_taxRate<=0 || _superannuationRate<=0 || !_listofIncome.Any() || noOfPayPerYear<=0)
+            if (_listofIncome == null) throw new ArgumentNullException();
+            if (_taxRate<=0 || _superannuationRate<=0 || noOfPayPerYear<=0) //todo: argExp for empty?
                 throw new ArgumentException();
             return getGrossIncomePerYear(_listofIncome, noOfPayPerYear) *  (1 - _taxRate + _superannuationRate);
         }
@@ -213,7 +211,7 @@ namespace PersonalBudgeting.BLL
         
         public void withdrawFromSavingsAccount(SavingsAccount mySavingsAccount, double amountToWithdraw)
         {
-            if (mySavingsAccount == null) throw new NullReferenceException();
+            if (mySavingsAccount == null) throw new ArgumentNullException();
             if (amountToWithdraw > mySavingsAccount.AmountAvailable) throw new ArgumentOutOfRangeException();
             mySavingsAccount.AmountAvailable -= amountToWithdraw;
         }
