@@ -38,8 +38,12 @@ namespace PersonalBudgeting.MOCK_DAL
             listOfWishlistItem.Add(new WalletTableItem("Washing Machine", "Samsung", 250.0, 75.0, 15.0, 5));
 
             _taxRate = 0.15F;
-            _superannuationRate = 0.09F;  // todo: take into consideration that Super is calculated as a minimum of 9% or higher.  sometimes it can be part of the pay packet & sometimes it can be over and aabove the pay packet. eg. you could get an annual pay of "60k incl. Super" & your friend could get an annual pay of "60k + Super".
-            _safetyMargin = 50;  //todo: ????  To clarify what this one is with Gerald.
+            _superannuationRate = 0.05F; 
+            /* todo: take into consideration that Super is calculated as a minimum of 9% or higher.  
+             * sometimes it can be part of the pay packet & sometimes it can be over and aabove the pay packet.
+             * eg. you could get an annual pay of "60k incl. Super" & 
+             * your friend could get an annual pay of "60k + Super". */
+            _safetyMargin = 50; //todo: ????  To clarify what this one is with Gerald.
             _mainGoalPercentage = 75;
         }
 

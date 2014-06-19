@@ -15,33 +15,30 @@ namespace PersonalBudgeting.Tests
         Core core;
         DAL myDAL;
         List<Income> _listofIncome;
-        List<Expenditure> _listOfExpenditures;
+        List<Expenditure> _listOfExpenditure;
         MainGoal _mainGoal;
         List<WalletTableItem> _listOfWishlistItem;
-        float _taxRate;  //todo: investigate current tax rate in australia & mock accordingly
+        float _taxRate; //todo: investigate current tax rate in australia & mock accordingly
         float _superannuationRate;
         float _safetyMargin;
         float _mainGoalPercentage;
-        double goalCost;  //todo: redundancy!!! - needs removal
-        double amountPerPayForMainGoal;
-
-        #region Test Setup and Teardown
-
+        double goalCost; //todo: redundancy!!! - needs removal
+        double amountPerPayForMainGoal;  
         [TestFixtureSetUp]
         public void TestSetuptheEnvironment()
         {
             myDAL = new DAL();
             core = new Core();
             _listofIncome = myDAL.retrieveListOfIncome();
-            _listOfExpenditures = myDAL.retrieveListOfExpenditure();
+            _listOfExpenditure = myDAL.retrieveListOfExpenditure();
             _mainGoal = myDAL.retrieveMainGoal();
-            _listOfWishlistItem = myDAL.retrieveListOfWishlistItem();   //todo: Refactor to proper naming
+            _listOfWishlistItem = myDAL.retrieveListOfWishlistItem(); //todo: Refactor to proper naming
             _taxRate = myDAL.retrieveTaxRate();
             _superannuationRate = myDAL.retrieveSuperannuationRate();
             _safetyMargin = myDAL.retrieveSafetyMargin();
             _mainGoalPercentage = myDAL.retrieveMainGoalPercentage();
             goalCost = _mainGoal.Cost;
-            amountPerPayForMainGoal = 2000;  // todo: discussion about whether this should be derived rather than hardcoded
+            amountPerPayForMainGoal = 2000; // todo: discussion about whether this should be derived rather than hardcoded
         }
 
         [TestFixtureTearDown]
@@ -49,14 +46,11 @@ namespace PersonalBudgeting.Tests
         {
             core = null;
             _listofIncome = null;
-            _listOfExpenditures = null;
+            _listOfExpenditure = null;
             _mainGoal = null;
             _listOfWishlistItem = null;
 
         }
-
-
-        #endregion
 
         [Test,ExpectedException]
         public void TestCalculateGrossIncomeWithEmptyIncomeList()
@@ -64,8 +58,7 @@ namespace PersonalBudgeting.Tests
             Assert.AreEqual(5100, core.getGrossIncome(new List<Income>()));
         }
 
-        #region getGrossIncomePerYear Tests - 4 tests  
-        // currently being reviewed
+        #region getGrossIncomePerYear Tests
         [Test, ExpectedException(typeof(NullReferenceException))]
         public void TestgetGrossIncomePerYearWithNullList()
         {
@@ -115,7 +108,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestGetTotalExpenditurePerYear()
         {
-            Assert.AreEqual(220.0 * 12, core.getTotalExpenditurePerYear(_listOfExpenditures));
+            Assert.AreEqual(220.0 * 12, core.getTotalExpenditurePerYear(_listOfExpenditure));
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
@@ -133,7 +126,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestGetTotalExpenditurePerYearUsingNoOfPays()
         {
-            Assert.AreEqual(220.0 * 26, core.getTotalExpenditurePerYear(_listOfExpenditures, 26));
+            Assert.AreEqual(220.0 * 26, core.getTotalExpenditurePerYear(_listOfExpenditure, 26));
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
@@ -145,13 +138,13 @@ namespace PersonalBudgeting.Tests
         [Test, ExpectedException(typeof(ArgumentException))]
         public void TestGetTotalExpenditurePerYearWithNoOfPaysEqualsZero()
         {
-            double result = core.getTotalExpenditurePerYear(_listOfExpenditures, 0);
+            double result = core.getTotalExpenditurePerYear(_listOfExpenditure, 0);
         }
 
         [Test, ExpectedException(typeof(ArgumentException))]
         public void TestGetTotalExpenditurePerYearWithNegativeNoOfPays()
         {
-            double result = core.getTotalExpenditurePerYear(_listOfExpenditures, -5);
+            double result = core.getTotalExpenditurePerYear(_listOfExpenditure, -5);
         }
         #endregion
 
@@ -191,7 +184,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestGetAmountAvailableForGoalsPerYear()
         {
-            Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditures, _listofIncome, 26),0.1);
+            Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26),0.1);
         }
         #endregion
 
@@ -233,17 +226,17 @@ namespace PersonalBudgeting.Tests
         [Test, ExpectedException(typeof(DivideByZeroException))]
         public void TestgetAmountAvailableForGoalsPerPayNumberOFPayequalzero()
         {
-            double AmountAvailableForGoalsPerPay =core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditures, _listofIncome, 0);
+            double AmountAvailableForGoalsPerPay =core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 0);
         }
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestgetAmountAvailableForGoalsPerPayNumberOFPaylessthanzero()
         {
-            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditures, _listofIncome, -5);
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, -5);
         }
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetAmountAvailableForGoalsPerPayListOfIncomeEmpty()
         {
-            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditures, null, 75);
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, null, 75);
         }
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetAmountAvailableForGoalsPerPayListOfExpenditureEmpty()
@@ -256,30 +249,22 @@ namespace PersonalBudgeting.Tests
         [Test, ExpectedException(typeof(DivideByZeroException))]
         public void TestgetRemainingAmountForSecondaryGoalsPerPayNumberOFPayequalzero()
         {
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal,_taxRate,_superannuationRate,_listOfExpenditures,_listofIncome,0);
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal,_taxRate,_superannuationRate,_listOfExpenditure,_listofIncome,0);
         }
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestgetRemainingAmountForSecondaryGoalsPerPayNumberOFPaylessthanzero()
         {
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditures, _listofIncome, -5);
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, -5);
         }
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfIncomeNull()
         {
-<<<<<<< HEAD
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditures, _listofIncome, 75);
-=======
             double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditure, null, 75);
->>>>>>> origin/master
         }
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfExpenditureNull()
         {
-<<<<<<< HEAD
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, _listOfExpenditures, _listofIncome, 75);
-=======
             double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, null, _listofIncome, 75);
->>>>>>> origin/master
         }
         #endregion
     }
