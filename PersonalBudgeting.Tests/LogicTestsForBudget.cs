@@ -14,13 +14,16 @@ namespace PersonalBudgeting.Tests
     {
         Core core;
         Budget myBudget;
-        double _amountForMainGoalPerPay;  
+        double _amountForMainGoalPerPay;
+        double amountToWithdraw;
+        
 
         [TestFixtureSetUp]
         public void TestSetuptheEnvironment()
         {
             myBudget = new Budget();
             core = new Core();
+
             _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.MainGoal.Cost, myBudget.MainGoal.DurationInNoOfPays);
         }
 
@@ -247,5 +250,19 @@ namespace PersonalBudgeting.Tests
         }
         #endregion
 
+
+        #region WithdrawFromSavingsAccount Test
+        [Test,ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestWithdrawFromSavingsAccountGreaterThanAmountToRemove()
+        {
+            core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 700);
+        }
+
+        [Test, ExpectedException(typeof(NullReferenceException))]
+        public void TestNullSavingsAccount()
+        {
+            core.withdrawFromSavingsAccount(null, 300);
+        }
+        #endregion
     }
 }

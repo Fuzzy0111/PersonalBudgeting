@@ -189,6 +189,8 @@ namespace PersonalBudgeting.BLL
         
         public void withdrawFromSavingsAccount(SavingsAccount mySavingsAccount, double amountToWithdraw)
         {
+            if (mySavingsAccount == null) throw new NullReferenceException();
+            if (amountToWithdraw > mySavingsAccount.AmountAvailable) throw new ArgumentOutOfRangeException();
             mySavingsAccount.AmountAvailable -= amountToWithdraw;
         }
         /*
