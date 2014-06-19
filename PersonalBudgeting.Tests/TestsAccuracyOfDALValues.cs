@@ -13,76 +13,68 @@ namespace PersonalBudgeting.Tests
     public class TestsAccuracyOfDALValues
     {
         Core core;
-        DAL myDAL;
-        List<Income> _listofIncome;
-        List<Expenditure> _listOfExpenditure;
-        float _taxRate, _superannuationRate;
-        double amountForMainGoalPerPay;
+        Budget myBudget;
+        double _amountForMainGoalPerPay;
 
 
         [TestFixtureSetUp]
         public void TestSetuptheEnvironment()
         {
-            myDAL = new DAL();
+
             core = new Core();
-            _listofIncome = myDAL.retrieveListOfIncome();
-            _listOfExpenditure = myDAL.retrieveListOfExpenditure();
-            _taxRate = myDAL.retrieveTaxRate(core.getGrossIncome(_listofIncome));
-            _superannuationRate = myDAL.retrieveSuperannuationRate();
-            amountForMainGoalPerPay = 2000;
+            _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.MainGoal.Cost, myBudget.MainGoal.DurationInNoOfPays);
         }
 
         [Test]
         public void TestgetGrossIncomePerYearFor12Months()
         {
-            Assert.AreEqual(5100 * 12, core.getGrossIncomePerYear(_listofIncome, 12));
+            Assert.AreEqual(5100 * 12, core.getGrossIncomePerYear(myBudget.ListOfIncome, 12));
         }
 
         [Test]
         public void TestVerifyTotalIncome()
         {
-            Assert.AreEqual(5100, core.getGrossIncome(_listofIncome));
+            Assert.AreEqual(5100, core.getGrossIncome(myBudget.ListOfIncome));
         } 
         
         [Test]
         public void TestgetNetIncomePerYear()
         {
             string msg = String.Format("Tax: {0}, Sup: {1}, TotalGrossIncome: {2}, PaysPerYear: {3}",
-                _taxRate, _superannuationRate, core.getGrossIncomePerYear(_listofIncome, 12), 12);
-            Assert.AreEqual(55080, core.getNetIncomePerYear(_taxRate, _superannuationRate, _listofIncome, 12), 0.1, msg);
+                myBudget.TaxRate, myBudget.TaxRate, core.getGrossIncomePerYear(myBudget.ListOfIncome, 12), 12);
+            Assert.AreEqual(55080, core.getNetIncomePerYear(myBudget.TaxRate, myBudget.TaxRate, myBudget.ListOfIncome, 12), 0.1, msg);
         }
 
         [Test]
         public void TestGetTotalExpenditure()
         {
-            Assert.AreEqual(220, core.getTotalExpenditure(_listOfExpenditure));
+            Assert.AreEqual(220, core.getTotalExpenditure(myBudget.ListOfExpenditure));
         }
 
         [Test]
         public void TestGetTotalExpenditurePerYear()
         {
-            Assert.AreEqual(220.0 * 12, core.getTotalExpenditurePerYear(_listOfExpenditure));
+            Assert.AreEqual(220.0 * 12, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure));
         }
 
         [Test]
         public void TestGetAmountAvailableForGoalsPerYear()
         {
-            Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26), 0.1);
+            Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.TaxRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26), 0.1);
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestTickOffAllWalletTableItemsEmptyList()
         {
 
-            core.tickOffAllWalletTableItems(null, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, 26);
+            core.tickOffAllWalletTableItems(null, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.TaxRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
         }
 
         [TestFixtureTearDown]
         public void TestTearDownTheEnvironment()
         {
             core = null;
-            _listofIncome = null;
-
+            myBudget = null; 
         }
 
     }
