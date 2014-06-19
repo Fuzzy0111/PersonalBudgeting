@@ -41,8 +41,8 @@ namespace PersonalBudgeting.Tests
         public void TestgetNetIncomePerYear()
         {
             string msg = String.Format("Tax: {0}, Sup: {1}, TotalGrossIncome: {2}, PaysPerYear: {3}",
-                myBudget.TaxRate, myBudget.TaxRate, core.getGrossIncomePerYear(myBudget.ListOfIncome, 12), 12);
-            Assert.AreEqual(55080, core.getNetIncomePerYear(myBudget.TaxRate, myBudget.TaxRate, myBudget.ListOfIncome, 12), 0.1, msg);
+                myBudget.TaxRate, myBudget.SuperannuationRate, core.getGrossIncomePerYear(myBudget.ListOfIncome, 12), 12);
+            Assert.AreEqual(55080, core.getNetIncomePerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfIncome, 12), 0.1, msg);
         }
 
         [Test]
@@ -60,14 +60,14 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestGetAmountAvailableForGoalsPerYear()
         {
-            Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.TaxRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26), 0.1);
+            Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26), 0.1);
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestTickOffAllWalletTableItemsEmptyList()
         {
 
-            core.tickOffAllWalletTableItems(null, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.TaxRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
+            core.tickOffAllWalletTableItems(null, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
         }
 
         [TestFixtureTearDown]
