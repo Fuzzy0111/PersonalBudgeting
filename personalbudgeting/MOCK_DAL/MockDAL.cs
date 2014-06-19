@@ -31,7 +31,7 @@ namespace PersonalBudgeting.MOCK_DAL
             listOfExpenditure.Add(new Expenditure("Car Insurance", 200.0, "Living Expense"));
             listOfExpenditure.Add(new Expenditure("Electricity", 20.0, "Living Expense"));
 
-            mainGoal = new MainGoal("Loan", "house loan from MCB", 150000.0, 2000.0, 26);
+            mainGoal = new MainGoal("Loan", "house loan from MCB", 150000.0, 0.0, 26);
 
             listOfWalletTableItem = new List<WalletTableItem>();
             listOfWalletTableItem = new List<WalletTableItem>();
