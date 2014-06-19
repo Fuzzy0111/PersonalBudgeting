@@ -12,7 +12,6 @@ namespace PersonalBudgeting.BLL
         private string _description;
         private double _cost;
         private double _amountSaved;
-        public double remainingAmount;
 
         public Goal(string name, string description, double cost, double amountSaved)
         {
