@@ -17,6 +17,7 @@ namespace PersonalBudgeting.BLL
         float _superannuationRate;
         //float _safetyMargin;
         SavingsAccount _savingsAccount;
+        int _noOfPaysPerYear;
 
         DAL dal;
 
@@ -32,6 +33,19 @@ namespace PersonalBudgeting.BLL
             this._superannuationRate = dal.retrieveSuperannuationRate();
             //this._safetyMargin;
             this._savingsAccount = dal.retrieveSavingsAccount();
+            this._noOfPaysPerYear = dal.retrieveNoOfPaysPerYear();
+        }
+
+        public int NoOfPaysPerYear
+        {
+            get
+            {
+                return _noOfPaysPerYear;
+            }
+            set
+            {
+                _noOfPaysPerYear = value;
+            }
         }
 
         public List<Income> ListOfIncome
@@ -103,6 +117,18 @@ namespace PersonalBudgeting.BLL
             set
             {
                 _savingsAccount = value;
+            }
+        }
+
+        public int NoOfPaysPerYear
+        {
+            get
+            {
+                return _listOfIncome;
+            }
+            set
+            {
+                _listOfIncome = value;
             }
         }
 
