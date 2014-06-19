@@ -110,9 +110,9 @@ namespace PersonalBudgeting.MOCK_DAL
             return _superannuationRate;
         }
 
-        public void setSuperannuationRate(double desiredAmount,double totalIncome)
+        public void setSuperannuationRate(double desiredAmount,double totalIncome,Boolean payPacketInclusive)
         {
-            _superannuationRate = calculateSuperannuationRate(desiredAmount,totalIncome);
+            _superannuationRate = calculateSuperannuationRate(desiredAmount,totalIncome,payPacketInclusive);
         }
 
         public float retrieveSafetyMargin()
@@ -151,8 +151,12 @@ namespace PersonalBudgeting.MOCK_DAL
                 return (float)(54547 + ((totalIncome - 180000) * 0.45)) / 100;
         }
         //todo: MOVE??
-        public float calculateSuperannuationRate(double desiredAmount,double totalIncome)
+        public float calculateSuperannuationRate(double desiredAmount,double totalIncome,Boolean payPacketInclusive)
         {
+            if (payPacketInclusive)
+            {
+                return 0;
+            }
             if ((desiredAmount / totalIncome) < 0.0925)
             {
                 return 0.0925F;
