@@ -114,11 +114,11 @@ namespace PersonalBudgeting.BLL
             return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountForMainGoalPerPay);
         }
 
-        public void saveForMainGoal(SavingsAccount mySavingsAccount , double amountForMainGoalPerPay)
+        public void saveForMainGoal(SavingsAccount mySavingsAccount , double amountForMainGoalPerPay, MainGoal mainGoal)
         {
             if (mySavingsAccount.AmountAvailable < amountForMainGoalPerPay)
                 return;
-            mySavingsAccount.AmountAvailable -= amountForMainGoalPerPay;
+            mainGoal.AmountSaved += amountForMainGoalPerPay;
         }
 
         public double calculatePendingAmountForGoal(Goal g)
@@ -145,12 +145,10 @@ namespace PersonalBudgeting.BLL
                 if ((wti.Cost - wti.AmountSaved) <= wti.ContributionPerTick)
                 {
                     wti.AmountSaved += (wti.Cost - wti.AmountSaved);
-                    mySavingsAccount.AmountAvailable -= (wti.Cost - wti.AmountSaved);
                     return false;
                     //saving completed for this walletTableItem
                 }
                 wti.AmountSaved += wti.ContributionPerTick;
-                mySavingsAccount.AmountAvailable -= wti.ContributionPerTick;
                 return true;
             }
             else if (wti.AmountSaved == wti.Cost)
@@ -199,12 +197,12 @@ namespace PersonalBudgeting.BLL
             }
         }
 
-        public void updateSavingsAccount(SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mg, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
+        public void updateSavingsAccount(MainGoal mainGoal, SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mg, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
         {
             double amountAvailableForGoalsPerPay = getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
             mySavingsAccount.AmountAvailable += amountAvailableForGoalsPerPay;
 
-            saveForMainGoal(mySavingsAccount,amountForMainGoalPerPay);
+            saveForMainGoal(mySavingsAccount,amountForMainGoalPerPay,mainGoal);
 
             tickOffAllWalletTableItems(mySavingsAccount, _listOfWalletTableItems);
         }
