@@ -21,7 +21,7 @@ namespace PersonalBudgeting.Tests
         {
             myBudget = new Budget();
             core = new Core();
-            _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.MainGoal.Cost, myBudget.MainGoal.DurationInNoOfPays);
+            _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost, myBudget.mainGoal.DurationInNoOfPays);
         }
 
         [TestFixtureTearDown]
@@ -172,14 +172,14 @@ namespace PersonalBudgeting.Tests
 
         public void TestgetNoOfPaysRequiredToAccomplishGoalDivisionbyZero()
         {
-            int numPay = core.getNoOfPaysRequiredToAccomplishGoal(myBudget.MainGoal.Cost, 0);
+            int numPay = core.getNoOfPaysRequiredToAccomplishGoal(myBudget.mainGoal.Cost, 0);
 
         }
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
 
         public void TestgetNoOfPaysRequiredToAccomplishGoalAmountPerPayNegative()
         {
-            int numPay = core.getNoOfPaysRequiredToAccomplishGoal(myBudget.MainGoal.Cost, -20);
+            int numPay = core.getNoOfPaysRequiredToAccomplishGoal(myBudget.mainGoal.Cost, -20);
 
         }
         #endregion
@@ -187,17 +187,17 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestgoalPayableBeforeDeadline_1()
         {
-            Assert.AreEqual(true, core.goalPayableBeforeDeadline(myBudget.MainGoal.Cost, _amountForMainGoalPerPay, myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(true, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, myBudget.NoOfPaysPerYear));
         }
         [Test]
         public void TestgoalPayableBeforeDeadline_2()
         {
-            Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.MainGoal.Cost, _amountForMainGoalPerPay, 15));
+            Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, 15));
         }
         [Test,ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestgoalPayableBeforeDeadlineDesiredAmountOutOfRange()
         {
-            Boolean Payable = core.goalPayableBeforeDeadline(myBudget.MainGoal.Cost, _amountForMainGoalPerPay, -30);
+            Boolean Payable = core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, -30);
         }
         #endregion
 
