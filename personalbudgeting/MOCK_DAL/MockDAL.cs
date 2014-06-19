@@ -18,6 +18,7 @@ namespace PersonalBudgeting.MOCK_DAL
         float _superannuationRate;
         float _safetyMargin;
         float _mainGoalPercentage;
+        SavingsAccount _savingsAccount;
 
         public DAL()
         {
@@ -44,7 +45,9 @@ namespace PersonalBudgeting.MOCK_DAL
              * eg. you could get an annual pay of "60k incl. Super" & 
              * your friend could get an annual pay of "60k + Super". */
             _safetyMargin = 50; //todo: ????  To clarify what this one is with Gerald.
-            _mainGoalPercentage = 75;
+
+            _savingsAccount = new SavingsAccount(500);
+
         }
 
         public List<Income> retrieveListOfIncome()
@@ -122,6 +125,11 @@ namespace PersonalBudgeting.MOCK_DAL
         public void setMainGoalPercentage(float mgp)
         {
             _mainGoalPercentage = mgp;
+        }
+
+        public SavingsAccount retrieveSavingsAccount()
+        {
+            return _savingsAccount;
         }
     }
 }

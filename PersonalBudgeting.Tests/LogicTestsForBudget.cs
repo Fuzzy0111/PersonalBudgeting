@@ -267,5 +267,6 @@ namespace PersonalBudgeting.Tests
             double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(amountPerPayForMainGoal, _taxRate, _superannuationRate, null, _listofIncome, 75);
         }
         #endregion
+
     }
 }
