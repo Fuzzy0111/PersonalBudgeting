@@ -8,22 +8,23 @@ namespace PersonalBudgeting.BLL
 {
     public class MainGoal : Goal
     {
-        private DateTime _deadline;
+        private int durationInNoOfPays;
 
-        public MainGoal(string name, string description, double cost, double amountSaved, DateTime deadline): base(name, description, cost, amountSaved)
+        public MainGoal(string name, string description, double cost, double amountSaved, int durationInNoOfPays)
+            : base(name, description, cost, amountSaved)
         {
-            _deadline = deadline;
+            this.durationInNoOfPays = durationInNoOfPays;
         }
 
-        public DateTime Deadline
+        public int DurationInNoOfPays
         {
             get
             {
-                return _deadline;
+                return durationInNoOfPays;
             }
             set
             {
-                _deadline = value;
+                durationInNoOfPays = value;
             }
         }
     }

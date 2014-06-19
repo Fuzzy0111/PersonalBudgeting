@@ -30,7 +30,7 @@ namespace PersonalBudgeting.MOCK_DAL
             listOfExpenditure.Add(new Expenditure("Car Insurance", 200.0, "Living Expense"));
             listOfExpenditure.Add(new Expenditure("Electricity", 20.0, "Living Expense"));
 
-            mainGoal = new MainGoal("Loan", "house loan from MCB", 150000.0, 2000.0, new DateTime(2011, 01, 01));
+            mainGoal = new MainGoal("Loan", "house loan from MCB", 150000.0, 2000.0, 26);
 
             listOfWalletTableItem = new List<WalletTableItem>();
             listOfWalletTableItem = new List<WalletTableItem>();
@@ -38,7 +38,7 @@ namespace PersonalBudgeting.MOCK_DAL
             listOfWalletTableItem.Add(new WalletTableItem("Phone", "IPhone", 200.0, 20.0, 10.0, 2));
             listOfWalletTableItem.Add(new WalletTableItem("Washing Machine", "Samsung", 250.0, 75.0, 15.0, 5));
 
-            //_taxRate = 0.15F;
+            _taxRate = 0.15F; //todo: calculate
             _superannuationRate = 0.05F; //todo: take into consideration that Super is calculated as a minimum of 9% or higher. sometimes it can be part of the pay packet & sometimes it can be over and aabove the pay packet. eg. you could get an annual pay of "60k incl. Super" & your friend could get an annual pay of "60k + Super".
             _safetyMargin = 50; //todo: ????  To clarify what this one is with Gerald.
 
@@ -67,9 +67,9 @@ namespace PersonalBudgeting.MOCK_DAL
         }
         */
 
-        public void setMainGoal(string name, string description, double cost, double amountSaved, DateTime deadline)
+        public void setMainGoal(string name, string description, double cost, double amountSaved, int durationInNoOfPays)
         {
-            mainGoal = new MainGoal(name, description, cost, amountSaved, deadline);
+            mainGoal = new MainGoal(name, description, cost, amountSaved, durationInNoOfPays);
         }
         
         public MainGoal retrieveMainGoal()
@@ -82,10 +82,14 @@ namespace PersonalBudgeting.MOCK_DAL
             
             return listOfWalletTableItem;
         }
-        
+
+        public float retrieveTaxRate()
+        {
+            return _taxRate;
+        }
+
         public float retrieveTaxRate(double income)
         {
-            //return _taxRate;
             return calculateTaxRate(income);
         }
 

@@ -9,60 +9,112 @@ namespace PersonalBudgeting.BLL
 {
     public class Budget
     {
+        List<Income> _listOfIncome;
+        List<Expenditure> _listOfExpenditure;
+        MainGoal _mainGoal;
+        List<WalletTableItem> _listOfWalletTableItem;
+        float _taxRate;
+        float _superannuationRate;
+        //float _safetyMargin;
+        SavingsAccount _savingsAccount;
+
         DAL dal;
 
         public Budget()
         {
             this.dal = new DAL();
+
+            this._listOfIncome = dal.retrieveListOfIncome();
+            this._listOfExpenditure = dal.retrieveListOfExpenditure();
+            this._mainGoal = dal.retrieveMainGoal();
+            this._listOfWalletTableItem = dal.retrieveListOfWalletTableItem();
+            this._taxRate = dal.retrieveTaxRate();
+            this._superannuationRate = dal.retrieveSuperannuationRate();
+            //this._safetyMargin;
+            this._savingsAccount = dal.retrieveSavingsAccount();
         }
 
-        public MainGoal getMainGoal()
+        public List<Income> ListOfIncome
         {
-            return dal.retrieveMainGoal();
+            get
+            {
+                return _listOfIncome;
+            }
+            set
+            {
+                _listOfIncome = value;
+            }
         }
 
-        //public float getTaxRate()
-        //{
-        //    return dal.retrieveTaxRate();
-        //}
-
-        public float getSuperannuationRate()
+        public List<Expenditure> ListOfExpenditure
         {
-            return dal.retrieveSuperannuationRate();
+            get
+            {
+                return _listOfExpenditure;
+            }
+            set
+            {
+                _listOfExpenditure = value;
+            }
         }
 
-        public float getMainGoalPercentage()
+        public List<WalletTableItem> ListOfWalletTableItem
         {
-            return dal.retrieveMainGoalPercentage();
+            get
+            {
+                return _listOfWalletTableItem;
+            }
+            set
+            {
+                _listOfWalletTableItem = value;
+            }
         }
 
-        public DAL getMockDAL()
+        public float SuperannuationRate
         {
-            return dal;
+            get
+            {
+                return _superannuationRate;
+            }
+            set
+            {
+                _superannuationRate = value;
+            }
         }
 
-        public List<Income> getListOfIncome()
+        public float TaxRate
         {
-            return dal.retrieveListOfIncome();
+            get
+            {
+                return _taxRate;
+            }
+            set
+            {
+                _taxRate = value;
+            }
         }
 
-        public List<Expenditure> getListOfExpenditure()
+        public SavingsAccount SavingsAccount
         {
-            return dal.retrieveListOfExpenditure();
-        }
-
-        public List<WalletTableItem> getListOfWalletTableItem()
-        {
-            return dal.retrieveListOfWalletTableItem();
+            get
+            {
+                return _savingsAccount;
+            }
+            set
+            {
+                _savingsAccount = value;
+            }
         }
 
         public void addWalletTableItem(string name, string description, double cost, double amountSaved, double contributionPerTick, int noOfTicks)
         {
-            dal.retrieveListOfWalletTableItem().Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
+            _listOfWalletTableItem.Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
         }
         public void removeWalletTableItem(WalletTableItem WalletTableItem)
         {
-            dal.retrieveListOfWalletTableItem().Remove(WalletTableItem);
+            _listOfWalletTableItem.Remove(WalletTableItem);
         }
+
+
     }
 }
