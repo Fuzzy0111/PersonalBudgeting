@@ -129,11 +129,11 @@ namespace PersonalBudgeting.BLL
             return g.Cost - g.AmountSaved;
         }
 
-        public Boolean tickOffWalletTableItem(WalletTableItem wli)
+        public Boolean tickOffWalletTableItem(WalletTableItem wti)
         {
-            wli.AmountSaved += wli.ContributionPerTick;
-            wli.NoOfTicks++;
-            if (wli.AmountSaved >= wli.Cost)
+            wti.AmountSaved += wti.ContributionPerTick;
+            wti.NoOfTicks++;
+            if (wti.AmountSaved >= wti.Cost)
             {
                 //Wallet table item saving completed
                 return false;
@@ -203,3 +203,12 @@ namespace PersonalBudgeting.BLL
         }
     }
 }
+// todo: subtract safety margin along with expenditure
+
+/*
+0 – $18,200 --- Nil
+$18,201 – $37,000 --- 19c for each $1 over $18,200
+$37,001 – $80,000 --- $3,572 plus 32.5c for each $1 over $37,000
+$80,001 – $180,000 --- $17,547 plus 37c for each $1 over $80,000
+$180,001 and over --- $54,547 plus 45c for each $1 over $180,000
+*/

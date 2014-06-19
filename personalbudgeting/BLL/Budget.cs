@@ -21,10 +21,10 @@ namespace PersonalBudgeting.BLL
             return dal.retrieveMainGoal();
         }
 
-        public float getTaxRate()
-        {
-            return dal.retrieveTaxRate();
-        }
+        //public float getTaxRate()
+        //{
+        //    return dal.retrieveTaxRate();
+        //}
 
         public float getSuperannuationRate()
         {
@@ -36,7 +36,7 @@ namespace PersonalBudgeting.BLL
             return dal.retrieveMainGoalPercentage();
         }
 
-        public DAL getMockBudget()
+        public DAL getMockDAL()
         {
             return dal;
         }
@@ -51,18 +51,18 @@ namespace PersonalBudgeting.BLL
             return dal.retrieveListOfExpenditure();
         }
 
-        public List<WalletTableItem> getListOfWishlistItem()
+        public List<WalletTableItem> getListOfWalletTableItem()
         {
-            return dal.retrieveListOfWishlistItem();
+            return dal.retrieveListOfWalletTableItem();
         }
 
-        public void addWishlistItem(string name, string description, double cost, double amountSaved, double contributionPerTick, int noOfTicks)
+        public void addWalletTableItem(string name, string description, double cost, double amountSaved, double contributionPerTick, int noOfTicks)
         {
-            dal.retrieveListOfWishlistItem().Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
+            dal.retrieveListOfWalletTableItem().Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
         }
-        public void removeWishlistItem(WalletTableItem wishlistItem)
+        public void removeWalletTableItem(WalletTableItem WalletTableItem)
         {
-            dal.retrieveListOfWishlistItem().Remove(wishlistItem);
+            dal.retrieveListOfWalletTableItem().Remove(WalletTableItem);
         }
     }
 }

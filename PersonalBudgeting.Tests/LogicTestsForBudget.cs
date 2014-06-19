@@ -17,12 +17,11 @@ namespace PersonalBudgeting.Tests
         List<Income> _listofIncome;
         List<Expenditure> _listOfExpenditure;
         MainGoal _mainGoal;
-        List<WalletTableItem> _listOfWishlistItem;
+        List<WalletTableItem> _listOfWalletTableItem;
         float _taxRate; //todo: investigate current tax rate in australia & mock accordingly
         float _superannuationRate;
         float _safetyMargin;
         float _mainGoalPercentage;
-        double goalCost; //todo: redundancy!!! - needs removal
         double amountPerPayForMainGoal;  
         [TestFixtureSetUp]
         public void TestSetuptheEnvironment()
@@ -32,12 +31,11 @@ namespace PersonalBudgeting.Tests
             _listofIncome = myDAL.retrieveListOfIncome();
             _listOfExpenditure = myDAL.retrieveListOfExpenditure();
             _mainGoal = myDAL.retrieveMainGoal();
-            _listOfWishlistItem = myDAL.retrieveListOfWishlistItem(); //todo: Refactor to proper naming
-            _taxRate = myDAL.retrieveTaxRate();
+            _listOfWalletTableItem = myDAL.retrieveListOfWalletTableItem(); //todo: Refactor to proper naming
+            _taxRate = myDAL.retrieveTaxRate(core.getGrossIncome(_listofIncome));
             _superannuationRate = myDAL.retrieveSuperannuationRate();
             _safetyMargin = myDAL.retrieveSafetyMargin();
             _mainGoalPercentage = myDAL.retrieveMainGoalPercentage();
-            goalCost = _mainGoal.Cost;
             amountPerPayForMainGoal = 2000; // todo: discussion about whether this should be derived rather than hardcoded
         }
 
@@ -48,14 +46,14 @@ namespace PersonalBudgeting.Tests
             _listofIncome = null;
             _listOfExpenditure = null;
             _mainGoal = null;
-            _listOfWishlistItem = null;
+            _listOfWalletTableItem = null;
 
         }
 
-        [Test,ExpectedException]
+        [Test]
         public void TestCalculateGrossIncomeWithEmptyIncomeList()
         {
-            Assert.AreEqual(5100, core.getGrossIncome(new List<Income>()));
+            Assert.AreEqual(0, core.getGrossIncome(new List<Income>()));
         }
 
         #region getGrossIncomePerYear Tests
@@ -193,14 +191,14 @@ namespace PersonalBudgeting.Tests
 
         public void TestgetNoOfPaysRequiredToAccomplishGoalDivisionbyZero()
         {
-            int numPay = core.getNoOfPaysRequiredToAccomplishGoal(goalCost, 0);
+            int numPay = core.getNoOfPaysRequiredToAccomplishGoal(_mainGoal.Cost, 0);
 
         }
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
 
         public void TestgetNoOfPaysRequiredToAccomplishGoalAmountPerPayNegative()
         {
-            int numPay = core.getNoOfPaysRequiredToAccomplishGoal(goalCost, -20);
+            int numPay = core.getNoOfPaysRequiredToAccomplishGoal(_mainGoal.Cost, -20);
 
         }
         #endregion
@@ -208,17 +206,17 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestgoalPayableBeforeDeadline_1()
         {
-            Assert.AreEqual(true, core.goalPayableBeforeDeadline(goalCost, amountPerPayForMainGoal,80));
+            Assert.AreEqual(true, core.goalPayableBeforeDeadline(_mainGoal.Cost, amountPerPayForMainGoal, 80));
         }
         [Test]
         public void TestgoalPayableBeforeDeadline_2()
         {
-            Assert.AreEqual(false, core.goalPayableBeforeDeadline(goalCost,amountPerPayForMainGoal, 40));
+            Assert.AreEqual(false, core.goalPayableBeforeDeadline(_mainGoal.Cost, amountPerPayForMainGoal, 40));
         }
         [Test,ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestgoalPayableBeforeDeadlineDesiredAmountOutOfRange()
         {
-            Boolean Payable = core.goalPayableBeforeDeadline(goalCost, amountPerPayForMainGoal, -30);
+            Boolean Payable = core.goalPayableBeforeDeadline(_mainGoal.Cost, amountPerPayForMainGoal, -30);
         }
         #endregion
 
