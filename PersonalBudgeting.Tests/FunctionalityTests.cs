@@ -43,7 +43,7 @@ namespace PersonalBudgeting.Tests
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 125);
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 100);
 
-            Assert.AreEqual(4536.5, myBudget.SavingsAccount.AmountAvailable, 0.1);
+            Assert.AreEqual(13085.3, myBudget.SavingsAccount.AmountAvailable, 0.1);
         }
     }
 }
