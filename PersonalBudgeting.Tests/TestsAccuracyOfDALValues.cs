@@ -27,7 +27,7 @@ namespace PersonalBudgeting.Tests
             core = new Core();
             _listofIncome = myDAL.retrieveListOfIncome();
             _listOfExpenditure = myDAL.retrieveListOfExpenditure();
-            _taxRate = myDAL.retrieveTaxRate(core.getGrossIncome(_listofIncome));
+            _taxRate = myDAL.retrieveTaxRate();
             _superannuationRate = myDAL.retrieveSuperannuationRate();
             amountForMainGoalPerPay = 2000;
         }
