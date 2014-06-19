@@ -53,10 +53,12 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestForThreePays()
         {
+            //updateSavingsAccount has been called 3 times for 3 pays to be credited in savings account
             core.updateSavingsAccount(mySavingsAccount, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear, _mainGoal, amountForMainGoalPerPay, _listOfWalletTableItems);
             core.updateSavingsAccount(mySavingsAccount, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear, _mainGoal, amountForMainGoalPerPay, _listOfWalletTableItems);
             core.updateSavingsAccount(mySavingsAccount, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear, _mainGoal, amountForMainGoalPerPay, _listOfWalletTableItems);
 
+            //withdrawFromSavingsAccount has been called 3 times for 4 withdrawals
             core.withdrawFromSavingsAccount(mySavingsAccount,500);
             core.withdrawFromSavingsAccount(mySavingsAccount,50);
             core.withdrawFromSavingsAccount(mySavingsAccount,125);
