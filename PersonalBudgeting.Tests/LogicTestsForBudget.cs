@@ -187,7 +187,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestgoalPayableBeforeDeadline_1()
         {
-            Assert.AreEqual(true, core.goalPayableBeforeDeadline(myBudget.MainGoal.Cost, _amountForMainGoalPerPay, 80));
+            Assert.AreEqual(true, core.goalPayableBeforeDeadline(myBudget.MainGoal.Cost, _amountForMainGoalPerPay, myBudget.NoOfPaysPerYear));
         }
         [Test]
         public void TestgoalPayableBeforeDeadline_2()
@@ -215,12 +215,12 @@ namespace PersonalBudgeting.Tests
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetAmountAvailableForGoalsPerPayListOfIncomeEmpty()
         {
-            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, null, 75);
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, null, myBudget.NoOfPaysPerYear);
         }
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetAmountAvailableForGoalsPerPayListOfExpenditureEmpty()
         {
-            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, null, myBudget.ListOfIncome, 75);
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, null, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
         }
         #endregion
 
@@ -238,12 +238,12 @@ namespace PersonalBudgeting.Tests
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfIncomeNull()
         {
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, null, 75);
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, null, myBudget.NoOfPaysPerYear);
         }
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfExpenditureNull()
         {
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, null, myBudget.ListOfIncome, 75);
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, null, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
         }
         #endregion
 
