@@ -21,7 +21,7 @@ namespace PersonalBudgeting.Tests
         {
             core = new Core();
             myBudget = new Budget();
-            _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.MainGoal.Cost,myBudget.MainGoal.DurationInNoOfPays);
+            _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost,myBudget.mainGoal.DurationInNoOfPays);
         }
 
         [TestFixtureTearDown]
@@ -35,9 +35,9 @@ namespace PersonalBudgeting.Tests
         public void TestForThreePaysAndFourWithdrawals()
         {
             //updateSavingsAccount has been called 3 times for 3 pays
-            core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.MainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
-            core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.MainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
-            core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.MainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
+            core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
+            core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
+            core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
 
             //withdrawFromSavingsAccount has been called 4 times for 4 withdrawals from savings account
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 500);

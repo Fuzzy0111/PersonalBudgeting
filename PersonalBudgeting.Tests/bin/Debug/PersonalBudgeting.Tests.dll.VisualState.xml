@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1045]C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll</TopNode>
+  <TopNode>[0-1001]PersonalBudgeting.Tests.FunctionalityTests.TestForThreePaysAndFourWithdrawals</TopNode>
   <SelectedNode>[0-1001]PersonalBudgeting.Tests.FunctionalityTests.TestForThreePaysAndFourWithdrawals</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1045]C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" Expanded="true" />
-    <Node UniqueName="[0-1046]PersonalBudgeting" Expanded="true" />
-    <Node UniqueName="[0-1047]PersonalBudgeting.Tests" Expanded="true" />
+    <Node UniqueName="[0-1047]C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" Expanded="true" />
+    <Node UniqueName="[0-1048]PersonalBudgeting" Expanded="true" />
+    <Node UniqueName="[0-1049]PersonalBudgeting.Tests" Expanded="true" />
     <Node UniqueName="[0-1000]PersonalBudgeting.Tests.FunctionalityTests" Expanded="true" />
-    <Node UniqueName="[0-1037]PersonalBudgeting.Tests.TestsAccuracyOfDALValues" Expanded="true" />
     <Node UniqueName="[0-1002]PersonalBudgeting.Tests.TestsLogicOfBudget" Expanded="true" />
   </Nodes>
 </VisualState>
