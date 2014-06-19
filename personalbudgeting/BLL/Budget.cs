@@ -120,15 +120,15 @@ namespace PersonalBudgeting.BLL
             }
         }
 
-        public int NoOfPaysPerYear
+        public MainGoal MainGoal
         {
             get
             {
-                return _listOfIncome;
+                return _mainGoal;
             }
             set
             {
-                _listOfIncome = value;
+                _mainGoal = value;
             }
         }
 
@@ -136,11 +136,30 @@ namespace PersonalBudgeting.BLL
         {
             _listOfWalletTableItem.Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
         }
+
         public void removeWalletTableItem(WalletTableItem WalletTableItem)
         {
             _listOfWalletTableItem.Remove(WalletTableItem);
         }
 
+        public void addIncome(string name, string source, double amount)
+        {
+            _listOfIncome.Add(new Income(name, source, amount));
+        }
 
+        public void removeIncome(Income income)
+        {
+            _listOfIncome.Remove(income);
+        }
+
+        public void addExpenditure(string name, double amount, string type)
+        {
+            _listOfExpenditure.Add(new Expenditure(name, amount, type));
+        }
+
+        public void removeExpenditure(Expenditure expenditure)
+        {
+            _listOfExpenditure.Remove(expenditure);
+        }
     }
 }
