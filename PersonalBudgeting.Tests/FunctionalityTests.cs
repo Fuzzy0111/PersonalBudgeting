@@ -35,6 +35,7 @@ namespace PersonalBudgeting.Tests
         public void TestForThreePaysAndFourWithdrawals()
         {
             //updateSavingsAccount has been called 3 times for 3 pays
+
             core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
             core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
             core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
@@ -44,7 +45,6 @@ namespace PersonalBudgeting.Tests
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 50);
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 125);
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 100);
-
 
             //initialSavingsAccountBalance=500.00
             //AmountAvailableForGoalsPerPay=116700.0/26 = 4488.46
@@ -56,9 +56,7 @@ namespace PersonalBudgeting.Tests
             //4488.46
             //totalAmountForWithdrawals=775.00
 
-            Assert.AreEqual(1546.9, myBudget.SavingsAccount.AmountAvailable, 0.1);
+            Assert.AreEqual(13190.3, myBudget.SavingsAccount.AmountAvailable, 0.1);
         }
-
-
     }
 }

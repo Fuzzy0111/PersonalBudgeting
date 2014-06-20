@@ -197,10 +197,15 @@ namespace PersonalBudgeting.BLL
             }
         }
 
-        public void updateSavingsAccount(MainGoal mainGoal, SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mg, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
+        public void creditAmountAvailableForGoalsPerPayInSavingsAccount(SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             double amountAvailableForGoalsPerPay = getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
             mySavingsAccount.AmountAvailable += amountAvailableForGoalsPerPay;
+        }
+
+        public void updateSavingsAccount(SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mainGoal, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
+        {
+            creditAmountAvailableForGoalsPerPayInSavingsAccount(mySavingsAccount, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
 
             saveForMainGoal(mySavingsAccount,amountForMainGoalPerPay,mainGoal);
 
@@ -228,6 +233,16 @@ namespace PersonalBudgeting.BLL
 
                 return getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - totalContributionPerTick;
             }
+        }
+
+        public double getCurrentSurplusInSavingsAccount(SavingsAccount savingsAccount, MainGoal mainGoal, List<WalletTableItem> listOfWalletTableItems)
+        {
+            double amountSavedForGoals = mainGoal.AmountSaved;
+            foreach (WalletTableItem wti in listOfWalletTableItems)
+            {
+                amountSavedForGoals += wti.AmountSaved;
+            }
+            return savingsAccount.AmountAvailable - amountSavedForGoals;
         }
     }
 }
