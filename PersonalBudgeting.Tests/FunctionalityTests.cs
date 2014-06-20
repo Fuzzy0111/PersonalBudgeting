@@ -55,8 +55,9 @@ namespace PersonalBudgeting.Tests
 
             //4488.46
             //totalAmountForWithdrawals=775.00
+            //savingsAccount.AmountAvailable=13190.3
 
-            Assert.AreEqual(13190.3, myBudget.SavingsAccount.AmountAvailable, 0.1);
+            Assert.AreEqual(1556.9, core.getCurrentSurplusInSavingsAccount(myBudget.SavingsAccount, myBudget.mainGoal, myBudget.ListOfWalletTableItem), 0.1);
         }
     }
 }
