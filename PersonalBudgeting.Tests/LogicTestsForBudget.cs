@@ -317,16 +317,19 @@ namespace PersonalBudgeting.Tests
         {
             core.creditAmountAvailableForGoalsPerPayInSavingsAccount(myBudget.SavingsAccount,myBudget.TaxRate,myBudget.SuperannuationRate, null, myBudget.ListOfIncome , myBudget.NoOfPaysPerYear);
         }
+
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestcreditAmountAvailableForGoalsPerPayInSavingsAccountListOfIncomeNull()
         {
             core.creditAmountAvailableForGoalsPerPayInSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, null, myBudget.NoOfPaysPerYear);
         }
+
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestcreditAmountAvailableForGoalsPerPayInSavingsAccountnoOfPaysPerYearZero()
         {
             core.creditAmountAvailableForGoalsPerPayInSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 0);
         }
+
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestcreditAmountAvailableForGoalsPerPayInSavingsAccountnoOfPaysPerYearLessThanZero()
         {
@@ -351,6 +354,32 @@ namespace PersonalBudgeting.Tests
         public void TestUpdateSavingsAccount_3()
         {
             core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome,0, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
+        }
+        #endregion
+
+        #region getCurrentSurplusInSavingsAccount Tests
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestgetCurrentSurplusInSavingsAccountWithNullSavingsAccount()
+        {
+            core.getCurrentSurplusInSavingsAccount(null, myBudget.mainGoal, myBudget.ListOfWalletTableItem);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestgetCurrentSurplusInSavingsAccountWithNullMainGoal()
+        {
+            core.getCurrentSurplusInSavingsAccount(myBudget.SavingsAccount, null, myBudget.ListOfWalletTableItem);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestgetCurrentSurplusInSavingsAccountWithNullListOfWalletTableItem()
+        {
+            core.getCurrentSurplusInSavingsAccount(myBudget.SavingsAccount, myBudget.mainGoal, null);
+        }
+
+        [Test]
+        public void TestgetCurrentSurplusInSavingsAccountWithEmptyListOfWalletTableItem()
+        {
+            core.getCurrentSurplusInSavingsAccount(myBudget.SavingsAccount, myBudget.mainGoal, new List<WalletTableItem>());
         }
         #endregion
     }

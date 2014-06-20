@@ -171,8 +171,9 @@ namespace PersonalBudgeting.BLL
         }
 
         public void creditAmountAvailableForGoalsPerPayInSavingsAccount(SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
-        { 
-            
+        {
+            if (noOfPayPerYear <= 0)
+                throw new ArgumentOutOfRangeException();
             double amountAvailableForGoalsPerPay = getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
             mySavingsAccount.AmountAvailable += amountAvailableForGoalsPerPay;
         }
@@ -219,6 +220,8 @@ namespace PersonalBudgeting.BLL
 
         public double getCurrentSurplusInSavingsAccount(SavingsAccount savingsAccount, MainGoal mainGoal, List<WalletTableItem> listOfWalletTableItems)
         {
+            if (savingsAccount == null || mainGoal == null || listOfWalletTableItems == null)
+                throw new ArgumentNullException();
             double amountSavedForGoals = mainGoal.AmountSaved;
             foreach (WalletTableItem wti in listOfWalletTableItems)
             {
