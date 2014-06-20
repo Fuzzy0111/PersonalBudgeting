@@ -157,7 +157,7 @@ namespace PersonalBudgeting.BLL
                 throw new ObjectDisposedException("wallet table item's amount saved exceeds its cost");
         }
 
-        public List<WalletTableItem> tickOffAllWalletTableItems(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public List<WalletTableItem> tickAllWalletTableItems(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             double totalAmountTicked = 0.0;
             List<WalletTableItem> unTickedWalletTableItems = new List<WalletTableItem>();

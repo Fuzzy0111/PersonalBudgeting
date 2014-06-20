@@ -64,10 +64,10 @@ namespace PersonalBudgeting.Tests
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
-        public void TestTickOffAllWalletTableItemsEmptyList()
+        public void TestTickAllWalletTableItemsEmptyList()
         {
 
-            core.tickOffAllWalletTableItems(null, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
+            core.tickAllWalletTableItems(null, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
         }
 
         [TestFixtureTearDown]

@@ -310,5 +310,9 @@ namespace PersonalBudgeting.Tests
             core.withdrawFromSavingsAccount(null, 300);
         }
         #endregion
+
+        #region reditAmountAvailableForGoalsPerPayInSavingsAccount Tests
+
+        #endregion
     }
 }
