@@ -114,9 +114,9 @@ namespace PersonalBudgeting.BLL
             return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountForMainGoalPerPay);
         }
 
-        public void saveForMainGoal(SavingsAccount mySavingsAccount , double amountForMainGoalPerPay, MainGoal mainGoal)
+        public void saveForMainGoal(SavingsAccount mySavingsAccount , double amountForMainGoalPerPay, MainGoal mainGoal, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
-            if (mySavingsAccount.AmountAvailable < amountForMainGoalPerPay)
+            if (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) < amountForMainGoalPerPay)
                 return;
             mainGoal.AmountSaved += amountForMainGoalPerPay;
         }
@@ -188,7 +188,7 @@ namespace PersonalBudgeting.BLL
         {
             creditAmountAvailableForGoalsPerPayInSavingsAccount(mySavingsAccount, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
 
-            saveForMainGoal(mySavingsAccount,amountForMainGoalPerPay,mainGoal);
+            saveForMainGoal(mySavingsAccount, amountForMainGoalPerPay, mainGoal, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
 
             tickAllWalletTableItems(_listOfWalletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
         }
