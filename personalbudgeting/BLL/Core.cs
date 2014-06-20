@@ -190,7 +190,7 @@ namespace PersonalBudgeting.BLL
 
             saveForMainGoal(mySavingsAccount,amountForMainGoalPerPay,mainGoal);
 
-            tickOffAllWalletTableItems(mySavingsAccount, _listOfWalletTableItems);
+            tickAllWalletTableItems(_listOfWalletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
         }
         
         public void withdrawFromSavingsAccount(SavingsAccount mySavingsAccount, double amountToWithdraw)
