@@ -18,7 +18,10 @@ namespace PersonalBudgeting.BLL
         public float TaxRate { get; set; }
         public SavingsAccount SavingsAccount { get; set; }
         public MainGoal mainGoal { 
-            get; 
+            get
+            {
+                return dal.retrieveMainGoal();
+            }
             set
             {
                 dal.setMainGoal(value.Name, value.Description, value.Cost, value.AmountSaved, value.DurationInNoOfPays);
