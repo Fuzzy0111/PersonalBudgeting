@@ -32,7 +32,7 @@ namespace PersonalBudgeting.Tests
         }
 
         [Test]
-        public void TestForThreePaysAndFourWithdrawals()
+        public void TestGetCurrentSurplusInSavingsAccountForThreePaysAndFourWithdrawals()
         {
             //updateSavingsAccount has been called 3 times for 3 pays
 
@@ -53,7 +53,6 @@ namespace PersonalBudgeting.Tests
             //amountForMainGoalPerPay=150000/26 = 5769.23
             //amountForWalletTablePerPay=35.00
 
-            //4488.46
             //totalAmountForWithdrawals=775.00
             //savingsAccount.AmountAvailable=13190.3
             Assert.AreEqual(13190.3, core.getCurrentSurplusInSavingsAccount(myBudget.SavingsAccount, myBudget.mainGoal, myBudget.ListOfWalletTableItem), 0.1);
