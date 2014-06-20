@@ -126,19 +126,9 @@ namespace PersonalBudgeting.BLL
             return g.Cost - g.AmountSaved;
         }
 
-        public Boolean tickOffWalletTableItem(WalletTableItem wti)
+        public Boolean tickWalletTableItem(WalletTableItem wti)
         {
-            wti.AmountSaved += wti.ContributionPerTick;
-            if (wti.AmountSaved >= wti.Cost)
-            {
-                //Wallet table item saving completed
-                return false;
-            }
-            return true;
-        }
-
-        public Boolean tickOffWalletTableItem(WalletTableItem wti, SavingsAccount mySavingsAccount)
-        {
+            //usings savingsAccount
             if (wti.AmountSaved < wti.Cost)
             {
                 if ((wti.Cost - wti.AmountSaved) <= wti.ContributionPerTick)
@@ -156,42 +146,26 @@ namespace PersonalBudgeting.BLL
                 throw new ObjectDisposedException("wallet table item's amount saved exceeds its cost");
         }
 
-        public List<WalletTableItem> tickAllWalletTableItems(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public void tickAllWalletTableItems(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
-            double totalAmountTicked = 0.0;
-            List<WalletTableItem> unTickedWalletTableItems = new List<WalletTableItem>();
+            //using RemainingAmountForSecondaryGoalsPerPay
             if (walletTableItems == null) throw new ArgumentNullException();
+
+            double totalAmountTicked = 0.0;
+            double remainingAmountForSecondaryGoalsPerPay = getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
+            
             foreach (WalletTableItem wti in walletTableItems)
             {
-                if ((wti.ContributionPerTick + totalAmountTicked) > getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear))
-                {
-                    //Not enough money to tick this wallet table item
-                    unTickedWalletTableItems.Add(wti);
-                }
-                else
-                {
-                    Boolean walletTableItemTicked=tickOffWalletTableItem(wti);
+                if ((wti.ContributionPerTick + totalAmountTicked) <= remainingAmountForSecondaryGoalsPerPay)
+                {               
+                    Boolean walletTableItemSavingsNotCompleted = tickWalletTableItem(wti);
                     totalAmountTicked += wti.ContributionPerTick;
 
-                    if (!walletTableItemTicked)
+                    if (!walletTableItemSavingsNotCompleted)
                     {
                         //Wallet table item saving completed
                         walletTableItems.Remove(wti);
                     }
-                }
-            }
-            return unTickedWalletTableItems;
-        }
-
-        public void tickOffAllWalletTableItems(SavingsAccount mySavingsAccount, List<WalletTableItem> walletTableItems)
-        {
-            if (walletTableItems == null) throw new ArgumentNullException();
-            foreach (WalletTableItem wti in walletTableItems)
-            {
-                Boolean walletTableItemSavingsNotCompleted = tickOffWalletTableItem(wti, mySavingsAccount);
-                if (!walletTableItemSavingsNotCompleted)
-                {
-                    walletTableItems.Remove(wti);
                 }
             }
         }
