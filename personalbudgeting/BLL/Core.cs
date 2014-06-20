@@ -129,7 +129,6 @@ namespace PersonalBudgeting.BLL
         public Boolean tickOffWalletTableItem(WalletTableItem wti)
         {
             wti.AmountSaved += wti.ContributionPerTick;
-            wti.NoOfTicks++;
             if (wti.AmountSaved >= wti.Cost)
             {
                 //Wallet table item saving completed

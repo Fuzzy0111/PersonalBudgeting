@@ -34,9 +34,9 @@ namespace PersonalBudgeting.BLL
             NoOfPaysPerYear = dal.retrieveNoOfPaysPerYear();
         }
 
-        public void addWalletTableItem(string name, string description, double cost, double amountSaved, double contributionPerTick, int noOfTicks)
+        public void addWalletTableItem(string name, string description, double cost, double amountSaved, double contributionPerTick)
         {
-            ListOfWalletTableItem.Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
+            ListOfWalletTableItem.Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick));
         }
 
         public void removeWalletTableItem(WalletTableItem WalletTableItem)
