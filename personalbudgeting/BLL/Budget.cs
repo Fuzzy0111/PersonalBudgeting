@@ -9,6 +9,7 @@ namespace PersonalBudgeting.BLL
 {
     public class Budget
     {
+        DAL dal;
         public int NoOfPaysPerYear { get; set; }
         public List<Income> ListOfIncome { get; set; }
         public List<Expenditure> ListOfExpenditure { get; set; }
@@ -16,8 +17,16 @@ namespace PersonalBudgeting.BLL
         public float SuperannuationRate { get; set; }
         public float TaxRate { get; set; }
         public SavingsAccount SavingsAccount { get; set; }
-        public MainGoal mainGoal { get; set; }
-        DAL dal;
+        public MainGoal mainGoal { 
+            get
+            {
+                return dal.retrieveMainGoal();
+            }
+            set
+            {
+                dal.setMainGoal(value.Name, value.Description, value.Cost, value.AmountSaved, value.DurationInNoOfPays);
+            }
+        }
 
         public Budget()
         {
