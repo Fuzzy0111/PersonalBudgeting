@@ -198,20 +198,21 @@ namespace PersonalBudgeting.BLL
 
         public void creditAmountAvailableForGoalsPerPayInSavingsAccount(SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         { 
-            if(_listOfExpenditure==null||_listofIncome==null)
-            {
-                throw new ArgumentNullException();
-            }
-            if( noOfPayPerYear<=0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
+            
             double amountAvailableForGoalsPerPay = getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
             mySavingsAccount.AmountAvailable += amountAvailableForGoalsPerPay;
         }
 
         public void updateSavingsAccount(SavingsAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mainGoal, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
         {
+            if (_listOfExpenditure == null || _listofIncome == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (noOfPayPerYear <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
             creditAmountAvailableForGoalsPerPayInSavingsAccount(mySavingsAccount, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
 
             saveForMainGoal(mySavingsAccount,amountForMainGoalPerPay,mainGoal);

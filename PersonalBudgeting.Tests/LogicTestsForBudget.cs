@@ -333,5 +333,25 @@ namespace PersonalBudgeting.Tests
             core.creditAmountAvailableForGoalsPerPayInSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, -4);
         } 
         #endregion
+
+        #region updateSavingsAccount Tests
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestUpdateSavingsAccount_1()
+        {
+            core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, null, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestUpdateSavingsAccount_2()
+        {
+            core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, null, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
+        }
+
+        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestUpdateSavingsAccount_3()
+        {
+            core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome,0, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
+        }
+        #endregion
     }
 }
