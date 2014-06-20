@@ -311,8 +311,27 @@ namespace PersonalBudgeting.Tests
         }
         #endregion
 
-        #region reditAmountAvailableForGoalsPerPayInSavingsAccount Tests
-
+        #region creditAmountAvailableForGoalsPerPayInSavingsAccount Tests
+        [Test,ExpectedException(typeof(ArgumentNullException))]
+        public void TestcreditAmountAvailableForGoalsPerPayInSavingsAccountListOfExpenditureNull()
+        {
+            core.creditAmountAvailableForGoalsPerPayInSavingsAccount(myBudget.SavingsAccount,myBudget.TaxRate,myBudget.SuperannuationRate, null, myBudget.ListOfIncome , myBudget.NoOfPaysPerYear);
+        }
+        [Test, ExpectedException(typeof(ArgumentNullException))]
+        public void TestcreditAmountAvailableForGoalsPerPayInSavingsAccountListOfIncomeNull()
+        {
+            core.creditAmountAvailableForGoalsPerPayInSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, null, myBudget.NoOfPaysPerYear);
+        }
+        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestcreditAmountAvailableForGoalsPerPayInSavingsAccountnoOfPaysPerYearZero()
+        {
+            core.creditAmountAvailableForGoalsPerPayInSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 0);
+        }
+        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TestcreditAmountAvailableForGoalsPerPayInSavingsAccountnoOfPaysPerYearLessThanZero()
+        {
+            core.creditAmountAvailableForGoalsPerPayInSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, -4);
+        } 
         #endregion
     }
 }
