@@ -35,9 +35,9 @@ namespace PersonalBudgeting.MOCK_DAL
 
             listOfWalletTableItem = new List<WalletTableItem>();
             listOfWalletTableItem = new List<WalletTableItem>();
-            listOfWalletTableItem.Add(new WalletTableItem("Camera", "Canon", 150.0, 0.0, 10.0, 0));
-            listOfWalletTableItem.Add(new WalletTableItem("Phone", "IPhone", 200.0, 20.0, 10.0, 2));
-            listOfWalletTableItem.Add(new WalletTableItem("Washing Machine", "Samsung", 250.0, 75.0, 15.0, 5));
+            listOfWalletTableItem.Add(new WalletTableItem("Camera", "Canon", 150.0, 0.0, 10.0));
+            listOfWalletTableItem.Add(new WalletTableItem("Phone", "IPhone", 200.0, 20.0, 10.0));
+            listOfWalletTableItem.Add(new WalletTableItem("Washing Machine", "Samsung", 250.0, 75.0, 15.0));
 
             _noOfPaysPerYear = 26;
             _taxRate = 0.15F; //todo: calculate

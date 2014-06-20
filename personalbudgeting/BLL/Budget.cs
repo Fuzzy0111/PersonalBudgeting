@@ -9,16 +9,14 @@ namespace PersonalBudgeting.BLL
 {
     public class Budget
     {
-
-        //List<Expenditure> _listOfExpenditure;
-        //MainGoal _mainGoal;
-        //List<WalletTableItem> _listOfWalletTableItem;
-        //float _taxRate;
-        //float _superannuationRate;
-        //float _safetyMargin;
-        //SavingsAccount _savingsAccount;
-        //int _noOfPaysPerYear;
-
+        public int NoOfPaysPerYear { get; set; }
+        public List<Income> ListOfIncome { get; set; }
+        public List<Expenditure> ListOfExpenditure { get; set; }
+        public List<WalletTableItem> ListOfWalletTableItem { get; set; }
+        public float SuperannuationRate { get; set; }
+        public float TaxRate { get; set; }
+        public SavingsAccount SavingsAccount { get; set; }
+        public MainGoal mainGoal { get; set; }
         DAL dal;
 
         public Budget()
@@ -36,31 +34,14 @@ namespace PersonalBudgeting.BLL
             NoOfPaysPerYear = dal.retrieveNoOfPaysPerYear();
         }
 
-        public int NoOfPaysPerYear { get; set; }
-        
-        public List<Income> ListOfIncome { get; set; }
-        
-        public List<Expenditure>ListOfExpenditure { get; set; }
-        
-        public List<WalletTableItem>ListOfWalletTableItem { get; set; }
-        
-        public float SuperannuationRate { get; set; }
-
-        public float TaxRate { get; set; }
- 
-        public SavingsAccount SavingsAccount { get; set; }
-        
-        public MainGoal mainGoal { get; set; }
-
-
-        public void addWalletTableItem(string name, string description, double cost, double amountSaved, double contributionPerTick, int noOfTicks)
+        public void addWalletTableItem(string name, string description, double cost, double amountSaved, double contributionPerTick)
         {
-            ListOfWalletTableItem.Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick, noOfTicks));
+            ListOfWalletTableItem.Add(new WalletTableItem(name, description, cost, amountSaved, contributionPerTick));
         }
 
         public void removeWalletTableItem(WalletTableItem WalletTableItem)
         {
-           ListOfWalletTableItem.Remove(WalletTableItem);
+            ListOfWalletTableItem.Remove(WalletTableItem);
         }
 
         public void addIncome(string name, string source, double amount)
@@ -80,7 +61,7 @@ namespace PersonalBudgeting.BLL
 
         public void removeExpenditure(Expenditure expenditure)
         {
-           ListOfExpenditure.Remove(expenditure);
+            ListOfExpenditure.Remove(expenditure);
         }
     }
 }

@@ -9,13 +9,11 @@ namespace PersonalBudgeting.BLL
     public class WalletTableItem : Goal
     {
         private double _contributionPerTick;
-        private int _noOfTicks;
 
-        public WalletTableItem(string name, string description, double cost, double amountSaved, double contributionPerTick, int noOfTicks)
+        public WalletTableItem(string name, string description, double cost, double amountSaved, double contributionPerTick)
             : base(name, description, cost, amountSaved)
         {
             ContributionPerTick = contributionPerTick;
-            NoOfTicks = noOfTicks;
         }
 
         public double ContributionPerTick
@@ -27,18 +25,6 @@ namespace PersonalBudgeting.BLL
             set
             {
                 _contributionPerTick = value;
-            }
-        }
-
-        public int NoOfTicks
-        {
-            get
-            {
-                return _noOfTicks;
-            }
-            set
-            {
-                _noOfTicks = value;
             }
         }
     }
