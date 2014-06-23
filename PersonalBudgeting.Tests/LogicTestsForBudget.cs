@@ -33,33 +33,33 @@ namespace PersonalBudgeting.Tests
         }
 
         [Test]
-        public void TestCalculateGrossIncomeWithEmptyIncomeList()
+        public void TestCalculateGrossIncome_EmptyIncomeList_ReturnZero()
         {
             Assert.AreEqual(0, core.getGrossIncome(new List<Income>()));
         }
 
         #region getGrossIncomePerYear Tests
         [Test, ExpectedException(typeof(ArgumentNullException))]
-        public void TestgetGrossIncomePerYearWithNullList()
+        public void TestgetGrossIncomePerYear_NullIncomeList_ReturnException()
         {
             double result = core.getGrossIncomePerYear(null, 5);
         }
 
         [Test]
-        public void TestgetGrossIncomePerYearWithEmptyList()
+        public void TestgetGrossIncomePerYear_EmptyIncomeList_ReturnZero()
         {
             double result = core.getGrossIncomePerYear(new List<Income>(), 5);
             Assert.AreEqual(0, result);
         }
 
         [Test, ExpectedException(typeof(ArgumentException))]
-        public void TestgetGrossIncomePerYearFor0Period()
+        public void TestgetGrossIncomePerYear_zeroPeriod_ReturnException()
         {
             double result = core.getGrossIncomePerYear(myBudget.ListOfIncome, 0);
         }
 
         [Test, ExpectedException(typeof(ArgumentException))]
-        public void TestgetGrossIncomePerYearForNegativePeriod()
+        public void TestgetGrossIncomePerYear_NegativePeriod_ReturnException()
         {
             double result = core.getGrossIncomePerYear(myBudget.ListOfIncome, -5);
         }
