@@ -8,11 +8,11 @@ namespace PersonalBudgeting.BLL
 {
     public class Income
     {
-        private string _name;
-        private Participant _source;
-        private double _amount;
-        
-        public Income(string name, Participant source, double amount)
+        public string _name;
+        public Participant _source;
+        public double _amount;
+
+        public Income(string name,Participant source,double amount)
         {
             Name = name;
             Source = source;
@@ -31,7 +31,7 @@ namespace PersonalBudgeting.BLL
             }
         }
 
-        public Participant Source 
+        public Participant Source
         {
             get
             {

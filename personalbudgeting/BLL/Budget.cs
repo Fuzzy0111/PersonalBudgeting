@@ -53,7 +53,7 @@ namespace PersonalBudgeting.BLL
             ListOfWalletTableItem.Remove(WalletTableItem);
         }
 
-        public void addIncome(string name, string source, double amount)
+        public void addIncome(string name, Participant source, double amount)
         {
             ListOfIncome.Add(new Income(name, source, amount));
         }

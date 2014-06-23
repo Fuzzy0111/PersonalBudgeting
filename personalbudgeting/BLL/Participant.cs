@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace PersonalBudgeting.BLL
 {
-    class Participant
+    public class Participant
     {
-        private string First_Name { get; set; }
-        private string Last_Name { get; set; }
-        private Boolean CasualWorker { get; set; }
+        public string First_Name { get; set; }
+        public string Last_Name { get; set; }
+        public Boolean IsCasualWorker { get; set; }
+
+        public Participant(string First_Name,string Last_Name,Boolean IsCasualWorker)
+        {
+            this.First_Name = First_Name;
+            this.Last_Name = Last_Name;
+            this.IsCasualWorker = IsCasualWorker;
+        }
 
     }
 }
