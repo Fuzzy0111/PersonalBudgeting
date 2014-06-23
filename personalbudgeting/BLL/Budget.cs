@@ -12,6 +12,7 @@ namespace PersonalBudgeting.BLL
         DAL dal;
         public int NoOfPaysPerYear { get; set; }
         public List<Income> ListOfIncome { get; set; }
+        public List<Participant> ListOfParticipant { get; set; }
         public List<Expenditure> ListOfExpenditure { get; set; }
         public List<WalletTableItem> ListOfWalletTableItem { get; set; }
         public float SuperannuationRate { get; set; }
@@ -71,6 +72,16 @@ namespace PersonalBudgeting.BLL
         public void removeExpenditure(Expenditure expenditure)
         {
             ListOfExpenditure.Remove(expenditure);
+        }
+
+        public void addParticipant(string fname,string lname)
+        {
+            ListOfParticipant.Add(new Participant(fname,lname));
+        }
+
+        public void removeParticipant(string fname, string lname)
+        {
+            ListOfParticipant.Remove(new Participant(fname, lname));
         }
     }
 }

@@ -10,14 +10,15 @@ namespace PersonalBudgeting.BLL
     {
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
-        public Boolean IsCasualWorker { get; set; }
+        
 
-        public Participant(string First_Name,string Last_Name,Boolean IsCasualWorker)
+        public Participant(string First_Name,string Last_Name)
         {
             this.First_Name = First_Name;
-            this.Last_Name = Last_Name;
-            this.IsCasualWorker = IsCasualWorker;
+            this.Last_Name = Last_Name;   
         }
+
+        
 
     }
 }

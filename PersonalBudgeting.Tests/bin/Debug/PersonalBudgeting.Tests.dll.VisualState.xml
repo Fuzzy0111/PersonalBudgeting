@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1007]PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetGrossIncomePerYear_NegativePeriod_ReturnException</TopNode>
+  <TopNode>[0-1065]C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll</TopNode>
   <SelectedNode>[0-1011]PersonalBudgeting.Tests.TestsLogicOfBudget.TestGetTotalExpenditurePerYear</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>

@@ -24,8 +24,8 @@ namespace PersonalBudgeting.MOCK_DAL
         public DAL()
         {
             listOfIncome = new List<Income>();
-            listOfIncome.Add(new Income("salary", new Participant("Alan","Turing",false), 2500.0));
-            listOfIncome.Add(new Income("salary",new Participant("Louise","Hay",false), 2600.0));
+            listOfIncome.Add(new Income("salary", new Participant("Alan","Turing"), 2500.0));
+            listOfIncome.Add(new Income("salary",new Participant("Louise","Hay"), 2600.0));
 
             listOfExpenditure = new List<Expenditure>();
             listOfExpenditure.Add(new Expenditure("Car Insurance", 200.0, "Living Expense"));
