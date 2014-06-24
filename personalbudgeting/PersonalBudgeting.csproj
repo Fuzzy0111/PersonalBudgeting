@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="BLL\Core.cs" />
     <Compile Include="BLL\Participant.cs" />
-    <Compile Include="BLL\SavingsAccount.cs" />
+    <Compile Include="BLL\BankAccount.cs" />
     <Compile Include="BLL\WalletTableItem.cs" />
     <Compile Include="MOCK_DAL\MockDAL.cs" />
     <Compile Include="BLL\Budget.cs" />

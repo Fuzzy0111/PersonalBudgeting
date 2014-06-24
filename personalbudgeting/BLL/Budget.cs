@@ -17,7 +17,7 @@ namespace PersonalBudgeting.BLL
         public List<WalletTableItem> ListOfWalletTableItem { get; set; }
         public float SuperannuationRate { get; set; }
         public float TaxRate { get; set; }
-        public SavingsAccount SavingsAccount { get; set; }
+        public BankAccount SavingsAccount { get; set; }
         public MainGoal mainGoal { 
             get
             {
@@ -64,9 +64,9 @@ namespace PersonalBudgeting.BLL
             ListOfIncome.Remove(income);
         }
 
-        public void addExpenditure(string name, double amount, string type)
+        public void addExpenditure(string name, double amount, string type, Participant contributor)
         {
-            ListOfExpenditure.Add(new Expenditure(name, amount, type));
+            ListOfExpenditure.Add(new Expenditure(name, amount, type,contributor));
         }
 
         public void removeExpenditure(Expenditure expenditure)

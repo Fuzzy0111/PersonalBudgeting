@@ -18,18 +18,20 @@ namespace PersonalBudgeting.MOCK_DAL
         float _superannuationRate;
         float _safetyMargin;
         float _mainGoalPercentage;
-        SavingsAccount _savingsAccount;
+        BankAccount _savingsAccount;
         int _noOfPaysPerYear;
-
+        Participant partner1, partner2;
         public DAL()
         {
+            partner1= new Participant("Victor","McBernik");
+            partner2=new Participant("Lucile","McBernik");
             listOfIncome = new List<Income>();
             listOfIncome.Add(new Income("salary", new Participant("Alan","Turing"), 2500.0));
             listOfIncome.Add(new Income("salary",new Participant("Louise","Hay"), 2600.0));
 
             listOfExpenditure = new List<Expenditure>();
-            listOfExpenditure.Add(new Expenditure("Car Insurance", 200.0, "Living Expense"));
-            listOfExpenditure.Add(new Expenditure("Electricity", 20.0, "Living Expense"));
+            listOfExpenditure.Add(new Expenditure("Car Insurance", 200.0, "Living Expense", partner1));
+            listOfExpenditure.Add(new Expenditure("Electricity", 20.0, "Living Expense",partner2));
 
             mainGoal = new MainGoal("Loan", "house loan from MCB", 150000.0, 0.0, 26);
 
@@ -44,7 +46,7 @@ namespace PersonalBudgeting.MOCK_DAL
             _superannuationRate = 0.05F; //todo: take into consideration that Super is calculated as a minimum of 9% or higher. sometimes it can be part of the pay packet & sometimes it can be over and aabove the pay packet. eg. you could get an annual pay of "60k incl. Super" & your friend could get an annual pay of "60k + Super".
             _safetyMargin = 50; //todo: ????  To clarify what this one is with Gerald.
 
-            _savingsAccount = new SavingsAccount(500);
+            _savingsAccount = new BankAccount(500);
 
         }
 
@@ -168,7 +170,7 @@ namespace PersonalBudgeting.MOCK_DAL
             }
         }
 
-        public SavingsAccount retrieveSavingsAccount()
+        public BankAccount retrieveSavingsAccount()
         {
             return _savingsAccount;
         }
