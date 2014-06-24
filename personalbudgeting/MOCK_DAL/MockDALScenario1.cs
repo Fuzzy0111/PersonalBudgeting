@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PersonalBudgeting.MOCK_DAL
 {
-    class MockDALScenario1
+    public class MockDALScenario1
     {
         List<Income> listOfIncome;
         List<Expenditure> listOfExpenditure;
