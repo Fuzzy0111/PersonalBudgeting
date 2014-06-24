@@ -34,21 +34,5 @@ namespace PersonalBudgeting.BLL
 
         }
 
-        //todo:to be removed
-        private double _amountAvailable;
-
-
-
-        public double AmountAvailable
-        {
-            get
-            {
-                return _amountAvailable;
-            }
-            set
-            {
-                _amountAvailable = value;
-            }
-        }
     }
 }
