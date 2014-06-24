@@ -34,6 +34,9 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestSavingsForPersonalUseinBankAccountForThreePaysAndFourWithdrawals() 
         {
+           Assert.AreEqual(0, myBudget.SavingsAccount.SavingsForGoals, 0.1);
+           Assert.AreEqual(0, myBudget.SavingsAccount.SavingsForExpenditures, 0.1);
+           Assert.AreEqual(500, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
             core.updateBankAccount(myBudget.SavingsAccount,
                                    myBudget.TaxRate,
                                    myBudget.SuperannuationRate,
@@ -44,8 +47,36 @@ namespace PersonalBudgeting.Tests
                                    _amountForMainGoalPerPay,
                                    myBudget.ListOfWalletTableItem
                                   );
-            Assert.AreEqual(220,myBudget.SavingsAccount.SavingsForExpenditures);
-            //Assert.AreEqual(35, myBudget.SavingsAccount.SavingsForGoals);
+            
+            core.updateBankAccount(myBudget.SavingsAccount,
+                                   myBudget.TaxRate,
+                                   myBudget.SuperannuationRate,
+                                   myBudget.ListOfExpenditure,
+                                   myBudget.ListOfIncome,
+                                   myBudget.NoOfPaysPerYear,
+                                   myBudget.mainGoal,
+                                   _amountForMainGoalPerPay,
+                                   myBudget.ListOfWalletTableItem
+                                  );
+            core.removeFromSavingForExpenses(myBudget.SavingsAccount,440);//All expenditures for last two months done
+            core.updateBankAccount(myBudget.SavingsAccount,
+                                   myBudget.TaxRate,
+                                   myBudget.SuperannuationRate,
+                                   myBudget.ListOfExpenditure,
+                                   myBudget.ListOfIncome,
+                                   myBudget.NoOfPaysPerYear,
+                                   myBudget.mainGoal,
+                                   _amountForMainGoalPerPay,
+                                   myBudget.ListOfWalletTableItem
+                                  );
+            Assert.AreEqual(1258.8,myBudget.SavingsAccount.SavingsForGoals,0.1);
+           // Assert.AreEqual(220,myBudget.SavingsAccount.SavingsForExpenditures);
+            //withdrawFromSavingsAccount has been called 4 times for 4 withdrawals from savings account
+            core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 500);
+            core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 50);
+            core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 125);
+            core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 100);
+            //Assert.AreEqual(13190.3, myBudget.SavingsAccount.SavingsForPersonalUse);
 
         }
         /*[Test]

@@ -428,7 +428,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestTickAllWaleltTableItems_TickAllItemsandCheckAmountTicked_CorrectAmountTicked()
         {
-            Assert.AreEqual(35,core.tickAllWalletTableItems(myBudget.ListOfWalletTableItem,_amountForMainGoalPerPay,myBudget.TaxRate,myBudget.SuperannuationRate,myBudget.ListOfExpenditure,myBudget.ListOfIncome,myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(35,core.tickAllWalletTableItems(myBudget.SavingsAccount,myBudget.ListOfWalletTableItem,_amountForMainGoalPerPay,myBudget.TaxRate,myBudget.SuperannuationRate,myBudget.ListOfExpenditure,myBudget.ListOfIncome,myBudget.NoOfPaysPerYear));
         }
         #endregion
     }

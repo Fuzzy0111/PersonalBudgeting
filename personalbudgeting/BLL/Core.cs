@@ -123,6 +123,7 @@ namespace PersonalBudgeting.BLL
             else
             {
                 mainGoal.AmountSaved += amountForMainGoalPerPay;
+                addToSavingsForGoals(mySavingsAccount, amountForMainGoalPerPay);
                 return true;
             }
 
@@ -153,7 +154,7 @@ namespace PersonalBudgeting.BLL
                 throw new ObjectDisposedException("wallet table item's amount saved exceeds its cost");
         }
 
-        public double tickAllWalletTableItems(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public double tickAllWalletTableItems(BankAccount myAccount,List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             //using RemainingAmountForSecondaryGoalsPerPay
             if (walletTableItems == null) throw new ArgumentNullException();
@@ -175,6 +176,7 @@ namespace PersonalBudgeting.BLL
                     }
                 }
             }
+            addToSavingsForGoals(myAccount,totalAmountTicked);
             return totalAmountTicked;
         }
 
@@ -303,9 +305,7 @@ namespace PersonalBudgeting.BLL
             }
 
             addToSavingsForExpenses(myAccount, getTotalExpenditure(_listOfExpenditure));
-            double totalAmountTicked = tickAllWalletTableItems(_listOfWalletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
-            addToSavingsForGoals(myAccount, totalAmountTicked);
-
+            
             Boolean savedforMainGoal = saveForMainGoal(myAccount,
                                                         amountForMainGoalPerPay,
                                                         mainGoal,
@@ -314,9 +314,12 @@ namespace PersonalBudgeting.BLL
                                                         _listOfExpenditure,
                                                         _listofIncome,
                                                         noOfPayPerYear);
+            double totalAmountTicked = tickAllWalletTableItems(myAccount,_listOfWalletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
+            
             if (savedforMainGoal)
-
-                myAccount.SavingsForGoals += (getAmountAvailableForGoalsPerPay(_taxRate,
+            {
+                
+                myAccount.SavingsForPersonalUse += (getAmountAvailableForGoalsPerPay(_taxRate,
                                                                                _superannuationRate,
                                                                                _listOfExpenditure,
                                                                                _listofIncome,
@@ -324,18 +327,20 @@ namespace PersonalBudgeting.BLL
                                                                                )
                                                        - (amountForMainGoalPerPay + totalAmountTicked)
                                               );
+            }
             else
-                myAccount.SavingsForGoals += (getAmountAvailableForGoalsPerPay( _taxRate, 
+            {
+                myAccount.SavingsForPersonalUse += (getAmountAvailableForGoalsPerPay(_taxRate,
                                                                                 _superannuationRate,
-                                                                                _listOfExpenditure, 
-                                                                                 _listofIncome, 
+                                                                                _listOfExpenditure,
+                                                                                 _listofIncome,
                                                                                 noOfPayPerYear
-                                                                              ) 
+                                                                              )
                                                        - totalAmountTicked
                                               );
 
-
-
+            }
+    
 
         }
 
