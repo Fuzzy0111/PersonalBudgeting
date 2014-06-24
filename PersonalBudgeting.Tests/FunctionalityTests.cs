@@ -31,6 +31,23 @@ namespace PersonalBudgeting.Tests
             myBudget = null;
         }
 
+        [Test]
+        public void TestSavingsForPersonalUseinBankAccountForThreePaysAndFourWithdrawals() 
+        {
+            core.updateBankAccount(myBudget.SavingsAccount,
+                                   myBudget.TaxRate,
+                                   myBudget.SuperannuationRate,
+                                   myBudget.ListOfExpenditure,
+                                   myBudget.ListOfIncome,
+                                   myBudget.NoOfPaysPerYear,
+                                   myBudget.mainGoal,
+                                   _amountForMainGoalPerPay,
+                                   myBudget.ListOfWalletTableItem
+                                  );
+            Assert.AreEqual(220,myBudget.SavingsAccount.SavingsForExpenditures);
+            //Assert.AreEqual(35, myBudget.SavingsAccount.SavingsForGoals);
+
+        }
         /*[Test]
         public void TestGetCurrentSurplusInSavingsAccountForThreePaysAndFourWithdrawals()
         {

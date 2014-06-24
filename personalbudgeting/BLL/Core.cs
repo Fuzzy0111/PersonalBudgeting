@@ -238,6 +238,22 @@ namespace PersonalBudgeting.BLL
             return savingsAccount.AmountAvailable - amountSavedForGoals;
         }
         */
+        public void addToSavingsForPersonalUse(BankAccount myAccount, double Amount)
+        {
+            myAccount.SavingsForPersonalUse += Amount;
+        }
+        public Boolean removeToSavingsForPersonalUse(BankAccount myAccount,double Amount)
+        {
+            if(myAccount.SavingsForPersonalUse==0)
+            {
+                return false;
+            }
+            else
+            {
+                myAccount.SavingsForPersonalUse -= Amount;
+                return true;
+            }
+        }
         public void addToSavingsForExpenses(BankAccount myAccount, double Amount)
         {
             myAccount.SavingsForExpenditures += Amount;
@@ -300,24 +316,22 @@ namespace PersonalBudgeting.BLL
                                                         noOfPayPerYear);
             if (savedforMainGoal)
 
-                myAccount.SavingsForGoals += (getAmountAvailableForGoalsPerPay(
-                                                                                     _taxRate,
-                                                                                     _superannuationRate,
-                                                                                     _listOfExpenditure,
-                                                                                     _listofIncome,
-                                                                                     noOfPayPerYear
-                                                                                    )
+                myAccount.SavingsForGoals += (getAmountAvailableForGoalsPerPay(_taxRate,
+                                                                               _superannuationRate,
+                                                                               _listOfExpenditure,
+                                                                               _listofIncome,
+                                                                               noOfPayPerYear
+                                                                               )
                                                        - (amountForMainGoalPerPay + totalAmountTicked)
-                                                   );
+                                              );
             else
-                myAccount.SavingsForGoals += (getAmountAvailableForGoalsPerPay(
-                                                                                     _taxRate, 
-                                                                                     _superannuationRate,
-                                                                                     _listOfExpenditure, 
-                                                                                     _listofIncome, 
-                                                                                     noOfPayPerYear
-                                                                                     ) 
-                                                        - totalAmountTicked
+                myAccount.SavingsForGoals += (getAmountAvailableForGoalsPerPay( _taxRate, 
+                                                                                _superannuationRate,
+                                                                                _listOfExpenditure, 
+                                                                                 _listofIncome, 
+                                                                                noOfPayPerYear
+                                                                              ) 
+                                                       - totalAmountTicked
                                               );
 
 
