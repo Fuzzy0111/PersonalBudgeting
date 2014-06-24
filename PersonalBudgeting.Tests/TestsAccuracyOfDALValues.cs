@@ -67,7 +67,7 @@ namespace PersonalBudgeting.Tests
         public void TestTickAllWalletTableItemsEmptyList()
         {
 
-            core.tickAllWalletTableItems(null, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
+            core.tickAllWalletTableItems(myBudget.SavingsAccount,null, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
         }
 
         [TestFixtureTearDown]

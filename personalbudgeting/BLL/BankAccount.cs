@@ -33,6 +33,9 @@ namespace PersonalBudgeting.BLL
             this.SavingsForExpenditures = SavingsForExpenditures;
 
         }
-
+        public double getTotalBalance()
+        {
+            return (SavingsForExpenditures + SavingsForGoals + SavingsForPersonalUse);
+        }
     }
 }
