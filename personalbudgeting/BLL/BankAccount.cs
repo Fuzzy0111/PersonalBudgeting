@@ -15,15 +15,14 @@ namespace PersonalBudgeting.BLL
 
         public BankAccount()
         {
-            this._amountAvailable = 0;
-            this.SavingsForPersonalUse = 0;
+            this.SavingsForExpenditures= 0;
             this.SavingsForGoals = 0;
             this.SavingsForPersonalUse = 0;
         }
 
         public BankAccount(double SavingsForPersonalUse)
         {
-            this.SavingsForPersonalUse = 0;
+            this.SavingsForExpenditures = 0;
             this.SavingsForGoals = 0;
             this.SavingsForPersonalUse = SavingsForPersonalUse;
         }

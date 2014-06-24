@@ -423,8 +423,6 @@ namespace PersonalBudgeting.Tests
             core.addToSavingsForGoals(myBudget.SavingsAccount, 1000);
             core.removeFromSavingForGoals(myBudget.SavingsAccount,500);
             Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForGoals);
-
-
         }
         #endregion
     }
