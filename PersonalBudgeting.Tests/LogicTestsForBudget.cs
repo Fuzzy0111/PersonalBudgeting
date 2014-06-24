@@ -382,5 +382,48 @@ namespace PersonalBudgeting.Tests
             core.getCurrentSurplusInSavingsAccount(myBudget.SavingsAccount, myBudget.mainGoal, new List<WalletTableItem>());
         }
         #endregion
+
+        #region updateBankAccountTests
+        [Test]
+        public void TestRemoveFromSavingsForExpenses_SavingsForExpensesIsZero_ReturnsFalse()
+        {
+            myBudget.SavingsAccount.SavingsForExpenditures = 0;
+            Assert.AreEqual(false, core.removeFromSavingForExpenses(myBudget.SavingsAccount, 20));
+        }
+        [Test]
+        public void TestaddToSavingsForExpenses_SaveForExpensesinListOfExpenditure_SavingsForExpenseCorrectValue()
+        {
+            core.addToSavingsForExpenses(myBudget.SavingsAccount,core.getTotalExpenditure(myBudget.ListOfExpenditure));
+            Assert.AreEqual(220,myBudget.SavingsAccount.SavingsForExpenditures);
+        }
+        [Test]
+        public void TestRemoveFromSavingsForExpenses_RemoveAnAmountFromSavingForExpenses_AmountHasbeenRemoved()
+        {
+            myBudget.SavingsAccount.SavingsForExpenditures = 0;
+            core.addToSavingsForExpenses(myBudget.SavingsAccount,core.getTotalExpenditure(myBudget.ListOfExpenditure));
+            core.removeFromSavingForExpenses(myBudget.SavingsAccount, 20);
+            Assert.AreEqual(200, myBudget.SavingsAccount.SavingsForExpenditures);
+        }
+        [Test]
+        public void TestSaveForMainGoal_AmountForMainGoalPerPayGreaterThanAmountAvailableFroGorals_ReturnsFalse()
+        {
+            Assert.AreEqual(false, core.saveForMainGoal(myBudget.SavingsAccount, 500000000, myBudget.mainGoal, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
+        }
+        [Test]
+        public void TestAddToSavingsForGoals_AddAnAmountToSavings_AmountisAdded()
+        {
+            myBudget.SavingsAccount.SavingsForGoals = 0;
+            core.addToSavingsForGoals(myBudget.SavingsAccount,1000);
+            Assert.AreEqual(1000,myBudget.SavingsAccount.SavingsForGoals);
+        }
+        [Test]
+        public void TestRemoveFromSavingsForGoals_RemoveAnAmountToSavings_AmountRemoved()
+        {
+            myBudget.SavingsAccount.SavingsForGoals = 0;
+            core.addToSavingsForGoals(myBudget.SavingsAccount, 1000);
+            core.removeFromSavingForGoals(myBudget.SavingsAccount,500);
+            Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForGoals);
+        }
+        #endregion
     }
 }
