@@ -52,6 +52,7 @@
     <Compile Include="BLL\Goal.cs" />
     <Compile Include="BLL\Income.cs" />
     <Compile Include="BLL\MainGoal.cs" />
+    <Compile Include="MOCK_DAL\MockDALScenario1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

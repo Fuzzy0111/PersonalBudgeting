@@ -64,9 +64,9 @@ namespace PersonalBudgeting.BLL
             ListOfIncome.Remove(income);
         }
 
-        public void addExpenditure(string name, double amount, string type, Participant contributor)
+        public void addExpenditure(string name, double amount, string type, List<Participant> Participants)
         {
-            ListOfExpenditure.Add(new Expenditure(name, amount, type,contributor));
+            ListOfExpenditure.Add(new Expenditure(name, amount, type, Participants));
         }
 
         public void removeExpenditure(Expenditure expenditure)

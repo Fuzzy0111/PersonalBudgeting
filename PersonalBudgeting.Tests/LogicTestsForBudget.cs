@@ -16,11 +16,12 @@ namespace PersonalBudgeting.Tests
         Budget myBudget;
         double _amountForMainGoalPerPay;
 
+
         [TestFixtureSetUp]
         public void TestSetuptheEnvironment()
         {
             myBudget = new Budget();
-            core = new Core();
+            core = new Core();    
 
             _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost, myBudget.mainGoal.DurationInNoOfPays);
         }

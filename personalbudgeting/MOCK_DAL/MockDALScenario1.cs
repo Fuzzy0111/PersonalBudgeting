@@ -1,14 +1,13 @@
-﻿using System;
+﻿using PersonalBudgeting.BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using PersonalBudgeting.BLL;
-
 namespace PersonalBudgeting.MOCK_DAL
 {
-    public class DAL // Mock DAL
+    class MockDALScenario1
     {
         List<Income> listOfIncome;
         List<Expenditure> listOfExpenditure;
@@ -21,7 +20,7 @@ namespace PersonalBudgeting.MOCK_DAL
         BankAccount _savingsAccount;
         int _noOfPaysPerYear;
         Participant partner1, partner2;
-        public DAL()
+        public MockDALScenario1()
         {
             List<Participant> participants=new List<Participant>();
             
@@ -30,20 +29,30 @@ namespace PersonalBudgeting.MOCK_DAL
             participants.Add(partner1);
             participants.Add(partner2);
             listOfIncome = new List<Income>();
-            listOfIncome.Add(new Income("salary", partner1, 2500.0));
-            listOfIncome.Add(new Income("salary", partner2, 2600.0));
+            listOfIncome.Add(new Income("salary", partner1, 1230.80));
+            listOfIncome.Add(new Income("salary", partner2, 1076.90));
 
             listOfExpenditure = new List<Expenditure>();
-            listOfExpenditure.Add(new Expenditure("Car Insurance", 200.0, "Living Expense", participants));
-            listOfExpenditure.Add(new Expenditure("Electricity", 20.0, "Living Expense",participants));
+            listOfExpenditure.Add(new Expenditure("Rights", 1200, "Living Expense", participants));
+            listOfExpenditure.Add(new Expenditure("Phone", 480, "Living Expense",participants));
+            listOfExpenditure.Add(new Expenditure("Electricity", 560, "Living Expense", participants));
+            listOfExpenditure.Add(new Expenditure("Registration", 350, "Living Expense", participants));
+            listOfExpenditure.Add(new Expenditure("Car Maintenance", 300, "Living Expense", participants));
+            listOfExpenditure.Add(new Expenditure("Car Insurance", 170, "Living Expense", participants));
+            listOfExpenditure.Add(new Expenditure("House Insurance",200, "Living Expense", participants));
+            listOfExpenditure.Add(new Expenditure("Content Insurance", 180, "Living Expense", participants));
+            listOfExpenditure.Add(new Expenditure("Health Insurance", 650, "Living Expense", participants));
+            listOfExpenditure.Add(new Expenditure("Clothes And Haircut", 400, "Living Expense", participants));
+            listOfExpenditure.Add(new Expenditure("Meat", 350, "Living Expense", participants));//4840
+            
 
             mainGoal = new MainGoal("Loan", "house loan from MCB", 100000.0, 0.0, 26);
 
-            listOfWalletTableItem = new List<WalletTableItem>();
+            
             listOfWalletTableItem = new List<WalletTableItem>();
             listOfWalletTableItem.Add(new WalletTableItem("Camera", "Canon", 150.0, 0.0, 10.0));
             listOfWalletTableItem.Add(new WalletTableItem("Phone", "IPhone", 200.0, 0.0, 10.0));
-            listOfWalletTableItem.Add(new WalletTableItem("Washing Machine", "Samsung", 250.0, 0.0, 15.0));
+            listOfWalletTableItem.Add(new WalletTableItem("Washing Machine", "Samsung", 250.0, 0.0, 15.0));//600
 
             _noOfPaysPerYear = 26;
             _taxRate = 0.15F; //todo: calculate
@@ -143,7 +152,7 @@ namespace PersonalBudgeting.MOCK_DAL
         //todo: MOVE??
         public float calculateTaxRate(double totalIncome)
         {
-
+            
             if (totalIncome < 0)
                 throw new ArgumentException();
             if (totalIncome < 18201)
@@ -181,5 +190,3 @@ namespace PersonalBudgeting.MOCK_DAL
         }
     }
 }
-
-// todo: rename Mock_dal folder and class

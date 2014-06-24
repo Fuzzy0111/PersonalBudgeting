@@ -23,7 +23,7 @@ namespace PersonalBudgeting.BLL
             if (_listofIncome == null)
                 throw new ArgumentNullException();
             if (noOfPayPerYear <= 0)
-                throw new ArgumentException("No of pays per year cannot be negative.");
+                throw new ArgumentException("No of pays per year cannot be negative or null.");
             return getGrossIncome(_listofIncome) * noOfPayPerYear;
         }
 
