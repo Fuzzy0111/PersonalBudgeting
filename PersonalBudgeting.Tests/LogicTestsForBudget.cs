@@ -311,7 +311,7 @@ namespace PersonalBudgeting.Tests
         }
         #endregion
 
-        #region creditAmountAvailableForGoalsPerPayInSavingsAccount Tests
+        /*#region creditAmountAvailableForGoalsPerPayInSavingsAccount Tests
         [Test,ExpectedException(typeof(ArgumentNullException))]
         public void TestcreditAmountAvailableForGoalsPerPayInSavingsAccountListOfExpenditureNull()
         {
@@ -335,9 +335,9 @@ namespace PersonalBudgeting.Tests
         {
             core.creditAmountAvailableForGoalsPerPayInSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, -4);
         } 
-        #endregion
+        #endregion*/
 
-        #region updateSavingsAccount Tests
+        /* #region updateSavingsAccount Tests
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestUpdateSavingsAccount_1()
         {
@@ -355,8 +355,8 @@ namespace PersonalBudgeting.Tests
         {
             core.updateSavingsAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome,0, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
         }
-        #endregion
-
+        #endregion*/
+        /*
         #region getCurrentSurplusInSavingsAccount Tests
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetCurrentSurplusInSavingsAccountWithNullSavingsAccount()
@@ -381,7 +381,7 @@ namespace PersonalBudgeting.Tests
         {
             core.getCurrentSurplusInSavingsAccount(myBudget.SavingsAccount, myBudget.mainGoal, new List<WalletTableItem>());
         }
-        #endregion
+        #endregion*/
 
         #region updateBankAccountTests
         [Test]
@@ -423,6 +423,11 @@ namespace PersonalBudgeting.Tests
             core.addToSavingsForGoals(myBudget.SavingsAccount, 1000);
             core.removeFromSavingForGoals(myBudget.SavingsAccount,500);
             Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForGoals);
+        }
+        [Test]
+        public void TestTickAllWaleltTableItems_TickAllItemsandCheckAmountTicked_CorrectAmountTicked()
+        {
+            Assert.AreEqual(35,core.tickAllWalletTableItems(myBudget.ListOfWalletTableItem,_amountForMainGoalPerPay,myBudget.TaxRate,myBudget.SuperannuationRate,myBudget.ListOfExpenditure,myBudget.ListOfIncome,myBudget.NoOfPaysPerYear));
         }
         #endregion
     }

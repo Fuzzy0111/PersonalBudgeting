@@ -153,7 +153,7 @@ namespace PersonalBudgeting.BLL
                 throw new ObjectDisposedException("wallet table item's amount saved exceeds its cost");
         }
 
-        public void tickAllWalletTableItems(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public double tickAllWalletTableItems(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             //using RemainingAmountForSecondaryGoalsPerPay
             if (walletTableItems == null) throw new ArgumentNullException();
@@ -175,17 +175,18 @@ namespace PersonalBudgeting.BLL
                     }
                 }
             }
+            return totalAmountTicked;
         }
 
-        public void creditAmountAvailableForGoalsPerPayInSavingsAccount(BankAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        /*public void creditAmountAvailableForGoalsPerPayInSavingsAccount(BankAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             if (noOfPayPerYear <= 0)
                 throw new ArgumentOutOfRangeException();
             double amountAvailableForGoalsPerPay = getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
             mySavingsAccount.AmountAvailable += amountAvailableForGoalsPerPay;
-        }
+        }*/
 
-        public void updateSavingsAccount(BankAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mainGoal, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
+        /*public void updateSavingsAccount(BankAccount mySavingsAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mainGoal, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
         {
             if (_listOfExpenditure == null || _listofIncome == null)
             {
@@ -200,13 +201,13 @@ namespace PersonalBudgeting.BLL
             saveForMainGoal(mySavingsAccount, amountForMainGoalPerPay, mainGoal, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
 
             tickAllWalletTableItems(_listOfWalletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
-        }
+        }*/
         
         public void withdrawFromSavingsAccount(BankAccount mySavingsAccount, double amountToWithdraw)
         {
             if (mySavingsAccount == null) throw new ArgumentNullException();
-            if (amountToWithdraw > mySavingsAccount.AmountAvailable) throw new ArgumentOutOfRangeException();
-            mySavingsAccount.AmountAvailable -= amountToWithdraw;
+            if (amountToWithdraw > mySavingsAccount.SavingsForPersonalUse) throw new ArgumentOutOfRangeException();
+            mySavingsAccount.SavingsForPersonalUse -= amountToWithdraw;
         }
 
         public double getSurplusAmountPerPay(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
@@ -225,7 +226,7 @@ namespace PersonalBudgeting.BLL
             }
         }
 
-        public double getCurrentSurplusInSavingsAccount(BankAccount savingsAccount, MainGoal mainGoal, List<WalletTableItem> listOfWalletTableItems)
+        /*public double getCurrentSurplusInSavingsAccount(BankAccount savingsAccount, MainGoal mainGoal, List<WalletTableItem> listOfWalletTableItems)
         {
             if (savingsAccount == null || mainGoal == null || listOfWalletTableItems == null)
                 throw new ArgumentNullException();
@@ -236,7 +237,7 @@ namespace PersonalBudgeting.BLL
             }
             return savingsAccount.AmountAvailable - amountSavedForGoals;
         }
-
+        */
         public void addToSavingsForExpenses(BankAccount myAccount, double Amount)
         {
             myAccount.SavingsForExpenditures += Amount;
@@ -272,6 +273,59 @@ namespace PersonalBudgeting.BLL
             }
             
         }
+
+
+        public void updateBankAccount(BankAccount myAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mainGoal, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
+        {
+            if (_listOfExpenditure == null || _listofIncome == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (noOfPayPerYear <= 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            addToSavingsForExpenses(myAccount, getTotalExpenditure(_listOfExpenditure));
+            double totalAmountTicked = tickAllWalletTableItems(_listOfWalletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
+            addToSavingsForGoals(myAccount, totalAmountTicked);
+
+            Boolean savedforMainGoal = saveForMainGoal(myAccount,
+                                                        amountForMainGoalPerPay,
+                                                        mainGoal,
+                                                        _taxRate,
+                                                        _superannuationRate,
+                                                        _listOfExpenditure,
+                                                        _listofIncome,
+                                                        noOfPayPerYear);
+            if (savedforMainGoal)
+
+                myAccount.SavingsForGoals += (getAmountAvailableForGoalsPerPay(
+                                                                                     _taxRate,
+                                                                                     _superannuationRate,
+                                                                                     _listOfExpenditure,
+                                                                                     _listofIncome,
+                                                                                     noOfPayPerYear
+                                                                                    )
+                                                       - (amountForMainGoalPerPay + totalAmountTicked)
+                                                   );
+            else
+                myAccount.SavingsForGoals += (getAmountAvailableForGoalsPerPay(
+                                                                                     _taxRate, 
+                                                                                     _superannuationRate,
+                                                                                     _listOfExpenditure, 
+                                                                                     _listofIncome, 
+                                                                                     noOfPayPerYear
+                                                                                     ) 
+                                                        - totalAmountTicked
+                                              );
+
+
+
+
+        }
+
+
     }
 }
 // todo: subtract safety margin along with expenditure
