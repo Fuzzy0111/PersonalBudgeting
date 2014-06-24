@@ -11,7 +11,7 @@ namespace PersonalBudgeting.BLL
         private string _name;
         private double _amount;
         private string _type;
-        private Participant _source;
+        private List<Participant> Participants;
 
         public Expenditure(string name, double amount, string type)
         {
@@ -19,12 +19,12 @@ namespace PersonalBudgeting.BLL
             Amount = amount;
             Type = type;
         }
-        public Expenditure(string name, double amount, string type,Participant source)
+        public Expenditure(string name, double amount, string type,List<Participant> Participants)
         {
             Name = name;
             Amount = amount;
             Type = type;
-            Source = source;
+            Source = Participants;
         }
 
         public string Name
@@ -63,15 +63,15 @@ namespace PersonalBudgeting.BLL
             }
         }
 
-        public Participant Source
+        public List<Participant> Source
         {
             get
             {
-                return _source;
+                return Participants;
             }
             set
             {
-                _source = value;
+                Participants = value;
             }
         }
     }
