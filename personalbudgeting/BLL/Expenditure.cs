@@ -13,6 +13,12 @@ namespace PersonalBudgeting.BLL
         private string _type;
         private Participant _source;
 
+        public Expenditure(string name, double amount, string type)
+        {
+            Name = name;
+            Amount = amount;
+            Type = type;
+        }
         public Expenditure(string name, double amount, string type,Participant source)
         {
             Name = name;
