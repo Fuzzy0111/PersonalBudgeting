@@ -69,14 +69,14 @@ namespace PersonalBudgeting.Tests
                                    _amountForMainGoalPerPay,
                                    myBudget.ListOfWalletTableItem
                                   );
-            Assert.AreEqual(1258.8,myBudget.SavingsAccount.SavingsForGoals,0.1);
+            Assert.AreEqual(1258.8, myBudget.SavingsAccount.SavingsForGoals, 0.1);
            // Assert.AreEqual(220,myBudget.SavingsAccount.SavingsForExpenditures);
             //withdrawFromSavingsAccount has been called 4 times for 4 withdrawals from savings account
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 500);
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 50);
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 125);
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 100);
-            //Assert.AreEqual(13190.3, myBudget.SavingsAccount.SavingsForPersonalUse);
+            Assert.AreEqual(10821.17, myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
 
         }
         /*[Test]
@@ -98,7 +98,7 @@ namespace PersonalBudgeting.Tests
             //AmountAvailableForGoalsPerPay=116700.0/26 = 4488.46
             //for 3 pays = 4488.46*3=13465.38
             
-            //amountForMainGoalPerPay=150000/26 = 5769.23
+            //amountForMainGoalPerPay=10000/26 = 384.61
             //amountForWalletTablePerPay=35.00
 
             //totalAmountForWithdrawals=775.00
