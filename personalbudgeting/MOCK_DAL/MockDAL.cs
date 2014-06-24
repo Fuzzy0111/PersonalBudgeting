@@ -23,11 +23,11 @@ namespace PersonalBudgeting.MOCK_DAL
         Participant partner1, partner2;
         public DAL()
         {
-            partner1= new Participant("Victor","McBernik");
-            partner2=new Participant("Lucile","McBernik");
+            partner1 = new Participant("Alan", "Turing");
+            partner2 = new Participant("Louise", "Hay");
             listOfIncome = new List<Income>();
-            listOfIncome.Add(new Income("salary", new Participant("Alan","Turing"), 2500.0));
-            listOfIncome.Add(new Income("salary",new Participant("Louise","Hay"), 2600.0));
+            listOfIncome.Add(new Income("salary", partner1, 2500.0));
+            listOfIncome.Add(new Income("salary", partner2, 2600.0));
 
             listOfExpenditure = new List<Expenditure>();
             listOfExpenditure.Add(new Expenditure("Car Insurance", 200.0, "Living Expense", partner1));
