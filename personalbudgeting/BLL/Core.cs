@@ -54,14 +54,9 @@ namespace PersonalBudgeting.BLL
             return getTotalExpenditure(_listOfExpenditure) * noOfPayPerYear;
         }
 
-        public double getTotalExpenditurePerYear(List<Expenditure> _listOfExpenditure)
-        {
-            return getTotalExpenditure(_listOfExpenditure) * 12;
-        }
-
         public double getAmountAvailableForGoalsPerYear(float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
-            return (getNetIncomePerYear(_taxRate, _superannuationRate, _listofIncome, noOfPayPerYear) - getTotalExpenditurePerYear(_listOfExpenditure));
+            return (getNetIncomePerYear(_taxRate, _superannuationRate, _listofIncome, noOfPayPerYear) - getTotalExpenditurePerYear(_listOfExpenditure,noOfPayPerYear));
         }
 
         public int getNoOfPaysRequiredToAccomplishGoal(double  goalCost, double amountPerPay)
@@ -114,7 +109,7 @@ namespace PersonalBudgeting.BLL
             return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountForMainGoalPerPay);
         }
 
-        public Boolean saveForMainGoal(BankAccount mySavingsAccount , double amountForMainGoalPerPay, MainGoal mainGoal, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public Boolean saveForMainGoal(BankAccount myAccount , double amountForMainGoalPerPay, MainGoal mainGoal, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             if (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) < amountForMainGoalPerPay)
             {
@@ -123,7 +118,7 @@ namespace PersonalBudgeting.BLL
             else
             {
                 mainGoal.AmountSaved += amountForMainGoalPerPay;
-                addToSavingsForGoals(mySavingsAccount, amountForMainGoalPerPay);
+                addToSavingsForGoals(myAccount, amountForMainGoalPerPay);
                 return true;
             }
 
@@ -205,11 +200,11 @@ namespace PersonalBudgeting.BLL
             tickAllWalletTableItems(_listOfWalletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
         }*/
         
-        public void withdrawFromSavingsAccount(BankAccount mySavingsAccount, double amountToWithdraw)
+        public void withdrawFromSavingsAccount(BankAccount myAccount, double amountToWithdraw)
         {
-            if (mySavingsAccount == null) throw new ArgumentNullException();
-            if (amountToWithdraw > mySavingsAccount.SavingsForPersonalUse) throw new ArgumentOutOfRangeException();
-            mySavingsAccount.SavingsForPersonalUse -= amountToWithdraw;
+            if (myAccount == null) throw new ArgumentNullException();
+            if (amountToWithdraw > myAccount.SavingsForPersonalUse) throw new ArgumentOutOfRangeException();
+            myAccount.SavingsForPersonalUse -= amountToWithdraw;
         }
 
         public double getSurplusAmountPerPay(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
@@ -244,7 +239,7 @@ namespace PersonalBudgeting.BLL
         {
             myAccount.SavingsForPersonalUse += Amount;
         }
-        public Boolean removeToSavingsForPersonalUse(BankAccount myAccount,double Amount)
+        public Boolean removeFromSavingsForPersonalUse(BankAccount myAccount,double Amount)
         {
             if(myAccount.SavingsForPersonalUse==0)
             {
@@ -325,7 +320,7 @@ namespace PersonalBudgeting.BLL
                                                                                _listofIncome,
                                                                                noOfPayPerYear
                                                                                )
-                                                       - (amountForMainGoalPerPay + totalAmountTicked)
+                                                   - (amountForMainGoalPerPay + totalAmountTicked)
                                               );
             }
             else
@@ -336,7 +331,7 @@ namespace PersonalBudgeting.BLL
                                                                                  _listofIncome,
                                                                                 noOfPayPerYear
                                                                               )
-                                                       - totalAmountTicked
+                                                     - totalAmountTicked
                                               );
 
             }

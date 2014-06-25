@@ -47,7 +47,7 @@ namespace PersonalBudgeting.Tests
                                    _amountForMainGoalPerPay,
                                    myBudget.ListOfWalletTableItem
                                   );
-            
+            Assert.AreEqual(3711.9, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
             core.updateBankAccount(myBudget.SavingsAccount,
                                    myBudget.TaxRate,
                                    myBudget.SuperannuationRate,

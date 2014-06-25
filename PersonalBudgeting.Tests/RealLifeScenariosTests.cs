@@ -24,8 +24,7 @@ namespace PersonalBudgeting.Tests
             Core core = new Core();
             myBudget = new Budget();
 
-            _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost, myBudget.mainGoal.DurationInNoOfPays);
-
+            _amountForMainGoalPerPay = 384.6;
         }
         [TestFixtureTearDown]
         public void TestTearDown()
@@ -40,6 +39,14 @@ namespace PersonalBudgeting.Tests
             myBudget.ListOfIncome=mck.retrieveListOfIncome();
             myBudget.ListOfExpenditure=mck.retrieveListOfExpenditure();
             myBudget.ListOfWalletTableItem=mck.retrieveListOfWalletTableItem();
+            myBudget.mainGoal = mck.retrieveMainGoal();
+
+            myBudget.TaxRate = mck.retrieveTaxRate();
+            myBudget.SuperannuationRate = mck.retrieveSuperannuationRate();
+
+            myBudget.SavingsAccount = mck.retrieveSavingsAccount();
+            myBudget.NoOfPaysPerYear = mck.retrieveNoOfPaysPerYear();
+
             core.updateBankAccount(myBudget.SavingsAccount,myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay,myBudget.ListOfWalletTableItem);
 
             Assert.AreEqual(2307.7,core.getGrossIncome(myBudget.ListOfIncome));

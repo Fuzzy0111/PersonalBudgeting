@@ -22,9 +22,10 @@ namespace PersonalBudgeting.BLL
 
         public BankAccount(double SavingsForPersonalUse)
         {
+            this.SavingsForPersonalUse = SavingsForPersonalUse;
             this.SavingsForExpenditures = 0;
             this.SavingsForGoals = 0;
-            this.SavingsForPersonalUse = SavingsForPersonalUse;
+            
         }
         public BankAccount(double SavingsForPersonalUse, double SavingsForGoals, double SavingsForExpenditures)
         {
