@@ -41,8 +41,8 @@ namespace PersonalBudgeting.Tests
         public void TestgetNetIncomePerYear()
         {
             string msg = String.Format("Tax: {0}, Sup: {1}, TotalGrossIncome: {2}, PaysPerYear: {3}",
-                myBudget.TaxRate, myBudget.SuperannuationRate, core.getGrossIncomePerYear(myBudget.ListOfIncome, 12), 12);
-            Assert.AreEqual(55080, core.getNetIncomePerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfIncome, 12), 0.1, msg);
+                myBudget.TaxRate, myBudget.SuperannuationRate, core.getGrossIncomePerYear(myBudget.ListOfIncome, myBudget.NoOfPaysPerYear), myBudget.NoOfPaysPerYear);
+            Assert.AreEqual(106080, core.getNetIncomePerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear), 0.1, msg);
         }
 
         [Test]
