@@ -54,13 +54,13 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestGetTotalExpenditurePerYear()
         {
-            Assert.AreEqual(220.0 * 12, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure));
+            Assert.AreEqual(220.0 * 26, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure,myBudget.NoOfPaysPerYear));
         }
 
         [Test]
         public void TestGetAmountAvailableForGoalsPerYear()
         {
-            Assert.AreEqual(116700.0, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26), 0.1);
+            Assert.AreEqual(100360, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26), 0.1);
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]

@@ -15,6 +15,5 @@ C:\Users\User\Desktop\PersonalBudgeting\PersonalBudgeting\obj\Debug\PersonalBudg
 C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting\bin\Debug\PersonalBudgeting.exe.config
 C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting\bin\Debug\PersonalBudgeting.exe
 C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting\bin\Debug\PersonalBudgeting.pdb
-C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting\obj\Debug\PersonalBudgeting.csprojResolveAssemblyReference.cache
 C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting\obj\Debug\PersonalBudgeting.exe
 C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting\obj\Debug\PersonalBudgeting.pdb

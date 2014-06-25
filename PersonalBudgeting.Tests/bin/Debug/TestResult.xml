@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" total="61" errors="0" failures="3" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-06-25" time="15:27:49">
+<test-results name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" total="61" errors="0" failures="2" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-06-25" time="17:14:31">
   <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5477" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="PBIO-2331" user="user" user-domain="PBIO-2331" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" executed="True" result="Failure" success="False" time="0.466" asserts="0">
+  <test-suite type="Assembly" name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" executed="True" result="Failure" success="False" time="0.250" asserts="0">
     <results>
-      <test-suite type="Namespace" name="PersonalBudgeting" executed="True" result="Failure" success="False" time="0.466" asserts="0">
+      <test-suite type="Namespace" name="PersonalBudgeting" executed="True" result="Failure" success="False" time="0.250" asserts="0">
         <results>
-          <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="0.465" asserts="0">
+          <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="0.249" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="FunctionalityTests" executed="True" result="Failure" success="False" time="0.003" asserts="0">
+              <test-suite type="TestFixture" name="FunctionalityTests" executed="True" result="Failure" success="False" time="0.002" asserts="0">
                 <results>
-                  <test-case name="PersonalBudgeting.Tests.FunctionalityTests.TestSavingsForPersonalUseinBankAccountForThreePaysAndFourWithdrawals" executed="True" result="Failure" success="False" time="0.002" asserts="6">
+                  <test-case name="PersonalBudgeting.Tests.FunctionalityTests.TestSavingsForPersonalUseinBankAccountForThreePaysAndFourWithdrawals" executed="True" result="Failure" success="False" time="0.001" asserts="6">
                     <failure>
                       <message><![CDATA[  Expected: 3711.9000000000001d +/- 0.10000000000000001d
   But was:  3940.3846761813529d
@@ -22,46 +22,37 @@
                   </test-case>
                 </results>
               </test-suite>
-              <test-suite type="TestFixture" name="RealLifeScenarios2" executed="True" result="Success" success="True" time="0.002" asserts="0">
+              <test-suite type="TestFixture" name="RealLifeScenarios2" executed="True" result="Failure" success="False" time="0.002" asserts="0">
                 <results>
-                  <test-case name="PersonalBudgeting.Tests.RealLifeScenarios2.TestScenario2" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                  <test-case name="PersonalBudgeting.Tests.RealLifeScenarios2.TestScenario2" executed="True" result="Failure" success="False" time="0.001" asserts="4">
+                    <failure>
+                      <message><![CDATA[  Expected: 500
+  But was:  360.00006079673767d
+]]></message>
+                      <stack-trace><![CDATA[at PersonalBudgeting.Tests.RealLifeScenarios2.TestScenario2() in c:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\RealLifeScenarios2.cs:line 57
+]]></stack-trace>
+                    </failure>
+                  </test-case>
                 </results>
               </test-suite>
-              <test-suite type="TestFixture" name="RealLifeScenariosTests" executed="True" result="Success" success="True" time="0.009" asserts="0">
+              <test-suite type="TestFixture" name="RealLifeScenariosTests" executed="True" result="Success" success="True" time="0.005" asserts="0">
                 <results>
                   <test-case name="PersonalBudgeting.Tests.RealLifeScenariosTests.Test" executed="True" result="Success" success="True" time="0.000" asserts="0" />
-                  <test-case name="PersonalBudgeting.Tests.RealLifeScenariosTests.TestCalculateBudget_NormalScenario_Successful" executed="True" result="Success" success="True" time="0.000" asserts="5" />
+                  <test-case name="PersonalBudgeting.Tests.RealLifeScenariosTests.TestCalculateBudget_NormalScenario_Successful" executed="True" result="Success" success="True" time="0.000" asserts="6" />
                 </results>
               </test-suite>
-              <test-suite type="TestFixture" name="TestsAccuracyOfDALValues" executed="True" result="Failure" success="False" time="0.056" asserts="0">
+              <test-suite type="TestFixture" name="TestsAccuracyOfDALValues" executed="True" result="Success" success="True" time="0.027" asserts="0">
                 <results>
-                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetAmountAvailableForGoalsPerYear" executed="True" result="Failure" success="False" time="0.001" asserts="1">
-                    <failure>
-                      <message><![CDATA[  Expected: 116700.0d +/- 0.10000000000000001d
-  But was:  100360.00158071518d
-]]></message>
-                      <stack-trace><![CDATA[at PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetAmountAvailableForGoalsPerYear() in c:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\TestsAccuracyOfDALValues.cs:line 63
-]]></stack-trace>
-                    </failure>
-                  </test-case>
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetAmountAvailableForGoalsPerYear" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestgetGrossIncomePerYearFor12Months" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestgetNetIncomePerYear" executed="True" result="Failure" success="False" time="0.001" asserts="1">
-                    <failure>
-                      <message><![CDATA[  Tax: 0.15, Sup: 0.05, TotalGrossIncome: 61200, PaysPerYear: 12
-  Expected: 55080.0d +/- 0.10000000000000001d
-  But was:  48960.000729560852d
-]]></message>
-                      <stack-trace><![CDATA[at PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestgetNetIncomePerYear() in c:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\TestsAccuracyOfDALValues.cs:line 45
-]]></stack-trace>
-                    </failure>
-                  </test-case>
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestgetNetIncomePerYear" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetTotalExpenditure" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetTotalExpenditurePerYear" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestTickAllWalletTableItemsEmptyList" executed="True" result="Success" success="True" time="0.002" asserts="0" />
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestTickAllWalletTableItemsEmptyList" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestVerifyTotalIncome" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                 </results>
               </test-suite>
-              <test-suite type="TestFixture" name="TestsLogicOfBudget" executed="True" result="Success" success="True" time="0.328" asserts="0">
+              <test-suite type="TestFixture" name="TestsLogicOfBudget" executed="True" result="Success" success="True" time="0.161" asserts="0">
                 <results>
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestaddToSavingsForExpenses_SaveForExpensesinListOfExpenditure_SavingsForExpenseCorrectValue" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestAddToSavingsForGoals_AddAnAmountToSavings_AmountisAdded" executed="True" result="Success" success="True" time="0.000" asserts="1" />
