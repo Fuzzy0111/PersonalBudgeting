@@ -50,7 +50,7 @@ namespace PersonalBudgeting.Tests
            
             Assert.AreEqual(419.6, myBudget.SavingsAccount.SavingsForGoals, 0.1);
             Assert.AreEqual(220, myBudget.SavingsAccount.SavingsForExpenditures, 0.1);
-            Assert.AreEqual(3711.9, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
+            Assert.AreEqual(3940.3, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
             /*core.updateBankAccount(myBudget.SavingsAccount,
                                    myBudget.TaxRate,
                                    myBudget.SuperannuationRate,
