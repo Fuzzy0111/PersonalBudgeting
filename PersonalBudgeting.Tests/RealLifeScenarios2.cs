@@ -33,7 +33,29 @@ namespace PersonalBudgeting.Tests
         {
             //Add Expenditure
             myBudget.addExpenditure("Electric Guitar",4000,"Pocket Expenses",myBudget.ListOfParticipant);
-            Assert.AreEqual(4220,core.getTotalExpenditure(myBudget.ListOfExpenditure));
+            //Assert.AreEqual(4220,core.getTotalExpenditure(myBudget.ListOfExpenditure));
+            //Assert.AreEqual(0,core.getAmountAvailableForGoalsPerPay(    myBudget.TaxRate,
+            //                                                            myBudget.SuperannuationRate,
+            //                                                            myBudget.ListOfExpenditure,
+            //                                                            myBudget.ListOfIncome,
+            //                                                            myBudget.NoOfPaysPerYear
+            //                                                        )
+            //               );
+            core.updateBankAccount( myBudget.SavingsAccount,
+                                    myBudget.TaxRate,
+                                    myBudget.SuperannuationRate,
+                                    myBudget.ListOfExpenditure,
+                                    myBudget.ListOfIncome,
+                                    myBudget.NoOfPaysPerYear,
+                                    myBudget.mainGoal,
+                                    _amountForMainGoalPerPay,
+                                    myBudget.ListOfWalletTableItem
+                                   );
+            //Assert.AreEqual(0,myBudget.SavingsAccount.SavingsForGoals);
+            Assert.AreEqual(4220,myBudget.SavingsAccount.SavingsForExpenditures);
+            //Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForPersonalUse);//todo:Add a fucntion in core to handle situation where Expenditure is higer than income
+            //core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
+
         }
     }
 }
