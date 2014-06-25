@@ -40,13 +40,19 @@ namespace PersonalBudgeting.Tests
             myBudget.ListOfIncome=mck.retrieveListOfIncome();
             myBudget.ListOfExpenditure=mck.retrieveListOfExpenditure();
             myBudget.ListOfWalletTableItem=mck.retrieveListOfWalletTableItem();
-            core.updateBankAccount(myBudget.SavingsAccount,myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay,myBudget.ListOfWalletTableItem);
+            myBudget.mainGoal = mck.retrieveMainGoal();
+            myBudget.NoOfPaysPerYear = mck.retrieveNoOfPaysPerYear();
+            myBudget.TaxRate = mck.retrieveTaxRate();
+            myBudget.SuperannuationRate = mck.retrieveSuperannuationRate();
+            myBudget.SavingsAccount = mck.retrieveSavingsAccount();
+
+            //core.updateBankAccount(myBudget.SavingsAccount,myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay,myBudget.ListOfWalletTableItem);
 
             Assert.AreEqual(2307.7,core.getGrossIncome(myBudget.ListOfIncome));
-           // Assert.AreEqual(60000.2, core.getGrossIncomePerYear(myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
-            //Assert.AreEqual(12120.0, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure));
-            //Assert.AreEqual(48000.16, core.getNetIncomePerYear(_taxRate,_superannuationRate,myBudget.ListOfIncome,myBudget.NoOfPaysPerYear));
-            //Assert.AreEqual(47880.2, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(60000.2, core.getGrossIncomePerYear(myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(12120.0, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure));
+            Assert.AreEqual(48000.16, core.getNetIncomePerYear(myBudget.TaxRate,myBudget.SuperannuationRate,myBudget.ListOfIncome,myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(47880.2, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
         }
     }
 }
