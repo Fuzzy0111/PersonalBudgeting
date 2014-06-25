@@ -29,18 +29,9 @@ namespace PersonalBudgeting.Tests
             myBudget = null;
         }
         [Test]
-        public void TestScenario2_TotalExpenditureHigherThanNetIncome()
+        public void TestScenario2()
         {
-            //Add an expenditure
-            myBudget.addExpenditure("Electric Guitar", 4000, "Pocket Expenses", myBudget.ListOfParticipant);
-            //Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForPersonalUse);
-            core.addToSavingsForPersonalUse(myBudget.SavingsAccount, 500);
-            Assert.AreEqual(1000, myBudget.SavingsAccount.SavingsForPersonalUse);
 
-            //Assert.AreEqual(4220,core.getTotalExpenditure(myBudget.ListOfExpenditure));
-            //Assert.AreEqual(5100,core.getGrossIncome(myBudget.ListOfIncome));
-           // core.updateBankAccount(myBudget.SavingsAccount, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay, myBudget.ListOfWalletTableItem);
-            //Assert.AreEqual();
         }
     }
 }

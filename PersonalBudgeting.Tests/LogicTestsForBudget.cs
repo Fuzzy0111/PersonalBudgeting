@@ -84,19 +84,19 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestGetTotalExpenditurePerYearForEmptyList()
         {
-            Assert.AreEqual(0, core.getTotalExpenditurePerYear(new List<Expenditure>(),myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(0, core.getTotalExpenditurePerYear(new List<Expenditure>()));
         }
 
         [Test]
         public void TestGetTotalExpenditurePerYear()
         {
-            Assert.AreEqual(220.0 * 12, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure,myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(220.0 * 12, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure));
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestGetTotalExpenditurePerYearWithNullList()
         {
-            double result = core.getTotalExpenditurePerYear(null,myBudget.NoOfPaysPerYear);
+            double result = core.getTotalExpenditurePerYear(null);
         }
 
         [Test]
@@ -385,12 +385,6 @@ namespace PersonalBudgeting.Tests
         #endregion*/
 
         #region updateBankAccountTests
-        [Test]
-        public void TestaddToSavingsForPersonalUseInBankAccount_AddAnAmount_SavinsForPersonalUseCorrectValue()
-        {
-            core.addToSavingsForPersonalUse(myBudget.SavingsAccount,1000);
-            Assert.AreEqual(1000,myBudget.SavingsAccount.SavingsForPersonalUse);
-        }
         [Test]
         public void TestRemoveFromSavingsForExpenses_SavingsForExpensesIsZero_ReturnsFalse()
         {
