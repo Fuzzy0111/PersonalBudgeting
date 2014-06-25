@@ -29,9 +29,11 @@ namespace PersonalBudgeting.Tests
             myBudget = null;
         }
         [Test]
-        public void TestScenario2()
+        public void TestScenario2_ExpenditureHigherThanIncome()
         {
-
+            //Add Expenditure
+            myBudget.addExpenditure("Electric Guitar",4000,"Pocket Expenses",myBudget.ListOfParticipant);
+            Assert.AreEqual(4220,core.getTotalExpenditure(myBudget.ListOfExpenditure));
         }
     }
 }

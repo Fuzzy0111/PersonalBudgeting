@@ -53,15 +53,15 @@ namespace PersonalBudgeting.BLL
 
             return getTotalExpenditure(_listOfExpenditure) * noOfPayPerYear;
         }
-
+        /*
         public double getTotalExpenditurePerYear(List<Expenditure> _listOfExpenditure)
         {
             return getTotalExpenditure(_listOfExpenditure) * 12;
-        }
+        }*/
 
         public double getAmountAvailableForGoalsPerYear(float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
-            return (getNetIncomePerYear(_taxRate, _superannuationRate, _listofIncome, noOfPayPerYear) - getTotalExpenditurePerYear(_listOfExpenditure));
+            return (getNetIncomePerYear(_taxRate, _superannuationRate, _listofIncome, noOfPayPerYear) - getTotalExpenditurePerYear(_listOfExpenditure, noOfPayPerYear));
         }
 
         public int getNoOfPaysRequiredToAccomplishGoal(double  goalCost, double amountPerPay)

@@ -13,15 +13,14 @@ namespace PersonalBudgeting.Tests
     {
         Core core;
         Budget myBudget;
-        MockDALScenario1 mck;
+
         
         double _amountForMainGoalPerPay;
 
         [TestFixtureSetUp]
         public void TestSetUpEnvironment()
         {
-            mck = new MockDALScenario1();
-            Core core = new Core();
+            core = new Core();
             myBudget = new Budget();
 
             _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost, myBudget.mainGoal.DurationInNoOfPays);
@@ -36,17 +35,12 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestCalculateBudget_NormalScenario_Successful()
         {
-              
-            myBudget.ListOfIncome=mck.retrieveListOfIncome();
-            myBudget.ListOfExpenditure=mck.retrieveListOfExpenditure();
-            myBudget.ListOfWalletTableItem=mck.retrieveListOfWalletTableItem();
-            core.updateBankAccount(myBudget.SavingsAccount,myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear, myBudget.mainGoal, _amountForMainGoalPerPay,myBudget.ListOfWalletTableItem);
+            Assert.AreEqual(5100,core.getGrossIncome(myBudget.ListOfIncome));
+            Assert.AreEqual(132600, core.getGrossIncomePerYear(myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(5720, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure,myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(106080, core.getNetIncomePerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear),1);
+            Assert.AreEqual(100360, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
 
-            Assert.AreEqual(2307.7,core.getGrossIncome(myBudget.ListOfIncome));
-           // Assert.AreEqual(60000.2, core.getGrossIncomePerYear(myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
-            //Assert.AreEqual(12120.0, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure));
-            //Assert.AreEqual(48000.16, core.getNetIncomePerYear(_taxRate,_superannuationRate,myBudget.ListOfIncome,myBudget.NoOfPaysPerYear));
-            //Assert.AreEqual(47880.2, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
         }
     }
 }

@@ -84,19 +84,19 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestGetTotalExpenditurePerYearForEmptyList()
         {
-            Assert.AreEqual(0, core.getTotalExpenditurePerYear(new List<Expenditure>()));
+            Assert.AreEqual(0, core.getTotalExpenditurePerYear(new List<Expenditure>(),myBudget.NoOfPaysPerYear));
         }
 
         [Test]
         public void TestGetTotalExpenditurePerYear()
         {
-            Assert.AreEqual(220.0 * 12, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure));
+            Assert.AreEqual(5720, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure,myBudget.NoOfPaysPerYear));
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestGetTotalExpenditurePerYearWithNullList()
         {
-            double result = core.getTotalExpenditurePerYear(null);
+            double result = core.getTotalExpenditurePerYear(null,myBudget.NoOfPaysPerYear);
         }
 
         [Test]
