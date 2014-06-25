@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1065]C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll</TopNode>
-  <SelectedNode>[0-1055]PersonalBudgeting.Tests.RealLifeScenariosTests</SelectedNode>
+  <TopNode>[0-1066]C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll</TopNode>
+  <SelectedNode>[0-1056]PersonalBudgeting.Tests.RealLifeScenariosTests.TestCalculateBudget_NormalScenario_Successful</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1065]C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" Expanded="true" />
-    <Node UniqueName="[0-1066]PersonalBudgeting" Expanded="true" />
-    <Node UniqueName="[0-1067]PersonalBudgeting.Tests" Expanded="true" />
+    <Node UniqueName="[0-1066]C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" Expanded="true" />
+    <Node UniqueName="[0-1067]PersonalBudgeting" Expanded="true" />
+    <Node UniqueName="[0-1068]PersonalBudgeting.Tests" Expanded="true" />
     <Node UniqueName="[0-1055]PersonalBudgeting.Tests.RealLifeScenariosTests" Expanded="true" />
   </Nodes>
 </VisualState>
