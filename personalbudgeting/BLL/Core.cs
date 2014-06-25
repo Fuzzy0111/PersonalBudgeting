@@ -154,6 +154,29 @@ namespace PersonalBudgeting.BLL
                 throw new ObjectDisposedException("wallet table item's amount saved exceeds its cost");
         }
 
+        public void TransferWalletTableItemToMainGoal(Budget budget, MainGoal mainGoal, WalletTableItem wti, int durationInNoOfPays)
+        {
+            mainGoal.Name = wti.Name;
+            mainGoal.Description = wti.Description;
+            mainGoal.Cost = wti.Cost;
+            mainGoal.DurationInNoOfPays = durationInNoOfPays;
+            mainGoal.AmountSaved = wti.AmountSaved;
+            budget.removeWalletTableItem(wti);
+        }
+
+        public void CancelWalletTableItem(Budget budget, WalletTableItem wti)
+        {
+            budget.SavingsAccount.SavingsForGoals -= wti.AmountSaved;
+            budget.SavingsAccount.SavingsForPersonalUse += wti.AmountSaved;
+            budget.removeWalletTableItem(wti);
+        }
+
+        public void tickOffWalletTableItem(Budget budget, WalletTableItem wti)
+        {
+            budget.SavingsAccount.SavingsForGoals -= wti.AmountSaved;
+            budget.removeWalletTableItem(wti);
+        }
+
         public double tickAllWalletTableItems(BankAccount myAccount,List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             //using RemainingAmountForSecondaryGoalsPerPay
