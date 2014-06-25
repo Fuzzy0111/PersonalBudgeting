@@ -47,8 +47,11 @@ namespace PersonalBudgeting.Tests
                                    _amountForMainGoalPerPay,
                                    myBudget.ListOfWalletTableItem
                                   );
-            
-            core.updateBankAccount(myBudget.SavingsAccount,
+           
+            Assert.AreEqual(419.6, myBudget.SavingsAccount.SavingsForGoals, 0.1);
+            Assert.AreEqual(220, myBudget.SavingsAccount.SavingsForExpenditures, 0.1);
+            Assert.AreEqual(3711.9, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
+            /*core.updateBankAccount(myBudget.SavingsAccount,
                                    myBudget.TaxRate,
                                    myBudget.SuperannuationRate,
                                    myBudget.ListOfExpenditure,
@@ -76,7 +79,7 @@ namespace PersonalBudgeting.Tests
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 50);
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 125);
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 100);
-            Assert.AreEqual(10821.17, myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
+            Assert.AreEqual(10821.17, myBudget.SavingsAccount.SavingsForPersonalUse,0.1);*/
 
         }
         /*[Test]

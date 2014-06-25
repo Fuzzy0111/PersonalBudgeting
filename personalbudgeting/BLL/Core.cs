@@ -32,7 +32,7 @@ namespace PersonalBudgeting.BLL
             if (_listofIncome == null) throw new ArgumentNullException();
             if (_taxRate<=0 || _superannuationRate<=0 || noOfPayPerYear<=0) //todo: argExp for empty?
                 throw new ArgumentException();
-            return getGrossIncomePerYear(_listofIncome, noOfPayPerYear) *  (1 - _taxRate + _superannuationRate);
+            return getGrossIncomePerYear(_listofIncome, noOfPayPerYear) *  (1 - _taxRate - _superannuationRate);
         }
 
         public double getTotalExpenditure(List<Expenditure> _listOfExpenditure)
@@ -299,6 +299,7 @@ namespace PersonalBudgeting.BLL
             {
                 throw new ArgumentNullException();
             }
+
             if (noOfPayPerYear <= 0)
             {
                 throw new ArgumentOutOfRangeException();
@@ -315,22 +316,22 @@ namespace PersonalBudgeting.BLL
                                                         _listofIncome,
                                                         noOfPayPerYear);
             double totalAmountTicked = tickAllWalletTableItems(myAccount,_listOfWalletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
-            
+            double AmountToAddToSavingsForPersonalUse;
             if (savedforMainGoal)
             {
                 
-                myAccount.SavingsForPersonalUse += (getAmountAvailableForGoalsPerPay(_taxRate,
+               AmountToAddToSavingsForPersonalUse=(getAmountAvailableForGoalsPerPay(_taxRate,
                                                                                _superannuationRate,
                                                                                _listOfExpenditure,
                                                                                _listofIncome,
                                                                                noOfPayPerYear
                                                                                )
-                                                       - (amountForMainGoalPerPay + totalAmountTicked)
-                                              );
+                                                                - (amountForMainGoalPerPay + totalAmountTicked)
+                                                         );
             }
             else
             {
-                myAccount.SavingsForPersonalUse += (getAmountAvailableForGoalsPerPay(_taxRate,
+                AmountToAddToSavingsForPersonalUse = (getAmountAvailableForGoalsPerPay(_taxRate,
                                                                                 _superannuationRate,
                                                                                 _listOfExpenditure,
                                                                                  _listofIncome,
@@ -340,8 +341,8 @@ namespace PersonalBudgeting.BLL
                                               );
 
             }
-    
 
+            addToSavingsForPersonalUse(myAccount, AmountToAddToSavingsForPersonalUse);
         }
 
 
