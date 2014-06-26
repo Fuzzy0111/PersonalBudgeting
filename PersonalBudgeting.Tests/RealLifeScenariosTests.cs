@@ -80,7 +80,8 @@ namespace PersonalBudgeting.Tests
            // core.tickWalletTableItem(wti);
            // Assert.AreEqual(500,wti.AmountSaved);
             core.CancelWalletTableItem(myBudget,wti);
-            Assert.AreEqual(9360, myBudget.SavingsAccount.SavingsForGoals, 0.1);
+            //Assert.AreEqual(9360, myBudget.SavingsAccount.SavingsForGoals, 0.1);
+            Assert.AreEqual(9360, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
         }
 
 
