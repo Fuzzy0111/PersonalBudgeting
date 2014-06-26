@@ -338,6 +338,7 @@ namespace PersonalBudgeting.BLL
                                                         _listOfExpenditure,
                                                         _listofIncome,
                                                         noOfPayPerYear);
+
             double totalAmountTicked = tickAllWalletTableItems(myAccount,_listOfWalletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
             double AmountToAddToSavingsForPersonalUse;
             if (savedforMainGoal)
