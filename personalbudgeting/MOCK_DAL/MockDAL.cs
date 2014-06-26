@@ -41,7 +41,7 @@ namespace PersonalBudgeting.MOCK_DAL
 
             mainGoal = new MainGoal("Loan", "house loan from MCB", 10000.0, 0.0, 26);
 
-            listOfWalletTableItem = new List<WalletTableItem>();
+            
             listOfWalletTableItem = new List<WalletTableItem>();
             listOfWalletTableItem.Add(new WalletTableItem("Camera", "Canon", 150.0, 0.0, 10.0));
             listOfWalletTableItem.Add(new WalletTableItem("Phone", "IPhone", 200.0, 0.0, 10.0));

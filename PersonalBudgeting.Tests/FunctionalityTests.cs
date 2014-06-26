@@ -74,13 +74,13 @@ namespace PersonalBudgeting.Tests
                                   );
             Assert.AreEqual(1258.8, myBudget.SavingsAccount.SavingsForGoals, 0.1);
             Assert.AreEqual(220,myBudget.SavingsAccount.SavingsForExpenditures);
-            //Assert.AreEqual(11045,myBudget.SavingsAccount.SavingsForPersonalUse);
+            Assert.AreEqual(10821.2,myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
             //withdrawFromSavingsAccount has been called 4 times for 4 withdrawals from savings account
-            //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 500);
+            core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 500);
             //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 50);
             //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 125);
             //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 100);
-            //Assert.AreEqual(10821.17, myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
+            Assert.AreEqual(10321.2, myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
 
         }
         /*[Test]
