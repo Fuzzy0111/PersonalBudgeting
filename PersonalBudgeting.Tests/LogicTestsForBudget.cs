@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PersonalBudgeting.Tests
-{
+{   //todo:tickOFF WALLET table iTem test
+    //todo:add fucntion to save for maingoal directly
+    //todo:test transfer main goal
+    //todo:test cancel goal
     [TestFixture]
     public class TestsLogicOfBudget
     {
@@ -21,7 +24,7 @@ namespace PersonalBudgeting.Tests
         public void TestSetuptheEnvironment()
         {
             myBudget = new Budget();
-            core = new Core();    
+            core = new Core();
 
             _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost, myBudget.mainGoal.DurationInNoOfPays);
         }
@@ -84,19 +87,19 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestGetTotalExpenditurePerYearForEmptyList()
         {
-            Assert.AreEqual(0, core.getTotalExpenditurePerYear(new List<Expenditure>(),myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(0, core.getTotalExpenditurePerYear(new List<Expenditure>(), myBudget.NoOfPaysPerYear));
         }
 
         [Test]
         public void TestGetTotalExpenditurePerYear()
         {
-            Assert.AreEqual(220.0 * 26, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure,myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(220.0 * 26, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure, myBudget.NoOfPaysPerYear));
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestGetTotalExpenditurePerYearWithNullList()
         {
-            double result = core.getTotalExpenditurePerYear(null,myBudget.NoOfPaysPerYear);
+            double result = core.getTotalExpenditurePerYear(null, myBudget.NoOfPaysPerYear);
         }
 
         [Test]
@@ -239,7 +242,7 @@ namespace PersonalBudgeting.Tests
             Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, 15));
         }
 
-        [Test,ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestgoalPayableBeforeDeadlineDesiredAmountOutOfRange()
         {
             Boolean Payable = core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, -30);
@@ -299,7 +302,7 @@ namespace PersonalBudgeting.Tests
         #endregion
 
         #region WithdrawFromSavingsAccount Tests
-        [Test,ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestWithdrawFromSavingsAccountGreaterThanAmountToRemove()
         {
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 700);
@@ -394,14 +397,14 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestaddToSavingsForExpenses_SaveForExpensesinListOfExpenditure_SavingsForExpenseCorrectValue()
         {
-            core.addToSavingsForExpenses(myBudget.SavingsAccount,core.getTotalExpenditure(myBudget.ListOfExpenditure));
-            Assert.AreEqual(220,myBudget.SavingsAccount.SavingsForExpenditures);
+            core.addToSavingsForExpenses(myBudget.SavingsAccount, core.getTotalExpenditure(myBudget.ListOfExpenditure));
+            Assert.AreEqual(220, myBudget.SavingsAccount.SavingsForExpenditures);
         }
         [Test]
         public void TestRemoveFromSavingsForExpenses_RemoveAnAmountFromSavingForExpenses_AmountHasbeenRemoved()
         {
             myBudget.SavingsAccount.SavingsForExpenditures = 0;
-            core.addToSavingsForExpenses(myBudget.SavingsAccount,core.getTotalExpenditure(myBudget.ListOfExpenditure));
+            core.addToSavingsForExpenses(myBudget.SavingsAccount, core.getTotalExpenditure(myBudget.ListOfExpenditure));
             core.removeFromSavingForExpenses(myBudget.SavingsAccount, 20);
             Assert.AreEqual(200, myBudget.SavingsAccount.SavingsForExpenditures);
         }
@@ -414,21 +417,21 @@ namespace PersonalBudgeting.Tests
         public void TestAddToSavingsForGoals_AddAnAmountToSavings_AmountisAdded()
         {
             myBudget.SavingsAccount.SavingsForGoals = 0;
-            core.addToSavingsForGoals(myBudget.SavingsAccount,1000);
-            Assert.AreEqual(1000,myBudget.SavingsAccount.SavingsForGoals);
+            core.addToSavingsForGoals(myBudget.SavingsAccount, 1000);
+            Assert.AreEqual(1000, myBudget.SavingsAccount.SavingsForGoals);
         }
         [Test]
         public void TestRemoveFromSavingsForGoals_RemoveAnAmountToSavings_AmountRemoved()
         {
             myBudget.SavingsAccount.SavingsForGoals = 0;
             core.addToSavingsForGoals(myBudget.SavingsAccount, 1000);
-            core.removeFromSavingForGoals(myBudget.SavingsAccount,500);
-            Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForGoals);
+            core.removeFromSavingForGoals(myBudget.SavingsAccount, 500);
+            Assert.AreEqual(500, myBudget.SavingsAccount.SavingsForGoals);
         }
         [Test]
         public void TestTickAllWaleltTableItems_TickAllItemsandCheckAmountTicked_CorrectAmountTicked()
         {
-            Assert.AreEqual(35,core.tickAllWalletTableItems(myBudget.SavingsAccount,myBudget.ListOfWalletTableItem,_amountForMainGoalPerPay,myBudget.TaxRate,myBudget.SuperannuationRate,myBudget.ListOfExpenditure,myBudget.ListOfIncome,myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(35, core.tickAllWalletTableItems(myBudget.SavingsAccount, myBudget.ListOfWalletTableItem, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
         }
         #endregion
     }

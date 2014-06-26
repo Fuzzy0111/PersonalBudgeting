@@ -11,6 +11,7 @@ namespace PersonalBudgeting.MOCK_DAL
     public class DAL // Mock DAL
     {
         List<Income> listOfIncome;
+        List<Income> lisfOfIncomeForCasualWorkers;
         List<Expenditure> listOfExpenditure;
         MainGoal mainGoal;
         List<WalletTableItem> listOfWalletTableItem;
@@ -20,7 +21,7 @@ namespace PersonalBudgeting.MOCK_DAL
         float _mainGoalPercentage;
         BankAccount _savingsAccount;
         int _noOfPaysPerYear;
-        Participant partner1, partner2;
+        Participant partner1, partner2,partner3;
         public DAL()
         {
             List<Participant> participants=new List<Participant>();
@@ -30,9 +31,10 @@ namespace PersonalBudgeting.MOCK_DAL
             participants.Add(partner1);
             participants.Add(partner2);
             listOfIncome = new List<Income>();
+            lisfOfIncomeForCasualWorkers= new List<Income>();
             listOfIncome.Add(new Income("salary", partner1, 2500.0));
             listOfIncome.Add(new Income("salary", partner2, 2600.0));
-
+ 
             listOfExpenditure = new List<Expenditure>();
             listOfExpenditure.Add(new Expenditure("Car Insurance", 200.0, "Living Expense", participants));
             listOfExpenditure.Add(new Expenditure("Electricity", 20.0, "Living Expense",participants));
@@ -62,6 +64,10 @@ namespace PersonalBudgeting.MOCK_DAL
         public List<Income> retrieveListOfIncome()
         {
             return listOfIncome;
+        }
+        public List<Income> retrieveLisfOfIncomeForCasualWorkers()
+        {
+            return lisfOfIncomeForCasualWorkers;
         }
         /*
         public void addIncome(string name, string source, double amount)
@@ -182,4 +188,4 @@ namespace PersonalBudgeting.MOCK_DAL
     }
 }
 
-// todo: rename Mock_dal folder and class
+

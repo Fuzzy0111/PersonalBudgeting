@@ -12,6 +12,7 @@ namespace PersonalBudgeting.BLL
         DAL dal;
         public int NoOfPaysPerYear { get; set; }
         public List<Income> ListOfIncome { get; set; }
+        public List<Income> LisfOfIncomeForCasualWorkers { get; set; }
         public List<Participant> ListOfParticipant { get; set; }
         public List<Expenditure> ListOfExpenditure { get; set; }
         public List<WalletTableItem> ListOfWalletTableItem { get; set; }
@@ -34,6 +35,7 @@ namespace PersonalBudgeting.BLL
             this.dal = new DAL();
 
             ListOfIncome = dal.retrieveListOfIncome();
+            LisfOfIncomeForCasualWorkers = dal.retrieveLisfOfIncomeForCasualWorkers();
             ListOfExpenditure = dal.retrieveListOfExpenditure();
             mainGoal = dal.retrieveMainGoal();
             ListOfWalletTableItem = dal.retrieveListOfWalletTableItem();
@@ -58,7 +60,14 @@ namespace PersonalBudgeting.BLL
         {
             ListOfIncome.Add(new Income(name, source, amount));
         }
-
+        public void addCasualIncome(Income casualIncome)
+        {
+            LisfOfIncomeForCasualWorkers.Add(casualIncome);
+        }
+        public void removeCasualIncome(Income casualIncome)
+        {
+            LisfOfIncomeForCasualWorkers.Remove(casualIncome);
+        }
         public void removeIncome(Income income)
         {
             ListOfIncome.Remove(income);

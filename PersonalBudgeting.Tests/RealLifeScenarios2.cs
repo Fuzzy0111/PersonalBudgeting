@@ -29,19 +29,10 @@ namespace PersonalBudgeting.Tests
             myBudget = null;
         }
         [Test]
-        public void TestScenario2()
+        public void AddIncomeForTwoCasualWorkers()
         {
-            //Add Expenditure
-            myBudget.addExpenditure("Electric Guitar", 4000, "Pocket Expenses", myBudget.ListOfParticipant);
-            Assert.AreEqual(4220, core.getTotalExpenditure(myBudget.ListOfExpenditure));
-            //Assert.AreEqual(4220,core.getTotalExpenditure(myBudget.ListOfExpenditure));
-            //Assert.AreEqual(0,core.getAmountAvailableForGoalsPerPay(    myBudget.TaxRate,
-            //                                                            myBudget.SuperannuationRate,
-            //                                                            myBudget.ListOfExpenditure,
-            //                                                            myBudget.ListOfIncome,
-            //                                                            myBudget.NoOfPaysPerYear
-            //                                                        )
-            //               );
+            Assert.AreEqual(0,myBudget.SavingsAccount.SavingsForGoals);
+            Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForPersonalUse);
             core.updateBankAccount(myBudget.SavingsAccount,
                                     myBudget.TaxRate,
                                     myBudget.SuperannuationRate,
@@ -52,11 +43,12 @@ namespace PersonalBudgeting.Tests
                                     _amountForMainGoalPerPay,
                                     myBudget.ListOfWalletTableItem
                                    );
-            Assert.AreEqual(0,myBudget.SavingsAccount.SavingsForGoals);
-            Assert.AreEqual(4220, myBudget.SavingsAccount.SavingsForExpenditures);
-            Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForPersonalUse);
+            Assert.AreEqual(220, myBudget.SavingsAccount.SavingsForExpenditures);
+            Assert.AreEqual(3940.4,myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
             core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
-
+            core.addIncomeForCasualWorker(myBudget, "salary", new Participant("Quannah", "Parker"), 300);
+            Assert.AreEqual(4240.4,myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
+          
 
         }
     }

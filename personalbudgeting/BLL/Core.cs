@@ -114,7 +114,12 @@ namespace PersonalBudgeting.BLL
             return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountForMainGoalPerPay);
         }
 
-        public Boolean saveForMainGoal(BankAccount mySavingsAccount , double amountForMainGoalPerPay, MainGoal mainGoal, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public void addSavingsForMainGoal(Budget budget,double AmountToSave)
+        {
+            budget.mainGoal.AmountSaved += AmountToSave;
+            addSavingsForMainGoal(budget, AmountToSave);
+        }
+        public Boolean saveForMainGoal(BankAccount myAccount , double amountForMainGoalPerPay, MainGoal mainGoal, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             if (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) < amountForMainGoalPerPay)
             {
@@ -123,7 +128,7 @@ namespace PersonalBudgeting.BLL
             else
             {
                 mainGoal.AmountSaved += amountForMainGoalPerPay;
-                addToSavingsForGoals(mySavingsAccount, amountForMainGoalPerPay);
+                addToSavingsForGoals(myAccount, amountForMainGoalPerPay);
                 return true;
             }
 
@@ -171,10 +176,19 @@ namespace PersonalBudgeting.BLL
             budget.removeWalletTableItem(wti);
         }
 
-        public void tickOffWalletTableItem(Budget budget, WalletTableItem wti)
+        public Boolean tickOffWalletTableItem(Budget budget, WalletTableItem wti)
         {
-            budget.SavingsAccount.SavingsForGoals -= wti.AmountSaved;
-            budget.removeWalletTableItem(wti);
+            if(wti.AmountSaved<wti.Cost)
+            {
+                return false;
+            }
+            else 
+            {
+                budget.SavingsAccount.SavingsForGoals -= wti.AmountSaved;
+                budget.removeWalletTableItem(wti);
+                return true;
+            }
+
         }
 
         public double tickAllWalletTableItems(BankAccount myAccount,List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
@@ -314,7 +328,11 @@ namespace PersonalBudgeting.BLL
             }
             
         }
-
+        public void addIncomeForCasualWorker(Budget budget, string name, Participant source, double amount)
+        {
+           Income casualIncome=new Income(name, source, amount);
+            addToSavingsForPersonalUse(budget.SavingsAccount, casualIncome.Amount);
+        }
 
         public void updateBankAccount(BankAccount myAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mainGoal, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
         {
@@ -367,9 +385,7 @@ namespace PersonalBudgeting.BLL
             }
 
             addToSavingsForPersonalUse(myAccount, AmountToAddToSavingsForPersonalUse);
-        }
-
-
+        }       
     }
 }
 // todo: subtract safety margin along with expenditure
