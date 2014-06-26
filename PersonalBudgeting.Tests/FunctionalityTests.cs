@@ -50,8 +50,8 @@ namespace PersonalBudgeting.Tests
            
             Assert.AreEqual(419.6, myBudget.SavingsAccount.SavingsForGoals, 0.1);
             Assert.AreEqual(220, myBudget.SavingsAccount.SavingsForExpenditures, 0.1);
-            Assert.AreEqual(3711.9, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
-            /*core.updateBankAccount(myBudget.SavingsAccount,
+            Assert.AreEqual(3940, myBudget.SavingsAccount.SavingsForPersonalUse, 0.5);
+            core.updateBankAccount(myBudget.SavingsAccount,
                                    myBudget.TaxRate,
                                    myBudget.SuperannuationRate,
                                    myBudget.ListOfExpenditure,
@@ -73,13 +73,14 @@ namespace PersonalBudgeting.Tests
                                    myBudget.ListOfWalletTableItem
                                   );
             Assert.AreEqual(1258.8, myBudget.SavingsAccount.SavingsForGoals, 0.1);
-           // Assert.AreEqual(220,myBudget.SavingsAccount.SavingsForExpenditures);
+            Assert.AreEqual(220,myBudget.SavingsAccount.SavingsForExpenditures);
+            //Assert.AreEqual(11045,myBudget.SavingsAccount.SavingsForPersonalUse);
             //withdrawFromSavingsAccount has been called 4 times for 4 withdrawals from savings account
-            core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 500);
-            core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 50);
-            core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 125);
-            core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 100);
-            Assert.AreEqual(10821.17, myBudget.SavingsAccount.SavingsForPersonalUse,0.1);*/
+            //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 500);
+            //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 50);
+            //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 125);
+            //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 100);
+            //Assert.AreEqual(10821.17, myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
 
         }
         /*[Test]

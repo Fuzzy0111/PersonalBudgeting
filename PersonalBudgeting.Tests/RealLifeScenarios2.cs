@@ -54,7 +54,7 @@ namespace PersonalBudgeting.Tests
                                    );
             Assert.AreEqual(0,myBudget.SavingsAccount.SavingsForGoals);
             Assert.AreEqual(4220, myBudget.SavingsAccount.SavingsForExpenditures);
-            Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForPersonalUse);//todo:Add a fucntion in core to handle situation where Expenditure is higer than income
+            Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForPersonalUse);
             core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
 
 
