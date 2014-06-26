@@ -1,73 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" total="62" errors="0" failures="3" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-06-26" time="15:24:53">
+<test-results name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" total="63" errors="1" failures="1" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2014-06-26" time="16:24:07">
   <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5477" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.3\bin" machine-name="PBIO-2331" user="user" user-domain="PBIO-2331" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite type="Assembly" name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" executed="True" result="Failure" success="False" time="0.239" asserts="0">
+  <test-suite type="Assembly" name="C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" executed="True" result="Failure" success="False" time="0.544" asserts="0">
     <results>
-      <test-suite type="Namespace" name="PersonalBudgeting" executed="True" result="Failure" success="False" time="0.238" asserts="0">
+      <test-suite type="Namespace" name="PersonalBudgeting" executed="True" result="Failure" success="False" time="0.526" asserts="0">
         <results>
-          <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="0.238" asserts="0">
+          <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="0.526" asserts="0">
             <results>
-              <test-suite type="TestFixture" name="FunctionalityTests" executed="True" result="Success" success="True" time="0.001" asserts="0">
+              <test-suite type="TestFixture" name="FunctionalityTests" executed="True" result="Success" success="True" time="0.094" asserts="0">
                 <results>
-                  <test-case name="PersonalBudgeting.Tests.FunctionalityTests.TestSavingsForPersonalUseinBankAccountForThreePaysAndFourWithdrawals" executed="True" result="Success" success="True" time="0.000" asserts="10" />
+                  <test-case name="PersonalBudgeting.Tests.FunctionalityTests.TestSavingsForPersonalUseinBankAccountForThreePaysAndFourWithdrawals" executed="True" result="Success" success="True" time="0.046" asserts="10" />
                 </results>
               </test-suite>
-              <test-suite type="TestFixture" name="RealLifeScenarios2" executed="True" result="Failure" success="False" time="0.004" asserts="0">
+              <test-suite type="TestFixture" name="RealLifeScenario3" executed="True" result="Success" success="True" time="0.007" asserts="0">
                 <results>
-                  <test-case name="PersonalBudgeting.Tests.RealLifeScenarios2.TestScenario2" executed="True" result="Failure" success="False" time="0.002" asserts="4">
+                  <test-case name="PersonalBudgeting.Tests.RealLifeScenario3.TesttickOffWalletTable_TickOffAnItem" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="RealLifeScenarios2" executed="True" result="Success" success="True" time="0.003" asserts="0">
+                <results>
+                  <test-case name="PersonalBudgeting.Tests.RealLifeScenarios2.AddIncomeForTwoCasualWorkers" executed="True" result="Success" success="True" time="0.001" asserts="5" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="RealLifeScenariosTests" executed="True" result="Failure" success="False" time="0.206" asserts="0">
+                <results>
+                  <test-case name="PersonalBudgeting.Tests.RealLifeScenariosTests.TestAmountSavedForWalletItem_CorrectAmount" executed="True" result="Error" success="False" time="0.013" asserts="0">
                     <failure>
-                      <message><![CDATA[  Expected: 500
-  But was:  360.00006079673767d
-]]></message>
-                      <stack-trace><![CDATA[at PersonalBudgeting.Tests.RealLifeScenarios2.TestScenario2() in c:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\RealLifeScenarios2.cs:line 57
+                      <message><![CDATA[System.InvalidOperationException : Collection was modified; enumeration operation may not execute.]]></message>
+                      <stack-trace><![CDATA[at System.Collections.Generic.List`1.Enumerator.MoveNextRare()
+at PersonalBudgeting.BLL.Core.tickAllWalletTableItems(BankAccount myAccount, List`1 walletTableItems, Double amountForMainGoalPerPay, Single _taxRate, Single _superannuationRate, List`1 _listOfExpenditure, List`1 _listofIncome, Int32 noOfPayPerYear) in c:\Users\user\Documents\GitHub\PersonalBudgeting\personalbudgeting\BLL\Core.cs:line 202
+at PersonalBudgeting.BLL.Core.updateBankAccount(BankAccount myAccount, Single _taxRate, Single _superannuationRate, List`1 _listOfExpenditure, List`1 _listofIncome, Int32 noOfPayPerYear, MainGoal mainGoal, Double amountForMainGoalPerPay, List`1 _listOfWalletTableItems) in c:\Users\user\Documents\GitHub\PersonalBudgeting\personalbudgeting\BLL\Core.cs:line 360
+at PersonalBudgeting.Tests.RealLifeScenariosTests.TestAmountSavedForWalletItem_CorrectAmount() in c:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\RealLifeScenariosTests.cs:line 81
 ]]></stack-trace>
                     </failure>
                   </test-case>
-                </results>
-              </test-suite>
-              <test-suite type="TestFixture" name="RealLifeScenariosTests" executed="True" result="Failure" success="False" time="0.021" asserts="0">
-                <results>
-                  <test-case name="PersonalBudgeting.Tests.RealLifeScenariosTests.TestAmountSavedForWalletItem_CorrectAmount" executed="True" result="Failure" success="False" time="0.001" asserts="1">
-                    <failure>
-                      <message><![CDATA[  Expected: 9360.0d +/- 0.10000000000000001d
-  But was:  -400.0d
-]]></message>
-                      <stack-trace><![CDATA[at PersonalBudgeting.Tests.RealLifeScenariosTests.TestAmountSavedForWalletItem_CorrectAmount() in c:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\RealLifeScenariosTests.cs:line 83
-]]></stack-trace>
-                    </failure>
-                  </test-case>
-                  <test-case name="PersonalBudgeting.Tests.RealLifeScenariosTests.TestCalculateBudget_NormalScenario_Successful" executed="True" result="Failure" success="False" time="0.001" asserts="1">
+                  <test-case name="PersonalBudgeting.Tests.RealLifeScenariosTests.TestCalculateBudget_NormalScenario_Successful" executed="True" result="Failure" success="False" time="0.029" asserts="1">
                     <failure>
                       <message><![CDATA[  Expected: 3840.4000000000001d +/- 0.10000000000000001d
-  But was:  4240.3846761813529d
+  But was:  10521.154028544059d
 ]]></message>
                       <stack-trace><![CDATA[at PersonalBudgeting.Tests.RealLifeScenariosTests.TestCalculateBudget_NormalScenario_Successful() in c:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\RealLifeScenariosTests.cs:line 67
 ]]></stack-trace>
                     </failure>
                   </test-case>
-                  <test-case name="PersonalBudgeting.Tests.RealLifeScenariosTests.TestCalculateNoOfPaysRequiredToAccomplishGoal_NormalScenario_Successful" executed="True" result="Success" success="True" time="0.005" asserts="6" />
+                  <test-case name="PersonalBudgeting.Tests.RealLifeScenariosTests.TestCalculateNoOfPaysRequiredToAccomplishGoal_NormalScenario_Successful" executed="True" result="Success" success="True" time="0.006" asserts="6" />
                 </results>
               </test-suite>
-              <test-suite type="TestFixture" name="TestsAccuracyOfDALValues" executed="True" result="Success" success="True" time="0.026" asserts="0">
+              <test-suite type="TestFixture" name="TestsAccuracyOfDALValues" executed="True" result="Success" success="True" time="0.033" asserts="0">
                 <results>
-                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetAmountAvailableForGoalsPerYear" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestgetGrossIncomePerYearFor12Months" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetAmountAvailableForGoalsPerYear" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestgetGrossIncomePerYearFor12Months" executed="True" result="Success" success="True" time="0.001" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestgetNetIncomePerYear" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetTotalExpenditure" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetTotalExpenditure" executed="True" result="Success" success="True" time="0.001" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestGetTotalExpenditurePerYear" executed="True" result="Success" success="True" time="0.001" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestTickAllWalletTableItemsEmptyList" executed="True" result="Success" success="True" time="0.006" asserts="0" />
-                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestVerifyTotalIncome" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsAccuracyOfDALValues.TestVerifyTotalIncome" executed="True" result="Success" success="True" time="0.001" asserts="1" />
                 </results>
               </test-suite>
-              <test-suite type="TestFixture" name="TestsLogicOfBudget" executed="True" result="Success" success="True" time="0.161" asserts="0">
+              <test-suite type="TestFixture" name="TestsLogicOfBudget" executed="True" result="Success" success="True" time="0.163" asserts="0">
                 <results>
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestaddToSavingsForExpenses_SaveForExpensesinListOfExpenditure_SavingsForExpenseCorrectValue" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestAddToSavingsForGoals_AddAnAmountToSavings_AmountisAdded" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestCalculateGrossIncome_EmptyIncomeList_ReturnZero" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetAmountAvailableForGoalsPerPayListOfExpenditureEmpty" executed="True" result="Success" success="True" time="0.001" asserts="0" />
-                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetAmountAvailableForGoalsPerPayListOfIncomeEmpty" executed="True" result="Success" success="True" time="0.002" asserts="0" />
+                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetAmountAvailableForGoalsPerPayListOfIncomeEmpty" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetAmountAvailableForGoalsPerPayNumberOFPayequalzero" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetAmountAvailableForGoalsPerPayNumberOFPaylessthanzero" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetAmountAvailableForGoalsPerYearEmptyExpenditureList" executed="True" result="Success" success="True" time="0.000" asserts="0" />
@@ -82,7 +80,7 @@
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetGrossIncomePerYear_NegativePeriod_ReturnException" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetGrossIncomePerYear_NullIncomeList_ReturnException" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetGrossIncomePerYear_zeroPeriod_ReturnException" executed="True" result="Success" success="True" time="0.001" asserts="0" />
-                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetNetIncomePerYearEmptyList" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetNetIncomePerYearEmptyList" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetNetIncomePerYearNegativePayPerYear" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetNetIncomePerYearNegativeSuperannuationRate" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetNetIncomePerYearNegativeTaxRate" executed="True" result="Success" success="True" time="0.001" asserts="0" />
@@ -96,7 +94,7 @@
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestGetTotalExpenditurePerYear" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestGetTotalExpenditurePerYearForEmptyList" executed="True" result="Success" success="True" time="0.000" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestGetTotalExpenditurePerYearForEmptyListUsingNoOfPays" executed="True" result="Success" success="True" time="0.000" asserts="1" />
-                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestGetTotalExpenditurePerYearUsingNoOfPays" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestGetTotalExpenditurePerYearUsingNoOfPays" executed="True" result="Success" success="True" time="0.001" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestGetTotalExpenditurePerYearWithNegativeNoOfPays" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestGetTotalExpenditurePerYearWithNoOfPaysEqualsZero" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestGetTotalExpenditurePerYearWithNullList" executed="True" result="Success" success="True" time="0.001" asserts="0" />
@@ -104,11 +102,11 @@
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetTotalExpenditureWithEmptyList" executed="True" result="Success" success="True" time="0.000" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetTotalExpenditureWithNullList" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgoalPayableBeforeDeadline_1" executed="True" result="Success" success="True" time="0.002" asserts="1" />
-                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgoalPayableBeforeDeadline_2" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgoalPayableBeforeDeadline_2" executed="True" result="Success" success="True" time="0.001" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestgoalPayableBeforeDeadlineDesiredAmountOutOfRange" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestNullSavingsAccount" executed="True" result="Success" success="True" time="0.001" asserts="0" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestRemoveFromSavingsForExpenses_RemoveAnAmountFromSavingForExpenses_AmountHasbeenRemoved" executed="True" result="Success" success="True" time="0.001" asserts="1" />
-                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestRemoveFromSavingsForExpenses_SavingsForExpensesIsZero_ReturnsFalse" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestRemoveFromSavingsForExpenses_SavingsForExpensesIsZero_ReturnsFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestRemoveFromSavingsForGoals_RemoveAnAmountToSavings_AmountRemoved" executed="True" result="Success" success="True" time="0.001" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestSaveForMainGoal_AmountForMainGoalPerPayGreaterThanAmountAvailableFroGorals_ReturnsFalse" executed="True" result="Success" success="True" time="0.001" asserts="1" />
                   <test-case name="PersonalBudgeting.Tests.TestsLogicOfBudget.TestTickAllWaleltTableItems_TickAllItemsandCheckAmountTicked_CorrectAmountTicked" executed="True" result="Success" success="True" time="0.001" asserts="1" />
