@@ -20,8 +20,8 @@ namespace PersonalBudgeting.MOCK_DAL
         float _safetyMargin;
         float _mainGoalPercentage;
         BankAccount _savingsAccount;
-        int _noOfPaysPerYear;
-        Participant partner1, partner2,partner3;
+        int _noOfPaysPerYear,year;
+        Participant partner1, partner2;
         public DAL()
         {
             List<Participant> participants=new List<Participant>();
@@ -34,7 +34,7 @@ namespace PersonalBudgeting.MOCK_DAL
             lisfOfIncomeForCasualWorkers= new List<Income>();
             listOfIncome.Add(new Income("salary", partner1, 2500.0));
             listOfIncome.Add(new Income("salary", partner2, 2600.0));
- 
+            year = 2014;
             listOfExpenditure = new List<Expenditure>();
             listOfExpenditure.Add(new Expenditure("Car Insurance", 200.0, "Living Expense", participants));
             listOfExpenditure.Add(new Expenditure("Electricity", 20.0, "Living Expense",participants));
@@ -141,7 +141,10 @@ namespace PersonalBudgeting.MOCK_DAL
         {
             return _mainGoalPercentage;
         }
-
+        public int retrieveYear()
+        {
+            return year;
+        }
         public void setMainGoalPercentage(float mgp)
         {
             _mainGoalPercentage = mgp;

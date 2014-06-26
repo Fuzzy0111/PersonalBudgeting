@@ -19,6 +19,8 @@ namespace PersonalBudgeting.BLL
         public float SuperannuationRate { get; set; }
         public float TaxRate { get; set; }
         public BankAccount SavingsAccount { get; set; }
+        public int year { get; set; }
+
         public MainGoal mainGoal { 
             get
             {
@@ -44,6 +46,7 @@ namespace PersonalBudgeting.BLL
             //this._safetyMargin;
             SavingsAccount = dal.retrieveSavingsAccount();
             NoOfPaysPerYear = dal.retrieveNoOfPaysPerYear();
+            year = dal.retrieveYear();
         }
 
         public void addWalletTableItem(string name, string description, double cost, double amountSaved, double contributionPerTick)
