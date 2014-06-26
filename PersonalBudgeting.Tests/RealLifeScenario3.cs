@@ -42,7 +42,7 @@ namespace PersonalBudgeting.Tests
                                    myBudget.mainGoal,
                                    _amountForMainGoalPerPay,
                                    myBudget.ListOfWalletTableItem);
-            core.tickWalletTableItem(myBudget.ListOfWalletTableItem.First());
+            core.tickWalletTableItem(myBudget.SavingsAccount,myBudget.ListOfWalletTableItem.First());
             core.tickOffWalletTableItem(myBudget, myBudget.ListOfWalletTableItem.First());
             Assert.AreEqual(399.6, myBudget.SavingsAccount.SavingsForGoals, 0.1);
 

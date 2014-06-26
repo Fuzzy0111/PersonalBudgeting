@@ -46,6 +46,7 @@
     <Compile Include="FunctionalityTests.cs" />
     <Compile Include="LogicTestsForBudget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealLifeScenario1.cs" />
     <Compile Include="RealLifeScenarios2.cs" />
     <Compile Include="RealLifeScenariosTests.cs" />
     <Compile Include="RealLifeScenario3.cs" />

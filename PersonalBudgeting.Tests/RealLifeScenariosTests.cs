@@ -50,41 +50,39 @@ namespace PersonalBudgeting.Tests
         }
 
         [Test]
-        public void TestCalculateBudget_NormalScenario_Successful()
-        {
-
-            core.getGrossIncome(myBudget.ListOfIncome);
-            core.getGrossIncomePerYear(myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
-            core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure, myBudget.NoOfPaysPerYear);
-            core.getNetIncomePerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
-            core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
-           
-            WalletTableItem wti = new WalletTableItem("Bag", "Leather bag", 500.0, 100, 100);
-            myBudget.ListOfWalletTableItem.Add(wti);
-            core.updateBankAccount(myBudget.SavingsAccount,myBudget.TaxRate,myBudget.SuperannuationRate,myBudget.ListOfExpenditure,myBudget.ListOfIncome,myBudget.NoOfPaysPerYear,myBudget.mainGoal,_amountForMainGoalPerPay,myBudget.ListOfWalletTableItem);
-           // Assert.AreEqual(519.6, myBudget.SavingsAccount.SavingsForGoals, 0.1);
-           // Assert.AreEqual(220, myBudget.SavingsAccount.SavingsForExpenditures);
-            Assert.AreEqual(3840.4, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
-        }
-
-        [Test]
-        public void TestAmountSavedForWalletItem_CorrectAmount()
+        public void TestCancelWalletItem_CorrectAmountInSavingsAccount()
         {
             
             WalletTableItem wti = new WalletTableItem("Bag", "Leather bag", 500.0, 0.0, 100);
             myBudget.ListOfWalletTableItem.Add(wti);
-            core.tickWalletTableItem(wti);
-            core.tickWalletTableItem(wti);
-            core.tickWalletTableItem(wti);
-            core.tickWalletTableItem(wti);
-           // core.tickWalletTableItem(wti);
-           // Assert.AreEqual(500,wti.AmountSaved);
+            core.tickWalletTableItem(myBudget.SavingsAccount, wti);
+            core.tickWalletTableItem(myBudget.SavingsAccount, wti);
+            core.tickWalletTableItem(myBudget.SavingsAccount, wti);
+            core.tickWalletTableItem(myBudget.SavingsAccount, wti);
+            //Assert.AreEqual(500,wti.AmountSaved);
             core.CancelWalletTableItem(myBudget,wti);
-            //Assert.AreEqual(9360, myBudget.SavingsAccount.SavingsForGoals, 0.1);
-            Assert.AreEqual(9360, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
+            Assert.AreEqual(0, myBudget.SavingsAccount.SavingsForGoals, 0.1);
+            Assert.AreEqual(900, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
         }
 
 
+        [Test]
+        public void TestTransferWalletTableItemToMainGoal_()
+        {
+            core.updateBankAccount(myBudget.SavingsAccount,
+                                    myBudget.TaxRate,
+                                    myBudget.SuperannuationRate,
+                                    myBudget.ListOfExpenditure,
+                                    myBudget.ListOfIncome,
+                                    myBudget.NoOfPaysPerYear,
+                                    myBudget.mainGoal,
+                                    _amountForMainGoalPerPay,
+                                    myBudget.ListOfWalletTableItem
+                                   );
+            core.TransferWalletTableItemToMainGoal(myBudget, myBudget.mainGoal, myBudget.ListOfWalletTableItem[1],10);
+            Assert.AreEqual(10,myBudget.mainGoal.AmountSaved);
+            Assert.AreEqual(35,myBudget.SavingsAccount.SavingsForGoals);
+        }
     }
 }
 
