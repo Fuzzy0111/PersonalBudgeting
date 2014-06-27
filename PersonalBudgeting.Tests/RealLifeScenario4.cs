@@ -35,7 +35,7 @@ namespace PersonalBudgeting.Tests
         {
             myBudget.mainGoal.Name = "House Loan";
             myBudget.mainGoal.Description = "MCB";
-            myBudget.mainGoal.Cost = 900000;
+            myBudget.mainGoal.Cost = 100000;
             myBudget.mainGoal.DurationInNoOfPays = 10;
             myBudget.mainGoal.AmountSaved = 0.0;
             //Assert.AreEqual(500, myBudget.SavingsAccount.SavingsForPersonalUse);
@@ -51,9 +51,11 @@ namespace PersonalBudgeting.Tests
                                      _amountForMainGoalPerPay,
                                      myBudget.ListOfWalletTableItem
                                     );
-            Assert.AreEqual(35,myBudget.SavingsAccount.SavingsForGoals);
-            //Assert.AreEqual(35, core.tickAllWalletTableItems(myBudget.SavingsAccount, myBudget.ListOfWalletTableItem, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
-            //Assert.AreEqual(700,myBudget.SavingsAccount.SavingsForPersonalUse);
+
+            //Assert.AreEqual(,myBudget.SavingsAccount.SavingsForGoals);
+            core.tickAllWalletTableItems(myBudget.SavingsAccount, myBudget.ListOfWalletTableItem, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
+            Assert.AreEqual(35, core.tickAllWalletTableItems(myBudget.SavingsAccount, myBudget.ListOfWalletTableItem, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
+           // Assert.AreEqual(4325,myBudget.SavingsAccount.SavingsForPersonalUse);
             //Assert.AreEqual(35,myBudget.SavingsAccount.SavingsForGoals);
             //Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, myBudget.mainGoal.DurationInNoOfPays));
         }
