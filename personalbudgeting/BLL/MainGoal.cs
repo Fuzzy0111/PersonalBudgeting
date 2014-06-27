@@ -9,6 +9,7 @@ namespace PersonalBudgeting.BLL
     public class MainGoal : Goal
     {
         private int durationInNoOfPays;
+        public int noOfPaysAlreadySaved{get; set;}
 
         public MainGoal(string name, string description, double cost, double amountSaved, int durationInNoOfPays)
             : base(name, description, cost, amountSaved)
@@ -27,5 +28,6 @@ namespace PersonalBudgeting.BLL
                 durationInNoOfPays = value;
             }
         }
+
     }
 }

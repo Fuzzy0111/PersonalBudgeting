@@ -78,6 +78,20 @@ namespace PersonalBudgeting.BLL
             return (goalCost / desiredNoOfPaysForGoalAccomplishment);
         }
 
+        public Boolean succesfullyMetGoal(Budget myBudget)
+        {
+            if (myBudget.mainGoal.noOfPaysAlreadySaved == myBudget.mainGoal.DurationInNoOfPays)
+            {
+                if (myBudget.mainGoal.AmountSaved == myBudget.mainGoal.Cost)
+                    return true;
+
+                else return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public Boolean goalPayableBeforeDeadline(double goalCost, double amountPerPay, int desiredNoOfPaysForGoalAccomplishment)
         {
             if (desiredNoOfPaysForGoalAccomplishment <= 0)
@@ -134,6 +148,7 @@ namespace PersonalBudgeting.BLL
             else
             {
                 mainGoal.AmountSaved += amountForMainGoalPerPay;
+                mainGoal.noOfPaysAlreadySaved++;
                 addToSavingsForGoals(myAccount, amountForMainGoalPerPay);
                 return true;
             }
