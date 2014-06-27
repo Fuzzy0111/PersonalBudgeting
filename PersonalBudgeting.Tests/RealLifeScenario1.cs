@@ -29,7 +29,7 @@ namespace PersonalBudgeting.Tests
             myBudget = null;
         }
         [Test]
-        public void TestCalculateBudget_NormalScenario_Successful()
+        public void TestCalculateBudget_NormalScenario()
         {
 
             core.getGrossIncome(myBudget.ListOfIncome);

@@ -78,9 +78,9 @@ namespace PersonalBudgeting.BLL
             return (goalCost / desiredNoOfPaysForGoalAccomplishment);
         }
 
-        public Boolean succesfullyMetGoal(Budget myBudget)
+        public Boolean succesfullyMetMainGoal(Budget myBudget)
         {
-            if (myBudget.mainGoal.noOfPaysAlreadySaved == myBudget.mainGoal.DurationInNoOfPays)
+            if (myBudget.mainGoal.noOfPaysAlreadySaved >= myBudget.mainGoal.DurationInNoOfPays)
             {
                 if (myBudget.mainGoal.AmountSaved == myBudget.mainGoal.Cost)
                     return true;

@@ -337,7 +337,7 @@ namespace PersonalBudgeting.Tests
             Assert.AreEqual(200, myBudget.SavingsAccount.SavingsForExpenditures);
         }
         [Test]
-        public void TestSaveForMainGoal_AmountForMainGoalPerPayGreaterThanAmountAvailableFroGorals_ReturnsFalse()
+        public void TestSaveForMainGoal_AmountForMainGoalPerPayGreaterThanAmountAvailableForGoals_ReturnsFalse()
         {
             Assert.AreEqual(false, core.saveForMainGoal(myBudget.SavingsAccount, 500000000, myBudget.mainGoal, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
         }
