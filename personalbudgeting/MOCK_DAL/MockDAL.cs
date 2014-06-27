@@ -47,7 +47,7 @@ namespace PersonalBudgeting.MOCK_DAL
             listOfWalletTableItem.Add(new WalletTableItem("Phone", "IPhone", 200.0, 0.0, 10.0));
             listOfWalletTableItem.Add(new WalletTableItem("Washing Machine", "Samsung", 250.0, 0.0, 15.0));
 
-            _noOfPaysPerYear = 26;
+            _noOfPaysPerYear = 10;
             _taxRate = 0.15F; //todo: calculate
             _superannuationRate = 0.05F; //todo: take into consideration that Super is calculated as a minimum of 9% or higher. sometimes it can be part of the pay packet & sometimes it can be over and aabove the pay packet. eg. you could get an annual pay of "60k incl. Super" & your friend could get an annual pay of "60k + Super".
             _safetyMargin = 50; //todo: ????  To clarify what this one is with Gerald.

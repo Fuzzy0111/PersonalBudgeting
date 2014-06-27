@@ -160,26 +160,7 @@ namespace PersonalBudgeting.BLL
             return g.Cost - g.AmountSaved;
         }
 
-        public Boolean tickWalletTableItem(BankAccount myAccount,WalletTableItem wti)
-        {
-            //usings savingsAccount
-            if (wti.AmountSaved < wti.Cost)
-            {
-                if ((wti.Cost - wti.AmountSaved) <= wti.ContributionPerTick)
-                {
-                    wti.AmountSaved += (wti.Cost - wti.AmountSaved);
-                    return false;
-                    //saving completed for this walletTableItem
-                }
-                wti.AmountSaved += wti.ContributionPerTick;
-                addToSavingsForGoals(myAccount, wti.ContributionPerTick);
-                return true;
-            }
-            else if (wti.AmountSaved == wti.Cost)
-                return false;
-            else
-                throw new ObjectDisposedException("wallet table item's amount saved exceeds its cost");
-        }
+        
 
         public void TransferWalletTableItemToMainGoal(Budget budget, MainGoal mainGoal, WalletTableItem wti, int durationInNoOfPays)
         {
@@ -198,6 +179,27 @@ namespace PersonalBudgeting.BLL
             budget.SavingsAccount.SavingsForGoals -= wti.AmountSaved;
             budget.SavingsAccount.SavingsForPersonalUse += wti.AmountSaved;
             budget.removeWalletTableItem(wti);
+        }
+
+        public Boolean tickWalletTableItem(BankAccount myAccount, WalletTableItem wti)
+        {
+            //usings savingsAccount
+            if (wti.AmountSaved < wti.Cost)
+            {
+                if ((wti.Cost - wti.AmountSaved) <= wti.ContributionPerTick)
+                {
+                    wti.AmountSaved += (wti.Cost - wti.AmountSaved);
+                    return false;
+                    //saving completed for this walletTableItem
+                }
+                wti.AmountSaved += wti.ContributionPerTick;
+                addToSavingsForGoals(myAccount, wti.ContributionPerTick);
+                return true;
+            }
+            else if (wti.AmountSaved == wti.Cost)
+                return false;
+            else
+                throw new ObjectDisposedException("wallet table item's amount saved exceeds its cost");
         }
 
         public Boolean tickOffWalletTableItem(Budget budget, WalletTableItem wti)
@@ -479,3 +481,4 @@ namespace PersonalBudgeting.BLL
     }
 }
 // todo: subtract safety margin along with expenditure
+1
