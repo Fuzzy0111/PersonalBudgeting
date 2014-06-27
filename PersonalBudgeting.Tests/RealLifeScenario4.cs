@@ -38,9 +38,13 @@ namespace PersonalBudgeting.Tests
             myBudget.mainGoal.Cost = 900000;
             myBudget.mainGoal.DurationInNoOfPays = 10;
             myBudget.mainGoal.AmountSaved = 0.0;
-            //Assert.AreEqual(500, myBudget.SavingsAccount.SavingsForPersonalUse);
-            //Assert.AreEqual(900000, myBudget.mainGoal.Cost);
+
             _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost, myBudget.mainGoal.DurationInNoOfPays);
+
+
+           Assert.AreEqual(90000, _amountForMainGoalPerPay);
+           Assert.AreEqual(10, myBudget.mainGoal.DurationInNoOfPays);
+          
             core.updateBankAccount(myBudget.SavingsAccount,
                                      myBudget.TaxRate,
                                      myBudget.SuperannuationRate,
@@ -51,11 +55,9 @@ namespace PersonalBudgeting.Tests
                                      _amountForMainGoalPerPay,
                                      myBudget.ListOfWalletTableItem
                                     );
+            Assert.AreEqual(4325,myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
             Assert.AreEqual(35,myBudget.SavingsAccount.SavingsForGoals);
-            //Assert.AreEqual(35, core.tickAllWalletTableItems(myBudget.SavingsAccount, myBudget.ListOfWalletTableItem, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
-            //Assert.AreEqual(700,myBudget.SavingsAccount.SavingsForPersonalUse);
-            //Assert.AreEqual(35,myBudget.SavingsAccount.SavingsForGoals);
-            //Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, myBudget.mainGoal.DurationInNoOfPays));
+            Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, myBudget.mainGoal.DurationInNoOfPays));
         }
 
        
