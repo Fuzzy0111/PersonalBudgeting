@@ -414,6 +414,53 @@ namespace PersonalBudgeting.BLL
 
             addToSavingsForPersonalUse(myAccount, AmountToAddToSavingsForPersonalUse);
         }
+        public double calculateTaxPerYear(double income)
+        {
+
+            if (income < 0)
+                throw new ArgumentException();
+            if (income < 18201)
+                return 0;
+            if (income < 37001)
+                return ((income - 18200) * 0.19);
+            if (income < 80001)
+                return (3572 + ((income - 37000) * 0.325));
+            if (income < 180001)
+                return (17547 + ((income - 80000) * 0.37));
+            else //if (totalIncome > 180000)
+                return (54547 + ((income - 180000) * 0.45));
+        }
+
+        public double calculateTaxPerPay(double income,int noOfPaysPerYear)
+        {
+            return (calculateTaxPerYear(income) /noOfPaysPerYear);
+        }
+
+        public float calculateSuperannuationRate(double desiredAmountPerYear, double totalIncomePerYear, Boolean payPacketInclusive)
+        {
+            if (payPacketInclusive)
+            {
+                return 0;
+            }
+            if ((desiredAmountPerYear / totalIncomePerYear) < 0.0925)
+            {
+                return 0.0925F;
+            }
+            else
+            {
+                return (float)(desiredAmountPerYear / totalIncomePerYear);
+
+            }
+        }
+        public double calculateSuperannuationPerYear(double desiredAmountPerYear, double totalIncomePerYear, Boolean payPacketInclusive)
+        {
+            return (calculateSuperannuationRate(desiredAmountPerYear, totalIncomePerYear, payPacketInclusive)*totalIncomePerYear);
+        }
+        public double calculateSuperannuationPerPay(double desiredAmountPerYear, double totalIncomePerYear, Boolean payPacketInclusive, int noOfPaysPerYear)
+        {
+            return (calculateSuperannuationPerYear(desiredAmountPerYear, totalIncomePerYear, payPacketInclusive)/noOfPaysPerYear);
+        }
+
     }
 }
 // todo: subtract safety margin along with expenditure
