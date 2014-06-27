@@ -363,6 +363,72 @@ namespace PersonalBudgeting.Tests
         }
         #endregion
 
+        #region Tax Rate and Superannaution Tests
+        [Test]
+        public void TestTaxCalculationCore_calculateTaxPerYear_ReturnsCorrectValue()
+        {
+            Assert.AreEqual(37009, core.calculateTaxPerYear(132600));
+        }
+        [Test]
+        public void TestTaxCalculationCore_calculateTaxPerPay_ReturnsCorrectValue()
+        {
+            Assert.AreEqual(1423.4, core.calculateTaxPerPay(132600,myBudget.NoOfPaysPerYear),0.1);
+        }
+        [Test]
+        public void TestTaxCalculationCore_calculateTaxPerPay_ReturnsCorrectValue1()
+        {
+            Assert.AreEqual(2149.9, core.calculateTaxPerPay(183000, myBudget.NoOfPaysPerYear), 0.1);
+        }
+
+        [Test]
+        public void TestsuperannuationCalculationCore_calculateSuperARate_ReturnsCorrectValue()
+        {
+            Assert.AreEqual(0.09,core.calculateSuperannuationRate(100,132600,false),0.1);
+        }
+        [Test]
+        public void TestsuperannuationCalculationCore_calculateSuperARate_ReturnsCorrectValue1()
+        {
+            Assert.AreEqual(0.18, core.calculateSuperannuationRate(25000, 132600, false), 0.1);
+        }
+        [Test]
+        public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerYear_ReturnsCorrectValue()
+        {
+            Assert.AreEqual(12265.5, core.calculateSuperannuationPerYear(100, 132600, false), 0.1);
+        }
+        [Test]
+        public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerPay_ReturnsCorrectValue()
+        {
+            Assert.AreEqual(471.75, core.calculateSuperannuationPerPay(100, 132600, false,myBudget.NoOfPaysPerYear), 0.1);
+        }
+        [Test]
+        public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerYear_ReturnsCorrectValue1()
+        {
+            Assert.AreEqual(25000, core.calculateSuperannuationPerYear(25000, 132600, false), 0.1);
+        }
+        [Test]
+        public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerPay_ReturnsCorrectValue1()
+        {
+            Assert.AreEqual(961.54, core.calculateSuperannuationPerPay(25000, 132600, false, myBudget.NoOfPaysPerYear), 0.1);
+        }
+
+
+
+        [Test]
+        public void TestsuperannuationCalculationCore_calculateSuperARatepayPacketInclusiveTrue_ReturnsZero()
+        {
+            Assert.AreEqual(0, core.calculateSuperannuationRate(0, 132600, true), 0.1);
+        }
+        [Test]
+        public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerYearpayPacketInclusiveTrue_ReturnsCorrectValue1()
+        {
+            Assert.AreEqual(0, core.calculateSuperannuationPerYear(0, 132600, true), 0.1);
+        }
+        [Test]
+        public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerPaypayPacketInclusiveTrue_ReturnsZero()
+        {
+            Assert.AreEqual(0, core.calculateSuperannuationPerPay(0, 132600, true, myBudget.NoOfPaysPerYear), 0.1);
+        }
+        #endregion
 
         #region removedTests
         /*#region creditAmountAvailableForGoalsPerPayInSavingsAccount Tests

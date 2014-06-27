@@ -149,7 +149,7 @@ namespace PersonalBudgeting.MOCK_DAL
         {
             _mainGoalPercentage = mgp;
         }
-        //todo: MOVE??
+        //todo: REMOVE FROM HERE
         public float calculateTaxRate(double totalIncome)
         {
 
