@@ -36,7 +36,7 @@ namespace PersonalBudgeting.Tests
         }
 
         [Test]
-        public void TestCalculateNoOfPaysRequiredToAccomplishGoal_NormalScenario_Successful()
+        public void TestCalculateNoOfPaysRequiredToAccomplishGoal_NormalScenario()
         {
 
             Assert.AreEqual(5100, core.getGrossIncome(myBudget.ListOfIncome));
@@ -67,7 +67,7 @@ namespace PersonalBudgeting.Tests
 
 
         [Test]
-        public void TestTransferWalletTableItemToMainGoal_()
+        public void TestTransferWalletTableItemToMainGoal_VerifySavingsForMainGoal()
         {
             core.updateBankAccount(myBudget.SavingsAccount,
                                     myBudget.TaxRate,

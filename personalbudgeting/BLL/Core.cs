@@ -119,6 +119,12 @@ namespace PersonalBudgeting.BLL
             budget.mainGoal.AmountSaved += AmountToSave;
             addSavingsForMainGoal(budget, AmountToSave);
         }
+
+        public void clearMainGoal(Budget myBudget)
+        {
+            removeFromSavingForGoals(myBudget.SavingsAccount,myBudget.mainGoal.AmountSaved);
+        }
+
         public Boolean saveForMainGoal(BankAccount myAccount, double amountForMainGoalPerPay, MainGoal mainGoal, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             if (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) < amountForMainGoalPerPay)
@@ -162,7 +168,7 @@ namespace PersonalBudgeting.BLL
 
         public void TransferWalletTableItemToMainGoal(Budget budget, MainGoal mainGoal, WalletTableItem wti, int durationInNoOfPays)
         {
-            removeFromSavingForGoals(budget.SavingsAccount, mainGoal.Cost);
+            clearMainGoal(budget);
             mainGoal.Name = wti.Name;
             mainGoal.Description = wti.Description;
             mainGoal.Cost = wti.Cost;
@@ -296,6 +302,7 @@ namespace PersonalBudgeting.BLL
                 return true;
             }
         }
+
         public void addToSavingsForExpenses(BankAccount myAccount, double Amount)
         {
             myAccount.SavingsForExpenditures += Amount;
@@ -314,6 +321,7 @@ namespace PersonalBudgeting.BLL
             }
 
         }
+
         public void addToSavingsForGoals(BankAccount myAccount, double Amount)
         {
             myAccount.SavingsForGoals += Amount;
