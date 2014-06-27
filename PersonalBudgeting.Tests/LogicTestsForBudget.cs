@@ -239,7 +239,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestgoalPayableBeforeDeadline_2()
         {
-            Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, 3));
+            Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, 15));
         }
 
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]

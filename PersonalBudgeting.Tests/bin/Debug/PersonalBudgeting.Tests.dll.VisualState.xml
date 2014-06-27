@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1088]C:\Users\User\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll</TopNode>
-  <SelectedNode>[0-1071]PersonalBudgeting.Tests.RealLifeScenario4.TestWholeYearScenario_MainGoalSuccessfullyMet_ReturnFalse</SelectedNode>
+  <TopNode>[0-1025]PersonalBudgeting.Tests.TestsLogicOfBudget.TestgetNetIncomePerYearNullIncomeList</TopNode>
+  <SelectedNode>[0-1063]PersonalBudgeting.Tests.TestsLogicOfBudget.TestsuperannuationCalculationCore_calculateSuperAnnuationPerYear_ReturnsCorrectValue1</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1088]C:\Users\User\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" Expanded="true" />
     <Node UniqueName="[0-1089]PersonalBudgeting" Expanded="true" />
     <Node UniqueName="[0-1090]PersonalBudgeting.Tests" Expanded="true" />
-    <Node UniqueName="[0-1070]PersonalBudgeting.Tests.RealLifeScenario4" Expanded="true" />
     <Node UniqueName="[0-1005]PersonalBudgeting.Tests.TestsLogicOfBudget" Expanded="true" />
   </Nodes>
 </VisualState>
