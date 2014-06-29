@@ -41,6 +41,7 @@ namespace PersonalBudgeting.Tests
             //Assert.AreEqual(500, myBudget.SavingsAccount.SavingsForPersonalUse);
             //Assert.AreEqual(900000, myBudget.mainGoal.Cost);
             _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost, myBudget.mainGoal.DurationInNoOfPays);
+           
             core.updateBankAccount(myBudget.SavingsAccount,
                                      myBudget.TaxRate,
                                      myBudget.SuperannuationRate,
@@ -51,11 +52,8 @@ namespace PersonalBudgeting.Tests
                                      _amountForMainGoalPerPay,
                                      myBudget.ListOfWalletTableItem
                                     );
-            Assert.AreEqual(35,myBudget.SavingsAccount.SavingsForGoals);
-            //Assert.AreEqual(35, core.tickAllWalletTableItems(myBudget.SavingsAccount, myBudget.ListOfWalletTableItem, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
-            //Assert.AreEqual(700,myBudget.SavingsAccount.SavingsForPersonalUse);
-            //Assert.AreEqual(35,myBudget.SavingsAccount.SavingsForGoals);
-            //Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, myBudget.mainGoal.DurationInNoOfPays));
+
+            Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, 10));
         }
 
        

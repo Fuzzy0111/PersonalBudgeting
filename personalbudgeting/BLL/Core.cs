@@ -384,11 +384,20 @@ namespace PersonalBudgeting.BLL
                                                         _listOfExpenditure,
                                                         _listofIncome,
                                                         noOfPayPerYear);
-
-            double totalAmountTicked = tickAllWalletTableItems(myAccount, _listOfWalletTableItems, amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
+            double totalAmountTicked=0;
+          
             double AmountToAddToSavingsForPersonalUse;
             if (savedforMainGoal)
             {
+                totalAmountTicked = tickAllWalletTableItems(myAccount,
+                                                            _listOfWalletTableItems,
+                                                            amountForMainGoalPerPay,
+                                                            _taxRate,
+                                                            _superannuationRate,
+                                                            _listOfExpenditure,
+                                                            _listofIncome,
+                                                            noOfPayPerYear
+                                                           );
 
                 AmountToAddToSavingsForPersonalUse = (getAmountAvailableForGoalsPerPay(_taxRate,
                                                                                 _superannuationRate,
@@ -401,6 +410,15 @@ namespace PersonalBudgeting.BLL
             }
             else
             {
+                totalAmountTicked = tickAllWalletTableItems(myAccount,
+                                                            _listOfWalletTableItems,
+                                                            0,
+                                                            _taxRate,
+                                                            _superannuationRate,
+                                                            _listOfExpenditure,
+                                                            _listofIncome,
+                                                            noOfPayPerYear
+                                                           );
                 AmountToAddToSavingsForPersonalUse = (getAmountAvailableForGoalsPerPay(_taxRate,
                                                                                 _superannuationRate,
                                                                                 _listOfExpenditure,
@@ -464,4 +482,3 @@ namespace PersonalBudgeting.BLL
     }
 }
 // todo: subtract safety margin along with expenditure
-1
