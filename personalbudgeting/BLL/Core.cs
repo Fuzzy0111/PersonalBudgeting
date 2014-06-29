@@ -105,6 +105,20 @@ namespace PersonalBudgeting.BLL
                 return false;
         }
 
+        public Boolean goalAchievable(Budget budget)
+        {
+
+            if (getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(budget.mainGoal.Cost, budget.mainGoal.DurationInNoOfPays) > getAmountAvailableForGoalsPerPay(budget.TaxRate, budget.SuperannuationRate, budget.ListOfExpenditure, budget.ListOfIncome, budget.NoOfPaysPerYear))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+
         public double getAmountAvailableForGoalsPerPay(float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             if (_listofIncome == null || _listOfExpenditure == null)
@@ -478,6 +492,22 @@ namespace PersonalBudgeting.BLL
         {
             return (calculateSuperannuationPerYear(desiredAmountPerYear, totalIncomePerYear, payPacketInclusive)/noOfPaysPerYear);
         }
+
+       /*  public double calculateNetIncome(Budget budget)
+        {
+            double totaltax = 0;
+            double totalsuperannaution = 0;
+            foreach (Income income in budget.ListOfIncome)
+            {
+                income.Tax = calculateTaxPerYear(income.Amount * budget.NoOfPaysPerYear);
+                float totalIncomePerYear = getGrossIncomePerYear(budget.ListOfIncome, budget.NoOfPaysPerYear);
+                income.Superannuation = calculateSuperannuationPerYear(income.DesiredAmountPerYear,totalIncomePerYear,income.PayPacketInclusive);
+                totaltax += income.Tax;
+                totalsuperannaution += income.Superannuation;
+            }
+            return (getGrossIncomePerYear(budget.ListOfIncome,budget.NoOfPaysPerYear) -totaltax - totalsuperannaution);
+
+        }*/
 
     }
 }

@@ -21,7 +21,7 @@ namespace PersonalBudgeting.Tests
         {
             core = new Core();
             myBudget = new Budget();
-           
+
         }
         [TestFixtureTearDown]
         public void TestTearDownTheEnvironment()
@@ -41,7 +41,7 @@ namespace PersonalBudgeting.Tests
             //Assert.AreEqual(500, myBudget.SavingsAccount.SavingsForPersonalUse);
             //Assert.AreEqual(900000, myBudget.mainGoal.Cost);
             _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost, myBudget.mainGoal.DurationInNoOfPays);
-           
+
             core.updateBankAccount(myBudget.SavingsAccount,
                                      myBudget.TaxRate,
                                      myBudget.SuperannuationRate,
@@ -53,9 +53,9 @@ namespace PersonalBudgeting.Tests
                                      myBudget.ListOfWalletTableItem
                                     );
 
-            Assert.AreEqual(false, core.goalPayableBeforeDeadline(myBudget.mainGoal.Cost, _amountForMainGoalPerPay, 10));
+            Assert.AreEqual(false, core.goalAchievable(myBudget));
         }
 
-       
+
     }
 }
