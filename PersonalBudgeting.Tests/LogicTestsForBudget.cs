@@ -50,6 +50,11 @@ namespace PersonalBudgeting.Tests
         }
 
         [Test]
+        public void TestCalculateNetIncome()//
+        {
+            Assert.AreEqual(100398.5,core.calculateNetIncome(myBudget),0.1);
+        }
+        [Test]
         public void TestgetGrossIncomePerYear_EmptyIncomeList_ReturnZero()
         {
             double result = core.getGrossIncomePerYear(new List<Income>(), 5);

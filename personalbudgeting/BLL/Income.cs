@@ -13,7 +13,7 @@ namespace PersonalBudgeting.BLL
         public double _amount;
         public double Tax { get; set; }
         public double DesiredAmountPerYear { get; set; }
-        public float Superannuation { get; set; }
+        public double Superannuation { get; set; }
         public Boolean PayPacketInclusive { get; set; }
 
         public Income(string name, Participant source, double amount)
@@ -21,10 +21,10 @@ namespace PersonalBudgeting.BLL
             Name = name;
             Source = source;
             Amount = amount;
-            Tax = 0.15F;
-            Superannuation = 0.05F;
+            Tax = 0;
+            Superannuation = 0;
         }
-        public Income(string name,Participant source,double amount,Boolean payPacketInclusive,double desiredAmountPerPay)
+        public Income(string name,Participant source,double amount,Boolean payPacketInclusive,double desiredAmountPerYear)
         {
             Name = name;
             Source = source;
@@ -32,7 +32,7 @@ namespace PersonalBudgeting.BLL
             Tax = 0;
             Superannuation =0;
             PayPacketInclusive = payPacketInclusive;
-            DesiredAmountPerYear = desiredAmountPerPay;
+            DesiredAmountPerYear = desiredAmountPerYear;
         }
 
         public string Name 

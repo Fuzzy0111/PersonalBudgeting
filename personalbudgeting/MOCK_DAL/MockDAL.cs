@@ -32,8 +32,8 @@ namespace PersonalBudgeting.MOCK_DAL
             participants.Add(partner2);
             listOfIncome = new List<Income>();
             lisfOfIncomeForCasualWorkers= new List<Income>();
-            listOfIncome.Add(new Income("salary", partner1, 2500.0));
-            listOfIncome.Add(new Income("salary", partner2, 2600.0));
+            listOfIncome.Add(new Income("salary", partner1, 2500.0,false,100));
+            listOfIncome.Add(new Income("salary", partner2, 2600.0,true,0));
             year = 2014;
             listOfExpenditure = new List<Expenditure>();
             listOfExpenditure.Add(new Expenditure("Car Insurance", 200.0, "Living Expense", participants));

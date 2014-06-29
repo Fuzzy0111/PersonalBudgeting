@@ -493,21 +493,21 @@ namespace PersonalBudgeting.BLL
             return (calculateSuperannuationPerYear(desiredAmountPerYear, totalIncomePerYear, payPacketInclusive)/noOfPaysPerYear);
         }
 
-       /*  public double calculateNetIncome(Budget budget)
+         public double calculateNetIncome(Budget budget)
         {
             double totaltax = 0;
             double totalsuperannaution = 0;
             foreach (Income income in budget.ListOfIncome)
             {
-                income.Tax = calculateTaxPerYear(income.Amount * budget.NoOfPaysPerYear);
-                float totalIncomePerYear = getGrossIncomePerYear(budget.ListOfIncome, budget.NoOfPaysPerYear);
-                income.Superannuation = calculateSuperannuationPerYear(income.DesiredAmountPerYear,totalIncomePerYear,income.PayPacketInclusive);
-                totaltax += income.Tax;
-                totalsuperannaution += income.Superannuation;
+                income.Tax = calculateTaxPerYear(income.Amount * budget.NoOfPaysPerYear);//12672,13517
+                double totalIncomePerYear = income.Amount * budget.NoOfPaysPerYear;//65000,67600
+                income.Superannuation = calculateSuperannuationPerYear(income.DesiredAmountPerYear,totalIncomePerYear,income.PayPacketInclusive);//6012.5,0
+                totaltax += income.Tax;//26189
+                totalsuperannaution += income.Superannuation;//6012.5
             }
-            return (getGrossIncomePerYear(budget.ListOfIncome,budget.NoOfPaysPerYear) -totaltax - totalsuperannaution);
+            return (getGrossIncomePerYear(budget.ListOfIncome,budget.NoOfPaysPerYear) -totaltax - totalsuperannaution);//100398.5
 
-        }*/
+        }
 
     }
 }
