@@ -43,8 +43,6 @@ namespace PersonalBudgeting.Tests
             _amountForMainGoalPerPay = core.getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(myBudget.mainGoal.Cost, myBudget.mainGoal.DurationInNoOfPays);
 
             core.updateBankAccount(myBudget.SavingsAccount,
-                                     myBudget.TaxRate,
-                                     myBudget.SuperannuationRate,
                                      myBudget.ListOfExpenditure,
                                      myBudget.ListOfIncome,
                                      myBudget.NoOfPaysPerYear,

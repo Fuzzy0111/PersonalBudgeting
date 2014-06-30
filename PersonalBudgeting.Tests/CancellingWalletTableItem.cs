@@ -39,8 +39,6 @@ namespace PersonalBudgeting.Tests
             myBudget.SavingsAccount.SavingsForPersonalUse = 500;
             myBudget.ListOfWalletTableItem.Add(wti);
             core.updateBankAccount(myBudget.SavingsAccount,
-                                   myBudget.TaxRate,
-                                   myBudget.SuperannuationRate,
                                    myBudget.ListOfExpenditure,
                                    myBudget.ListOfIncome,
                                    myBudget.NoOfPaysPerYear,
@@ -50,7 +48,7 @@ namespace PersonalBudgeting.Tests
                                    );
             //Assert.AreEqual(3840.4,myBudget.SavingsAccount.SavingsForPersonalUse);
             core.CancelWalletTableItem(myBudget, wti);
-            Assert.AreEqual(3940.4, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
+            Assert.AreEqual(3721.9, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
         }
 
         [Test]
@@ -61,8 +59,6 @@ namespace PersonalBudgeting.Tests
             myBudget.ListOfWalletTableItem.Add(wti);
             
             core.updateBankAccount(myBudget.SavingsAccount,
-                                   myBudget.TaxRate,
-                                   myBudget.SuperannuationRate,
                                    myBudget.ListOfExpenditure,
                                    myBudget.ListOfIncome,
                                    myBudget.NoOfPaysPerYear,

@@ -38,8 +38,6 @@ namespace PersonalBudgeting.Tests
            Assert.AreEqual(0, myBudget.SavingsAccount.SavingsForExpenditures, 0.1);
            Assert.AreEqual(500, myBudget.SavingsAccount.SavingsForPersonalUse, 0.1);
             core.updateBankAccount(myBudget.SavingsAccount,
-                                   myBudget.TaxRate,
-                                   myBudget.SuperannuationRate,
                                    myBudget.ListOfExpenditure,
                                    myBudget.ListOfIncome,
                                    myBudget.NoOfPaysPerYear,
@@ -50,10 +48,8 @@ namespace PersonalBudgeting.Tests
            
             Assert.AreEqual(419.6, myBudget.SavingsAccount.SavingsForGoals, 0.1);
             Assert.AreEqual(220, myBudget.SavingsAccount.SavingsForExpenditures, 0.1);
-            Assert.AreEqual(3940, myBudget.SavingsAccount.SavingsForPersonalUse, 0.5);
+            Assert.AreEqual(3721.9, myBudget.SavingsAccount.SavingsForPersonalUse, 0.5);
             core.updateBankAccount(myBudget.SavingsAccount,
-                                   myBudget.TaxRate,
-                                   myBudget.SuperannuationRate,
                                    myBudget.ListOfExpenditure,
                                    myBudget.ListOfIncome,
                                    myBudget.NoOfPaysPerYear,
@@ -63,8 +59,6 @@ namespace PersonalBudgeting.Tests
                                   );
             core.removeFromSavingForExpenses(myBudget.SavingsAccount,440);//All expenditures for last two months done
             core.updateBankAccount(myBudget.SavingsAccount,
-                                   myBudget.TaxRate,
-                                   myBudget.SuperannuationRate,
                                    myBudget.ListOfExpenditure,
                                    myBudget.ListOfIncome,
                                    myBudget.NoOfPaysPerYear,
@@ -74,13 +68,13 @@ namespace PersonalBudgeting.Tests
                                   );
             Assert.AreEqual(1258.8, myBudget.SavingsAccount.SavingsForGoals, 0.1);
             Assert.AreEqual(220,myBudget.SavingsAccount.SavingsForExpenditures);
-            Assert.AreEqual(10821.2,myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
+            Assert.AreEqual(10165.6,myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
             //withdrawFromSavingsAccount has been called 4 times for 4 withdrawals from savings account
             core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 500);
             //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 50);
             //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 125);
             //core.withdrawFromSavingsAccount(myBudget.SavingsAccount, 100);
-            Assert.AreEqual(10321.2, myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
+            Assert.AreEqual(9665.6, myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
 
         }
         /*[Test]

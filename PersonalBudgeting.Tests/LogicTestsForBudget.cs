@@ -13,7 +13,7 @@ namespace PersonalBudgeting.Tests
     //todo:test transfer main goal
     //todo:test cancel goal
     [TestFixture]
-    public class TestsLogicOfBudget
+    public class LogicTestsForBudget
     {
         Core core;
         Budget myBudget;
@@ -52,7 +52,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestCalculateNetIncome()//
         {
-            Assert.AreEqual(100398.5,core.calculateNetIncome(myBudget),0.1);
+            Assert.AreEqual(100398.5,core.calculateNetIncome(myBudget.ListOfIncome,myBudget.NoOfPaysPerYear),0.1);
         }
         [Test]
         public void TestgetGrossIncomePerYear_EmptyIncomeList_ReturnZero()
@@ -139,86 +139,26 @@ namespace PersonalBudgeting.Tests
         #endregion
 
         #region getNetIncomePerYear Tests
-        [Test, ExpectedException(typeof(ArgumentException))]
-        public void TestgetNetIncomePerYearNegativeTaxRate()
-        {
-            core.getNetIncomePerYear(-0.15F, 0.2F, myBudget.ListOfIncome, 12);
-        }
-
-        [Test, ExpectedException(typeof(ArgumentException))]
-        public void TestgetNetIncomePerYearNegativeSuperannuationRate()
-        {
-            core.getNetIncomePerYear(0.15F, -0.2F, myBudget.ListOfIncome, 12);
-        }
-
         [Test]
         public void TestgetNetIncomePerYearEmptyList()
         {
-            Assert.AreEqual(0, core.getNetIncomePerYear(0.15F, 0.2F, new List<Income>(), 12));
+            Assert.AreEqual(0, core.calculateNetIncome(new List<Income>(), 12));
         }
 
         [Test, ExpectedException(typeof(ArgumentException))]
         public void TestgetNetIncomePerYearNegativePayPerYear()
         {
-            core.getNetIncomePerYear(-0.15F, 0.2F, myBudget.ListOfIncome, -5);
+            core.calculateNetIncome( myBudget.ListOfIncome, -5);
         }
 
-        [Test, ExpectedException(typeof(ArgumentNullException))]
+        [Test, ExpectedException(typeof(NullReferenceException))]
         public void TestgetNetIncomePerYearNullIncomeList()
         {
-            core.getNetIncomePerYear(0.15F, 0.2F, null, 12);
+            core.calculateNetIncome( null, 12);
         }
         #endregion
 
-        #region getAmountAvailableForGoalsPerYear Test
-        [Test, ExpectedException(typeof(ArgumentException))]
-        public void TestgetAmountAvailableForGoalsPerYearInvalidTaxRate()
-        {
-            core.getAmountAvailableForGoalsPerYear(-5F, 0.2F, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
-        }
-
-        [Test, ExpectedException(typeof(ArgumentException))]
-        public void TestgetAmountAvailableForGoalsPerYearInvalidSuperannuationRate()
-        {
-            core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, -0.2F, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
-        }
-
-        [Test, ExpectedException(typeof(ArgumentNullException))]
-        public void TestgetAmountAvailableForGoalsPerYearNullExpenditureList()
-        {
-            core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, null, myBudget.ListOfIncome, 26);
-        }
-
-        [Test]
-        public void TestgetAmountAvailableForGoalsPerYearEmptyExpenditureList()
-        {
-            core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, new List<Expenditure>(), myBudget.ListOfIncome, 26);
-        }
-
-        [Test, ExpectedException(typeof(ArgumentNullException))]
-        public void TestgetAmountAvailableForGoalsPerYearNullIncomeList()
-        {
-            core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, null, 26);
-        }
-
-        [Test]
-        public void TestgetAmountAvailableForGoalsPerYearEmptyIncomeList()
-        {
-            core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, new List<Income>(), 26);
-        }
-
-        [Test, ExpectedException(typeof(ArgumentException))]
-        public void TestgetAmountAvailableForGoalsPerYearZeroPayPeriods()
-        {
-            core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 0);
-        }
-
-        [Test, ExpectedException(typeof(ArgumentException))]
-        public void TestgetAmountAvailableForGoalsPerYearNegativePayPeriods()
-        {
-            core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, -5);
-        }
-        #endregion
+        
 
         #region getNoOfPaysRequiredToAccomplishGoal Tests
         [Test, ExpectedException(typeof(DivideByZeroException))]
@@ -258,25 +198,25 @@ namespace PersonalBudgeting.Tests
         [Test, ExpectedException(typeof(DivideByZeroException))]
         public void TestgetAmountAvailableForGoalsPerPayNumberOFPayequalzero()
         {
-            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 0);
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.ListOfExpenditure, myBudget.ListOfIncome, 0);
         }
 
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestgetAmountAvailableForGoalsPerPayNumberOFPaylessthanzero()
         {
-            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, -5);
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.ListOfExpenditure, myBudget.ListOfIncome, -5);
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetAmountAvailableForGoalsPerPayListOfIncomeEmpty()
         {
-            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, null, myBudget.NoOfPaysPerYear);
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.ListOfExpenditure, null, myBudget.NoOfPaysPerYear);
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetAmountAvailableForGoalsPerPayListOfExpenditureEmpty()
         {
-            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, null, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
+            double AmountAvailableForGoalsPerPay = core.getAmountAvailableForGoalsPerPay(null, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
         }
         #endregion
 
@@ -284,25 +224,25 @@ namespace PersonalBudgeting.Tests
         [Test, ExpectedException(typeof(DivideByZeroException))]
         public void TestgetRemainingAmountForSecondaryGoalsPerPayNumberOFPayequalzero()
         {
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 0);
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 0);
         }
 
         [Test, ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestgetRemainingAmountForSecondaryGoalsPerPayNumberOFPaylessthanzero()
         {
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, -5);
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.ListOfExpenditure, myBudget.ListOfIncome, -5);
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfIncomeNull()
         {
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, null, myBudget.NoOfPaysPerYear);
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.ListOfExpenditure, null, myBudget.NoOfPaysPerYear);
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestgetRemainingAmountForSecondaryGoalsPerPayListOfExpenditureNull()
         {
-            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, null, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
+            double RemainingAmountForSecondaryGoalsPerPay = core.getRemainingAmountForSecondaryGoalsPerPay(_amountForMainGoalPerPay, null, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
         }
         #endregion
 
@@ -344,7 +284,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestSaveForMainGoal_AmountForMainGoalPerPayGreaterThanAmountAvailableForGoals_ReturnsFalse()
         {
-            Assert.AreEqual(false, core.saveForMainGoal(myBudget.SavingsAccount, 500000000, myBudget.mainGoal, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(false, core.saveForMainGoal(myBudget.SavingsAccount, 500000000, myBudget.mainGoal, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
         }
         [Test]
         public void TestAddToSavingsForGoals_AddAnAmountToSavings_AmountisAdded()
@@ -364,7 +304,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestTickAllWaleltTableItems_TickAllItemsandCheckAmountTicked_CorrectAmountTicked()
         {
-            Assert.AreEqual(35, core.tickAllWalletTableItems(myBudget.SavingsAccount, myBudget.ListOfWalletTableItem, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
+            Assert.AreEqual(35, core.tickAllWalletTableItems(myBudget.SavingsAccount, myBudget.ListOfWalletTableItem, _amountForMainGoalPerPay,myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
         }
         #endregion
 
@@ -398,25 +338,30 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerYear_ReturnsCorrectValue()
         {
-            Assert.AreEqual(12265.5, core.calculateSuperannuationPerYear(100, 132600, false), 0.1);
+            Assert.AreEqual(12265.5, core.calculateSuperannuationPerYear(100, 132600, false,myBudget.NoOfPaysPerYear), 0.1);
         }
         [Test]
         public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerPay_ReturnsCorrectValue()
         {
             Assert.AreEqual(471.75, core.calculateSuperannuationPerPay(100, 132600, false,myBudget.NoOfPaysPerYear), 0.1);
         }
+
         [Test]
         public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerYear_ReturnsCorrectValue1()
         {
-            Assert.AreEqual(25000, core.calculateSuperannuationPerYear(25000, 132600, false), 0.1);
+            Assert.AreEqual(25000, core.calculateSuperannuationPerYear(25000, 65000, false,myBudget.NoOfPaysPerYear), 0.1);
         }
         [Test]
         public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerPay_ReturnsCorrectValue1()
         {
-            Assert.AreEqual(961.54, core.calculateSuperannuationPerPay(25000, 132600, false, myBudget.NoOfPaysPerYear), 0.1);
+            Assert.AreEqual(961.54, core.calculateSuperannuationPerPay(25000,65000, false, myBudget.NoOfPaysPerYear), 0.1);
         }
 
-
+        [Test]
+        public void TestsuperannuationCalculationCore_calculateSuperARatepayPacketInclusiveFalse_ReturnsCorrectValue()
+        {
+            Assert.AreEqual(0.385, core.calculateSuperannuationRate(0, 132600, false), 0.1);
+        }
 
         [Test]
         public void TestsuperannuationCalculationCore_calculateSuperARatepayPacketInclusiveTrue_ReturnsZero()
@@ -426,7 +371,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerYearpayPacketInclusiveTrue_ReturnsCorrectValue1()
         {
-            Assert.AreEqual(0, core.calculateSuperannuationPerYear(0, 132600, true), 0.1);
+            Assert.AreEqual(0, core.calculateSuperannuationPerYear(0, 132600, true,myBudget.NoOfPaysPerYear), 0.1);
         }
         [Test]
         public void TestsuperannuationCalculationCore_calculateSuperAnnuationPerPaypayPacketInclusiveTrue_ReturnsZero()

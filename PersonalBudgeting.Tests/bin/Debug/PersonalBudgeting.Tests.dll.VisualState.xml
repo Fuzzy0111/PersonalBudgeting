@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1088]C:\Users\User\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll</TopNode>
-  <SelectedNode>[0-1075]PersonalBudgeting.Tests.RealLifeScenariosTests.TestCalculateNoOfPaysRequiredToAccomplishGoal_NormalScenario</SelectedNode>
+  <TopNode>[0-1015]PersonalBudgeting.Tests.LogicTestsForBudget.TestGetTotalExpenditurePerYear</TopNode>
+  <SelectedNode>[0-1054]PersonalBudgeting.Tests.LogicTestsForBudget.TestsuperannuationCalculationCore_calculateSuperAnnuationPerYear_ReturnsCorrectValue1</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1088]C:\Users\User\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" Expanded="true" />
-    <Node UniqueName="[0-1089]PersonalBudgeting" Expanded="true" />
-    <Node UniqueName="[0-1090]PersonalBudgeting.Tests" Expanded="true" />
-    <Node UniqueName="[0-1072]PersonalBudgeting.Tests.RealLifeScenarios2" Expanded="true" />
-    <Node UniqueName="[0-1074]PersonalBudgeting.Tests.RealLifeScenariosTests" Expanded="true" />
-    <Node UniqueName="[0-1080]PersonalBudgeting.Tests.TestsAccuracyOfDALValues" Expanded="true" />
-    <Node UniqueName="[0-1005]PersonalBudgeting.Tests.TestsLogicOfBudget" Expanded="true" />
+    <Node UniqueName="[0-1080]C:\Users\user\Documents\GitHub\PersonalBudgeting\PersonalBudgeting.Tests\bin\Debug\PersonalBudgeting.Tests.dll" Expanded="true" />
+    <Node UniqueName="[0-1081]PersonalBudgeting" Expanded="true" />
+    <Node UniqueName="[0-1082]PersonalBudgeting.Tests" Expanded="true" />
+    <Node UniqueName="[0-1000]PersonalBudgeting.Tests.CancellingWalletTableItemTest" Expanded="true" />
+    <Node UniqueName="[0-1003]PersonalBudgeting.Tests.FunctionalityTests" Expanded="true" />
+    <Node UniqueName="[0-1005]PersonalBudgeting.Tests.LogicTestsForBudget" Expanded="true" />
   </Nodes>
 </VisualState>

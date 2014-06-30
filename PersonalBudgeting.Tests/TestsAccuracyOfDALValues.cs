@@ -38,11 +38,11 @@ namespace PersonalBudgeting.Tests
         } 
         
         [Test]
-        public void TestgetNetIncomePerYear()
+        public void TestcalculateNetIncomePerYear()
         {
-            string msg = String.Format("Tax: {0}, Sup: {1}, TotalGrossIncome: {2}, PaysPerYear: {3}",
-                myBudget.TaxRate, myBudget.SuperannuationRate, core.getGrossIncomePerYear(myBudget.ListOfIncome, myBudget.NoOfPaysPerYear), myBudget.NoOfPaysPerYear);
-            Assert.AreEqual(106080, core.getNetIncomePerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear), 0.1, msg);
+            //string msg = String.Format("Tax: {0}, Sup: {1}, TotalGrossIncome: {2}, PaysPerYear: {3}",
+            //core.getGrossIncomePerYear(myBudget.ListOfIncome, myBudget.NoOfPaysPerYear), myBudget.NoOfPaysPerYear);
+            Assert.AreEqual(100398.5, core.calculateNetIncome(myBudget.ListOfIncome, myBudget.NoOfPaysPerYear), 0.1);
         }
 
         [Test]
@@ -60,14 +60,14 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestGetAmountAvailableForGoalsPerYear()
         {
-            Assert.AreEqual(100360, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26), 0.1);
+            Assert.AreEqual(94678.5, core.getAmountAvailableForGoalsPerYear(myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26), 0.1);
         }
 
         [Test, ExpectedException(typeof(ArgumentNullException))]
         public void TestTickAllWalletTableItemsEmptyList()
         {
 
-            core.tickAllWalletTableItems(myBudget.SavingsAccount,null, _amountForMainGoalPerPay, myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
+            core.tickAllWalletTableItems(myBudget.SavingsAccount,null, _amountForMainGoalPerPay, myBudget.ListOfExpenditure, myBudget.ListOfIncome, 26);
         }
 
         [TestFixtureTearDown]

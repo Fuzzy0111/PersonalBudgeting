@@ -42,13 +42,13 @@ namespace PersonalBudgeting.Tests
             Assert.AreEqual(5100, core.getGrossIncome(myBudget.ListOfIncome));
             Assert.AreEqual(132600, core.getGrossIncomePerYear(myBudget.ListOfIncome, myBudget.NoOfPaysPerYear));
             Assert.AreEqual(5720, core.getTotalExpenditurePerYear(myBudget.ListOfExpenditure, myBudget.NoOfPaysPerYear));
-            Assert.AreEqual(106080, core.getNetIncomePerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear), 0.1);
-            Assert.AreEqual(100360, core.getAmountAvailableForGoalsPerYear(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear), 0.1);
+            Assert.AreEqual(100398.5, core.calculateNetIncome(myBudget.ListOfIncome,myBudget.NoOfPaysPerYear), 0.1);
+            Assert.AreEqual(94678.5, core.getAmountAvailableForGoalsPerYear(myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear), 0.1);
             
             Assert.AreEqual(10,core.getNoOfPaysRequiredToAccomplishGoal(10000,1000));
 
         }
-
+       
         [Test]
         public void TestCancelWalletItem_CorrectAmountInSavingsAccount()
         {
@@ -69,9 +69,7 @@ namespace PersonalBudgeting.Tests
         [Test]
         public void TestTransferWalletTableItemToMainGoal_VerifySavingsForMainGoal()
         {
-            core.updateBankAccount(myBudget.SavingsAccount,
-                                    myBudget.TaxRate,
-                                    myBudget.SuperannuationRate,
+            core.updateBankAccount(myBudget.SavingsAccount, 
                                     myBudget.ListOfExpenditure,
                                     myBudget.ListOfIncome,
                                     myBudget.NoOfPaysPerYear,

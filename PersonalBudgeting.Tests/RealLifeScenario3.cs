@@ -34,8 +34,6 @@ namespace PersonalBudgeting.Tests
         {
             myBudget.ListOfWalletTableItem.First().Cost = 20;
             core.updateBankAccount(myBudget.SavingsAccount,
-                                   myBudget.TaxRate,
-                                   myBudget.SuperannuationRate,
                                    myBudget.ListOfExpenditure,
                                    myBudget.ListOfIncome,
                                    myBudget.NoOfPaysPerYear,

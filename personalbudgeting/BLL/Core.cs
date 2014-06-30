@@ -27,13 +27,6 @@ namespace PersonalBudgeting.BLL
             return getGrossIncome(_listofIncome) * noOfPayPerYear;
         }
 
-        public double getNetIncomePerYear(float _taxRate, float _superannuationRate, List<Income> _listofIncome, int noOfPayPerYear)
-        {
-            if (_listofIncome == null) throw new ArgumentNullException();
-            if (_taxRate <= 0 || _superannuationRate <= 0 || noOfPayPerYear <= 0) //todo: argExp for empty?
-                throw new ArgumentException();
-            return getGrossIncomePerYear(_listofIncome, noOfPayPerYear) * (1 - _taxRate - _superannuationRate);
-        }
 
         public double getTotalExpenditure(List<Expenditure> _listOfExpenditure)
         {
@@ -59,9 +52,9 @@ namespace PersonalBudgeting.BLL
             return getTotalExpenditure(_listOfExpenditure) * 12;
         }*/
 
-        public double getAmountAvailableForGoalsPerYear(float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public double getAmountAvailableForGoalsPerYear(List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
-            return (getNetIncomePerYear(_taxRate, _superannuationRate, _listofIncome, noOfPayPerYear) - getTotalExpenditurePerYear(_listOfExpenditure, noOfPayPerYear));
+            return (calculateNetIncome(_listofIncome, noOfPayPerYear) - getTotalExpenditurePerYear(_listOfExpenditure, noOfPayPerYear));
         }
 
         public int getNoOfPaysRequiredToAccomplishGoal(double goalCost, double amountPerPay)
@@ -108,7 +101,7 @@ namespace PersonalBudgeting.BLL
         public Boolean goalAchievable(Budget budget)
         {
 
-            if (getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(budget.mainGoal.Cost, budget.mainGoal.DurationInNoOfPays) > getAmountAvailableForGoalsPerPay(budget.TaxRate, budget.SuperannuationRate, budget.ListOfExpenditure, budget.ListOfIncome, budget.NoOfPaysPerYear))
+            if (getMinimumAmountRequiredPerPayToAccomplishGoalBeforeDeadline(budget.mainGoal.Cost, budget.mainGoal.DurationInNoOfPays) > getAmountAvailableForGoalsPerPay(budget.ListOfExpenditure, budget.ListOfIncome, budget.NoOfPaysPerYear))
             {
                 return false;
             }
@@ -119,7 +112,7 @@ namespace PersonalBudgeting.BLL
 
         }
 
-        public double getAmountAvailableForGoalsPerPay(float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public double getAmountAvailableForGoalsPerPay(List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             if (_listofIncome == null || _listOfExpenditure == null)
                 throw new ArgumentNullException();
@@ -128,10 +121,10 @@ namespace PersonalBudgeting.BLL
             if (noOfPayPerYear < 0)
                 throw new ArgumentOutOfRangeException();
             else
-                return (getAmountAvailableForGoalsPerYear(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) / noOfPayPerYear);
+                return (getAmountAvailableForGoalsPerYear(_listOfExpenditure, _listofIncome, noOfPayPerYear) / noOfPayPerYear);
         }
 
-        public double getRemainingAmountForSecondaryGoalsPerPay(double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public double getRemainingAmountForSecondaryGoalsPerPay(double amountForMainGoalPerPay, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             if (_listofIncome == null || _listOfExpenditure == null)
                 throw new ArgumentNullException();
@@ -139,7 +132,8 @@ namespace PersonalBudgeting.BLL
                 throw new DivideByZeroException();
             if (noOfPayPerYear < 0)
                 throw new ArgumentOutOfRangeException();
-            return (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - amountForMainGoalPerPay);
+           return (getAmountAvailableForGoalsPerPay(_listOfExpenditure, _listofIncome, noOfPayPerYear) - amountForMainGoalPerPay);
+
         }
 
         public void addSavingsForMainGoal(Budget budget, double AmountToSave)
@@ -153,9 +147,9 @@ namespace PersonalBudgeting.BLL
             removeFromSavingForGoals(myBudget.SavingsAccount,myBudget.mainGoal.AmountSaved);
         }
 
-        public Boolean saveForMainGoal(BankAccount myAccount, double amountForMainGoalPerPay, MainGoal mainGoal, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public Boolean saveForMainGoal(BankAccount myAccount, double amountForMainGoalPerPay, MainGoal mainGoal,List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
-            if (getAmountAvailableForGoalsPerPay(_taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) < amountForMainGoalPerPay)
+            if (getAmountAvailableForGoalsPerPay(_listOfExpenditure, _listofIncome, noOfPayPerYear) < amountForMainGoalPerPay)
             {
                 return false;
             }
@@ -231,13 +225,13 @@ namespace PersonalBudgeting.BLL
 
         }
 
-        public double tickAllWalletTableItems(BankAccount myAccount, List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
+        public double tickAllWalletTableItems(BankAccount myAccount, List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             //using RemainingAmountForSecondaryGoalsPerPay
             if (walletTableItems == null) throw new ArgumentNullException();
 
             double totalAmountTicked = 0.0;
-            double remainingAmountForSecondaryGoalsPerPay = getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
+            double remainingAmountForSecondaryGoalsPerPay = getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay, _listOfExpenditure, _listofIncome, noOfPayPerYear);
 
             foreach (WalletTableItem wti in walletTableItems)
             {
@@ -292,7 +286,7 @@ namespace PersonalBudgeting.BLL
         public double getSurplusAmountPerPay(List<WalletTableItem> walletTableItems, double amountForMainGoalPerPay, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear)
         {
             if (walletTableItems == null)
-                return getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear);
+                return getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay,_listOfExpenditure, _listofIncome, noOfPayPerYear);
             else
             {
                 double totalContributionPerTick = 0;
@@ -301,7 +295,7 @@ namespace PersonalBudgeting.BLL
                     totalContributionPerTick += wti.ContributionPerTick;
                 }
 
-                return getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay, _taxRate, _superannuationRate, _listOfExpenditure, _listofIncome, noOfPayPerYear) - totalContributionPerTick;
+                return getRemainingAmountForSecondaryGoalsPerPay(amountForMainGoalPerPay, _listOfExpenditure, _listofIncome, noOfPayPerYear) - totalContributionPerTick;
             }
         }
 
@@ -376,7 +370,7 @@ namespace PersonalBudgeting.BLL
             addToSavingsForPersonalUse(budget.SavingsAccount, casualIncome.Amount);
         }
 
-        public void updateBankAccount(BankAccount myAccount, float _taxRate, float _superannuationRate, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mainGoal, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
+        public void updateBankAccount(BankAccount myAccount, List<Expenditure> _listOfExpenditure, List<Income> _listofIncome, int noOfPayPerYear, MainGoal mainGoal, double amountForMainGoalPerPay, List<WalletTableItem> _listOfWalletTableItems)
         {
             if (_listOfExpenditure == null || _listofIncome == null)
             {
@@ -393,8 +387,6 @@ namespace PersonalBudgeting.BLL
             Boolean savedforMainGoal = saveForMainGoal(myAccount,
                                                         amountForMainGoalPerPay,
                                                         mainGoal,
-                                                        _taxRate,
-                                                        _superannuationRate,
                                                         _listOfExpenditure,
                                                         _listofIncome,
                                                         noOfPayPerYear);
@@ -406,15 +398,12 @@ namespace PersonalBudgeting.BLL
                 totalAmountTicked = tickAllWalletTableItems(myAccount,
                                                             _listOfWalletTableItems,
                                                             amountForMainGoalPerPay,
-                                                            _taxRate,
-                                                            _superannuationRate,
                                                             _listOfExpenditure,
                                                             _listofIncome,
                                                             noOfPayPerYear
                                                            );
 
-                AmountToAddToSavingsForPersonalUse = (getAmountAvailableForGoalsPerPay(_taxRate,
-                                                                                _superannuationRate,
+                AmountToAddToSavingsForPersonalUse = (getAmountAvailableForGoalsPerPay(
                                                                                 _listOfExpenditure,
                                                                                 _listofIncome,
                                                                                 noOfPayPerYear
@@ -427,14 +416,11 @@ namespace PersonalBudgeting.BLL
                 totalAmountTicked = tickAllWalletTableItems(myAccount,
                                                             _listOfWalletTableItems,
                                                             0,
-                                                            _taxRate,
-                                                            _superannuationRate,
                                                             _listOfExpenditure,
                                                             _listofIncome,
                                                             noOfPayPerYear
                                                            );
-                AmountToAddToSavingsForPersonalUse = (getAmountAvailableForGoalsPerPay(_taxRate,
-                                                                                _superannuationRate,
+                AmountToAddToSavingsForPersonalUse = (getAmountAvailableForGoalsPerPay(
                                                                                 _listOfExpenditure,
                                                                                  _listofIncome,
                                                                                 noOfPayPerYear
@@ -484,28 +470,34 @@ namespace PersonalBudgeting.BLL
 
             }
         }
-        public double calculateSuperannuationPerYear(double desiredAmountPerYear, double totalIncomePerYear, Boolean payPacketInclusive)
+
+        public double getDesiredAmountPerYearForSuperAnnuation(double DesiredAmountPerPay, int NoOfPaysPerYear)
         {
-            return (calculateSuperannuationRate(desiredAmountPerYear, totalIncomePerYear, payPacketInclusive)*totalIncomePerYear);
+            return DesiredAmountPerPay * NoOfPaysPerYear;
+        }
+
+        public double calculateSuperannuationPerYear(double desiredAmountPerPay, double totalIncomePerYear, Boolean payPacketInclusive,int NoOfPaysPerYear)
+        {
+            return (calculateSuperannuationRate(getDesiredAmountPerYearForSuperAnnuation(desiredAmountPerPay,NoOfPaysPerYear), totalIncomePerYear, payPacketInclusive)*totalIncomePerYear);
         }
         public double calculateSuperannuationPerPay(double desiredAmountPerYear, double totalIncomePerYear, Boolean payPacketInclusive, int noOfPaysPerYear)
         {
-            return (calculateSuperannuationPerYear(desiredAmountPerYear, totalIncomePerYear, payPacketInclusive)/noOfPaysPerYear);
+            return (calculateSuperannuationPerYear(desiredAmountPerYear, totalIncomePerYear, payPacketInclusive,noOfPaysPerYear)/noOfPaysPerYear);
         }
 
-         public double calculateNetIncome(Budget budget)
+         public double calculateNetIncome(List<Income> listOfIncome,int NoOfPaysPerYear)
         {
             double totaltax = 0;
             double totalsuperannaution = 0;
-            foreach (Income income in budget.ListOfIncome)
+            foreach (Income income in listOfIncome)
             {
-                income.Tax = calculateTaxPerYear(income.Amount * budget.NoOfPaysPerYear);//12672,13517
-                double totalIncomePerYear = income.Amount * budget.NoOfPaysPerYear;//65000,67600
-                income.Superannuation = calculateSuperannuationPerYear(income.DesiredAmountPerYear,totalIncomePerYear,income.PayPacketInclusive);//6012.5,0
+                income.Tax = calculateTaxPerYear(income.Amount * NoOfPaysPerYear);//12672,13517
+                double totalIncomePerYear = income.Amount * NoOfPaysPerYear;//65000,67600
+                income.Superannuation = calculateSuperannuationPerYear(income.DesiredAmountPerYear,totalIncomePerYear,income.PayPacketInclusive,NoOfPaysPerYear);//6012.5,0
                 totaltax += income.Tax;//26189
                 totalsuperannaution += income.Superannuation;//6012.5
             }
-            return (getGrossIncomePerYear(budget.ListOfIncome,budget.NoOfPaysPerYear) -totaltax - totalsuperannaution);//100398.5
+            return (getGrossIncomePerYear(listOfIncome,NoOfPaysPerYear) -totaltax - totalsuperannaution);//100398.5
 
         }
 

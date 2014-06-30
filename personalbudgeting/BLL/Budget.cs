@@ -16,8 +16,6 @@ namespace PersonalBudgeting.BLL
         public List<Participant> ListOfParticipant { get; set; }
         public List<Expenditure> ListOfExpenditure { get; set; }
         public List<WalletTableItem> ListOfWalletTableItem { get; set; }
-        public float SuperannuationRate { get; set; }
-        public float TaxRate { get; set; }
         public BankAccount SavingsAccount { get; set; }
         public int year { get; set; }
 
@@ -41,8 +39,6 @@ namespace PersonalBudgeting.BLL
             ListOfExpenditure = dal.retrieveListOfExpenditure();
             mainGoal = dal.retrieveMainGoal();
             ListOfWalletTableItem = dal.retrieveListOfWalletTableItem();
-            TaxRate = dal.retrieveTaxRate();
-            SuperannuationRate = dal.retrieveSuperannuationRate();
             //this._safetyMargin;
             SavingsAccount = dal.retrieveSavingsAccount();
             NoOfPaysPerYear = dal.retrieveNoOfPaysPerYear();
@@ -91,9 +87,9 @@ namespace PersonalBudgeting.BLL
             ListOfParticipant.Add(new Participant(fname,lname));
         }
 
-        public void removeParticipant(string fname, string lname)
+        public void removeParticipant(Participant participant)
         {
-            ListOfParticipant.Remove(new Participant(fname, lname));
+            ListOfParticipant.Remove(participant);
         }
     }
 }

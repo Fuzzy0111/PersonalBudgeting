@@ -34,8 +34,6 @@ namespace PersonalBudgeting.Tests
             Assert.AreEqual(0,myBudget.SavingsAccount.SavingsForGoals);
             Assert.AreEqual(500,myBudget.SavingsAccount.SavingsForPersonalUse);
             core.updateBankAccount(myBudget.SavingsAccount,
-                                    myBudget.TaxRate,
-                                    myBudget.SuperannuationRate,
                                     myBudget.ListOfExpenditure,
                                     myBudget.ListOfIncome,
                                     myBudget.NoOfPaysPerYear,
@@ -44,10 +42,11 @@ namespace PersonalBudgeting.Tests
                                     myBudget.ListOfWalletTableItem
                                    );
             Assert.AreEqual(220, myBudget.SavingsAccount.SavingsForExpenditures);
-            Assert.AreEqual(3940.4,myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
-            core.getAmountAvailableForGoalsPerPay(myBudget.TaxRate, myBudget.SuperannuationRate, myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
+            Assert.AreEqual(3721.9,myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
+            core.getAmountAvailableForGoalsPerPay(myBudget.ListOfExpenditure, myBudget.ListOfIncome, myBudget.NoOfPaysPerYear);
             core.addIncomeForCasualWorker(myBudget, "salary", new Participant("Quannah", "Parker"), 300);
-            Assert.AreEqual(4240.4,myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
+            core.addIncomeForCasualWorker(myBudget,"hobby",new Participant("Wassim","Yankee"),240);
+            Assert.AreEqual(4261.9,myBudget.SavingsAccount.SavingsForPersonalUse,0.1);
           
 
         }
